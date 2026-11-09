@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Montagnoud Coaching</title>
+<meta name="description" content="Coaching trail et running en ligne : plan personnalisé, ajusté chaque semaine, avec une app pour suivre tes séances. Première semaine offerte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout : une seule page, sections alternées clair / vert forêt, contenu à 1100px, accent jaune fluo réservé aux appels à l'action */
+  --forest:#1f3d2b;
+  --forest-2:#2b5239;
+  --snow:#f6f7f3;
+  --rock:#e3e7df;
+  --ink:#17231b;
+  --muted:#56645a;
+  --fluo:#e2ff3b;
+  --line:#cfd6cc;
+  --display:"DM Serif Display", Georgia, "Times New Roman", serif;
+  --body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--snow);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6}
+img,svg{max-width:100%}
+a{color:var(--forest-2)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--fluo);outline-offset:2px;box-shadow:0 0 0 5px var(--forest)}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.1;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.4rem,6vw,4.2rem)}
+h2{font-size:clamp(1.9rem,4vw,2.8rem)}
+h3{font-size:1.45rem}
+p{margin:0}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+section{padding:80px 0}
+.lead{font-size:1.15rem;color:var(--muted);max-width:62ch}
+.dark{background:var(--forest);color:#eef2ea}
+.dark .lead,.dark .muted{color:#b9c8bc}
+.dark a{color:var(--fluo)}
+.alt{background:var(--rock)}
+.eyebrow{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--forest-2);margin-bottom:12px}
+.dark .eyebrow,.hero .eyebrow{color:var(--fluo)}
+.stack{display:flex;flex-direction:column;gap:18px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:999px;font-weight:700;text-decoration:none;border:2px solid transparent;font-size:1rem;cursor:pointer;font-family:var(--body)}
+.btn-fluo{background:var(--fluo);color:var(--forest)!important}
+.btn-fluo:hover{background:#d2f01f}
+.btn-ghost{border-color:currentColor;color:inherit!important;background:transparent}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+
+/* Nav */
+header.top{position:sticky;top:0;z-index:20;background:var(--forest);color:#fff}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-family:var(--display);font-size:1.35rem}
+.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.nav ul a{color:#dfe7dc;text-decoration:none;font-weight:500;font-size:.95rem}
+.nav ul a:hover{color:var(--fluo)}
+.nav .btn{padding:9px 18px;font-size:.9rem}
+.menu-btn{display:none;background:none;border:2px solid #fff3;color:#fff;border-radius:10px;padding:6px 12px;font:600 .9rem var(--body)}
+@media (max-width:900px){
+  .nav ul{display:none;position:absolute;top:64px;left:0;right:0;background:var(--forest);flex-direction:column;padding:12px 20px 20px;gap:14px}
+  .nav ul.open{display:flex}
+  .menu-btn{display:block}
+  .nav .btn{display:none}
+}
+
+/* Hero */
+.hero{background:var(--forest);color:#fff;padding:56px 0 0;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end}
+.hero h1 em{font-style:normal;color:var(--fluo)}
+.hero .lead{color:#c5d3c8;margin:20px 0 28px}
+.hero-facts{display:flex;flex-wrap:wrap;gap:10px 22px;margin:26px 0 48px;padding:0;list-style:none;color:#c5d3c8;font-size:.95rem}
+.hero-facts li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--fluo);margin-right:8px;vertical-align:middle}
+.hero canvas{width:100%;height:300px;display:block}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.hero canvas{height:180px}}
+
+/* Cards / grids */
+.grid{display:grid;gap:20px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.dark .card{background:var(--forest-2);border-color:#3d6a4c}
+.card .tag{font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dark .card .tag{color:var(--fluo)}
+.head{display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
+
+/* Steps */
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;list-style:none;padding:0;margin:0}
+.steps li{border-top:3px solid var(--fluo);padding-top:16px;display:flex;flex-direction:column;gap:8px}
+.steps li::before{counter-increment:s;content:"0" counter(s);font-family:var(--display);font-size:2rem;color:var(--fluo)}
+.steps strong{font-size:1.1rem}
+
+/* App mockup */
+.app-wrap{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:center}
+@media (max-width:820px){.app-wrap{grid-template-columns:1fr}}
+.phone{background:#0f1f15;border-radius:36px;padding:14px;box-shadow:0 24px 50px #1f3d2b40;max-width:340px;margin:0 auto;width:100%}
+.screen{background:var(--snow);border-radius:24px;padding:18px;display:flex;flex-direction:column;gap:10px;font-size:.88rem}
+.screen .bar{display:flex;justify-content:space-between;align-items:center;font-weight:700;color:var(--forest)}
+.screen .day{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+.pill{font-size:.72rem;font-weight:700;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.p-easy{background:#dff3e2;color:#1f6b33}.p-qual{background:#ffe7c7;color:#8a4b00}.p-long{background:#dde8ff;color:#24448c}.p-rest{background:#eceeea;color:#56645a}
+.screen .note{background:var(--forest);color:#eef2ea;border-radius:12px;padding:10px 12px}
+.check{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px}
+.check li{padding-left:30px;position:relative}
+.check li::before{content:"";position:absolute;left:0;top:6px;width:16px;height:16px;border-radius:5px;background:var(--fluo);box-shadow:inset 0 0 0 4px var(--forest)}
+
+/* Pricing */
+.price{font-family:var(--display);font-size:3.2rem;line-height:1;color:var(--forest)}
+.price small{font-family:var(--body);font-size:1rem;color:var(--muted)}
+.card.featured{border:2px solid var(--forest);box-shadow:0 14px 34px #1f3d2b22}
+.badge{align-self:flex-start;background:var(--fluo);color:var(--forest);font-weight:700;font-size:.78rem;padding:4px 12px;border-radius:999px}
+
+/* Tabs nutrition */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.tab{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font:600 .92rem var(--body);cursor:pointer;color:var(--ink)}
+.tab[aria-selected="true"]{background:var(--forest);color:#fff;border-color:var(--forest)}
+.panel{display:none}
+.panel.on{display:block}
+.meal{display:grid;grid-template-columns:140px 1fr;gap:6px 18px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px}
+.meal dt{font-weight:700;color:var(--forest-2)}
+.meal dd{margin:0}
+@media (max-width:560px){.meal{grid-template-columns:1fr}.meal dd{margin-bottom:8px}}
+.note-box{border-left:4px solid var(--forest-2);background:#fff;padding:14px 18px;border-radius:0 12px 12px 0;color:var(--muted);font-size:.95rem}
+
+/* Calculator */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:28px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px}
+@media (max-width:760px){.calc{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{font-weight:600}
+.field input[type=range]{accent-color:var(--forest)}
+.field select{padding:10px;border-radius:10px;border:1px solid var(--line);font:500 1rem var(--body);background:var(--snow)}
+.out{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tile{background:var(--snow);border-radius:14px;padding:14px}
+.tile b{display:block;font-family:var(--display);font-size:1.9rem;font-weight:400;color:var(--forest);font-variant-numeric:tabular-nums;line-height:1.1}
+.tile span{font-size:.85rem;color:var(--muted)}
+.calc-advice{grid-column:1/-1;font-size:.95rem;color:var(--muted)}
+
+/* Zones table */
+.table-scroll{overflow-x:auto;border-radius:16px;border:1px solid var(--line);background:#fff}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.95rem}
+th,td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:var(--forest);color:#fff;font-weight:600}
+td:first-child{font-weight:700;white-space:nowrap}
+.zbar{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:8px}
+
+/* Injuries */
+.inj-tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
+.inj{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
+.inj-layout{display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start}
+.inj-layout .inj{grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
+@media (max-width:860px){.inj-layout{grid-template-columns:1fr}}
+.body-map{margin:0;position:sticky;top:84px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px 14px 14px}
+@media (max-width:860px){.body-map{position:static;max-width:420px;width:100%;margin:0 auto}}
+.body-map svg{width:100%;height:auto;display:block}
+.body-map figcaption{display:flex;flex-direction:column;gap:6px;align-items:center;font-size:.9rem;color:var(--muted);text-align:center;margin-top:6px}
+#bodyHint{font-weight:600;color:var(--ink)}
+.legend{display:inline-flex;align-items:center;gap:8px;font-size:.82rem}
+.legend .dot{width:12px;height:12px;border-radius:50%;background:#d63c2a;box-shadow:0 0 0 2px #fff,0 0 0 3px #d63c2a55}
+.bm-body{fill:#e6ebe3;stroke:#b7c3b4;stroke-width:1.5;stroke-linejoin:round}
+.bm-arm{stroke:#e6ebe3;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.bm-arm-o{stroke:#b7c3b4;stroke-linecap:round;stroke-linejoin:round;fill:none}
+.bm-zone{fill:transparent;cursor:pointer;transition:fill .15s}
+.bm-zone:hover{fill:#1f3d2b26}
+.bm-zone.on{fill:#d63c2aa6;filter:url(#soft)}
+.bm-zone:focus{outline:none}
+.bm-zone:focus-visible{fill:#1f3d2b40}
+.bm-label{font:700 11px var(--body);fill:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.bm-dot{fill:#d63c2a;stroke:#fff;stroke-width:2;cursor:pointer;transition:r .15s}
+.bm-dot.hi{r:9}
+.bm-pulse{fill:none;stroke:#d63c2a;stroke-width:2;opacity:.6;transform-box:fill-box;transform-origin:center;animation:pulse 1.6s ease-out infinite;pointer-events:none}
+@keyframes pulse{from{transform:scale(1);opacity:.7}to{transform:scale(2.6);opacity:0}}
+.injury.hi{border-color:#d63c2a;box-shadow:0 0 0 2px #d63c2a33}
+.injury{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px}
+.injury header{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.injury h3{font-size:1.35rem}
+.zone-tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--rock);color:var(--forest-2);padding:3px 10px;border-radius:999px;white-space:nowrap}
+.injury dl{margin:0;display:flex;flex-direction:column;gap:8px;font-size:.94rem}
+.injury dt{font-weight:700;color:var(--forest-2);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
+.injury dd{margin:0;color:var(--ink)}
+.redflag{background:#fff4f1;border:1px solid #f1c3b8;border-left:5px solid #c63d22;border-radius:12px;padding:18px 22px;margin-top:28px}
+.redflag h3{font-family:var(--body);font-weight:700;font-size:1.05rem;color:#8f2a16;margin-bottom:8px}
+.redflag ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
+.prevent{margin-top:40px}
+
+/* Glossary */
+.gloss-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+.gloss-tools input{flex:1 1 260px;padding:13px 16px;border-radius:999px;border:1px solid var(--line);font:500 1rem var(--body);background:#fff}
+.chip{background:transparent;border:1px solid var(--forest-2);color:var(--forest-2);border-radius:999px;padding:7px 14px;font:600 .85rem var(--body);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--forest-2);color:#fff}
+.gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.term{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.term h3{font-family:var(--body);font-weight:700;font-size:1.05rem;display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.term h3 span{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.term p{color:var(--muted);font-size:.95rem;margin-top:6px}
+.empty{color:var(--muted);display:none}
+
+/* FAQ */
+details{border-bottom:1px solid var(--line);padding:18px 0}
+summary{cursor:pointer;font-weight:700;font-size:1.08rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--display);font-size:1.6rem;line-height:1;color:var(--forest-2)}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;color:var(--muted);max-width:70ch}
+
+/* CTA + footer */
+.cta{text-align:left}
+.cta-box{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:28px}
+footer{background:#13261a;color:#9fb0a3;padding:40px 0;font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
+footer a{color:#dfe7dc}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="#accueil" aria-label="Montagnoud, retour en haut">
+      <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#2b5239"/><path d="M6 29 L16 14 L21 21 L25 16 L34 29 Z" fill="#e2ff3b"/><path d="M16 14 L19 18.5 L16.5 18 L14 19.5 Z" fill="#fff"/></svg>
+      Montagnoud
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+    <ul id="menu">
+      <li><a href="#methode">La méthode</a></li>
+      <li><a href="#tarifs">Tarifs</a></li>
+      <li><a href="#alimentation">Alimentation</a></li>
+      <li><a href="#zones">Intensités</a></li>
+      <li><a href="#blessures">Blessures</a></li>
+      <li><a href="#lexique">Lexique</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a class="btn btn-fluo" href="https://montagnoud-coaching.netlify.app/?src=site" target="_blank" rel="noopener">Questionnaire gratuit</a>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="accueil">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Coaching trail &amp; running en ligne</p>
+      <h1>Un plan qui suit <em>ta vraie vie</em>, semaine après semaine.</h1>
+      <p class="lead">Débutant, coureur sur route ou traileur confirmé : tu reçois un plan personnalisé, tu notes tes séances dans l'app, et ton plan est ajusté chaque semaine selon tes sensations et ton emploi du temps.</p>
+      <div class="btn-row">
+        <a class="btn btn-fluo" href="https://montagnoud-coaching.netlify.app/?src=site" target="_blank" rel="noopener">Remplir le questionnaire (5 min)</a>
+        <a class="btn btn-ghost" href="#methode">Comment ça marche</a>
+      </div>
+      <ul class="hero-facts">
+        <li>Première semaine offerte</li>
+        <li>Sans engagement</li>
+        <li>Route ou trail</li>
+      </ul>
+    </div>
+    <canvas id="ridge" aria-hidden="true"></canvas>
+  </div>
+</section>
+
+<section id="pour-qui">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Pour qui</p>
+      <h2>Tous les coureurs, quel que soit le point de départ</h2>
+      <p class="lead">Le plan part de ton niveau réel, du temps dont tu disposes et de ton objectif. Pas de programme copié-collé.</p>
+    </div>
+    <div class="grid g3">
+      <article class="card"><span class="tag">Débuter</span><h3>Tu veux commencer à courir</h3><p>Alternance marche-course, progression douce, renforcement simple à la maison. Objectif : courir 30 minutes sans t'arrêter, puis ta première course.</p></article>
+      <article class="card"><span class="tag">Route</span><h3>Tu prépares un 10 km ou un semi</h3><p>Séances d'allure, fractionné dosé et sorties longues bien placées pour battre ton record sans te blesser.</p></article>
+      <article class="card"><span class="tag">Trail</span><h3>Tu vises un trail ou un ultra</h3><p>Dénivelé, descentes, gestion de la nutrition, sorties longues en montagne et affûtage avant le jour J.</p></article>
+      <article class="card"><span class="tag">Forme</span><h3>Tu veux rester en forme</h3><p>Un rythme régulier et varié qui tient sur la durée, même quand l'agenda se remplit.</p></article>
+      <article class="card"><span class="tag">Reprise</span><h3>Tu reviens après une pause</h3><p>Reprise progressive après une blessure guérie, une grossesse ou une longue coupure, en écoutant les signaux du corps.</p></article>
+      <article class="card"><span class="tag">Agenda chargé</span><h3>Ton emploi du temps bouge</h3><p>Travail, famille, imprévus : le plan s'adapte à tes disponibilités de la semaine, pas l'inverse.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="dark" id="methode">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">La méthode</p>
+      <h2>Quatre étapes, puis une boucle qui recommence chaque semaine</h2>
+    </div>
+    <ol class="steps">
+      <li><strong>Le questionnaire</strong><span class="muted">5 minutes pour décrire ton niveau, ton objectif, tes disponibilités et tes éventuelles blessures. Ça n'engage à rien.</span></li>
+      <li><strong>On en discute</strong><span class="muted">Le coach te contacte, précise ce qui manque et valide l'objectif avec toi. Aucun paiement avant cet échange.</span></li>
+      <li><strong>Ton plan dans l'app</strong><span class="muted">Chaque jour, ta séance détaillée : échauffement, corps de séance, allures, conseils et ravitaillement.</span></li>
+      <li><strong>Le bilan du dimanche</strong><span class="muted">Tu remplis ton journal, le coach lit tout et ajuste la semaine suivante, avec une explication de ce qui change.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="app">
+  <div class="wrap app-wrap">
+    <div class="stack">
+      <p class="eyebrow">L'app Montagnoud</p>
+      <h2>Ton plan, ton journal et ton coach au même endroit</h2>
+      <p class="lead">Une app web à ajouter sur l'écran d'accueil de ton téléphone, sans rien télécharger dans un store.</p>
+      <ul class="check">
+        <li><strong>Séance du jour</strong> détaillée, avec la durée, l'intensité et le dénivelé.</li>
+        <li><strong>Journal</strong> : sensations, fatigue, terrain, météo, photos, et pourquoi une séance a été sautée.</li>
+        <li><strong>Hydratation et alimentation</strong> : ce que tu as bu (eau, électrolytes) et mangé pendant tes sorties.</li>
+        <li><strong>Note du coach</strong> sur tes séances et bilan écrit chaque fin de semaine.</li>
+        <li><strong>Renforcement</strong> : routines au poids du corps, adaptées à ton niveau.</li>
+      </ul>
+    </div>
+    <div class="phone" aria-label="Aperçu de l'app : semaine d'entraînement">
+      <div class="screen">
+        <div class="bar"><span>Semaine 3 · Développement</span><span>⛰</span></div>
+        <div class="day"><span><b>Lun</b> · Repos</span><span class="pill p-rest">repos</span></div>
+        <div class="day"><span><b>Mar</b> · 45 min facile</span><span class="pill p-easy">facile</span></div>
+        <div class="day"><span><b>Mer</b> · 6 × 3 min en côte</span><span class="pill p-qual">qualité</span></div>
+        <div class="day"><span><b>Jeu</b> · Renfo B</span><span class="pill p-rest">renfo</span></div>
+        <div class="day"><span><b>Sam</b> · 1 h 50 · 800 m D+</span><span class="pill p-long">longue</span></div>
+        <div class="note"><b>Note du coach</b><br>Bonnes sensations en côte. On garde le volume cette semaine et on ajoute 10 min à la sortie longue.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="tarifs">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Tarifs</p>
+      <h2>Simple, sans engagement</h2>
+      <p class="lead">Tu peux arrêter à la fin de n'importe quel mois. Le paiement n'intervient qu'après la discussion avec le coach.</p>
+    </div>
+    <div class="grid g3">
+      <article class="card"><span class="tag">Pour essayer</span><h3>Première semaine</h3><p class="price">0 <small>CHF</small></p><p>Plan complet et suivi pendant 7 jours pour voir si la méthode te convient.</p></article>
+      <article class="card featured"><span class="badge">Pour démarrer</span><h3>Premier mois</h3><p class="price">30 <small>CHF</small></p><p>Plan personnalisé, app, notes du coach sur tes séances et bilan chaque semaine.</p></article>
+      <article class="card"><span class="tag">Ensuite</span><h3>Suivi mensuel</h3><p class="price">40 <small>CHF / mois</small></p><p>Le même suivi complet, ajusté en continu jusqu'à ton objectif et au-delà.</p></article>
+    </div>
+    <div class="btn-row" style="margin-top:32px">
+      <a class="btn btn-fluo" href="https://montagnoud-coaching.netlify.app/?src=site" target="_blank" rel="noopener">Commencer par le questionnaire</a>
+    </div>
+  </div>
+</section>
+
+<section id="alimentation">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Guide alimentation</p>
+      <h2>Bien manger pour bien courir</h2>
+      <p class="lead">Des exemples de journées types selon la séance du jour. Ce sont des repères généraux pour un adulte en bonne santé, à adapter à ton appétit et à tes goûts.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Journées types">
+      <button class="tab" role="tab" id="t-facile" aria-controls="p-facile" aria-selected="true">Jour de footing facile</button>
+      <button class="tab" role="tab" id="t-qualite" aria-controls="p-qualite" aria-selected="false">Jour de séance intense</button>
+      <button class="tab" role="tab" id="t-longue" aria-controls="p-longue" aria-selected="false">Sortie longue</button>
+      <button class="tab" role="tab" id="t-veille" aria-controls="p-veille" aria-selected="false">Veille de course</button>
+      <button class="tab" role="tab" id="t-course" aria-controls="p-course" aria-selected="false">Jour de course</button>
+      <button class="tab" role="tab" id="t-recup" aria-controls="p-recup" aria-selected="false">Récupération</button>
+    </div>
+
+    <div class="panel on" role="tabpanel" id="p-facile" aria-labelledby="t-facile">
+      <dl class="meal">
+        <dt>Petit-déjeuner</dt><dd>Flocons d'avoine, yogourt nature, fruit de saison, poignée de noix.</dd>
+        <dt>Midi</dt><dd>Assiette équilibrée : un tiers légumes, un tiers féculents complets (riz, pâtes, quinoa, pommes de terre), un tiers protéines (œufs, poisson, viande, tofu, légumineuses).</dd>
+        <dt>Collation</dt><dd>Pain complet et fromage, ou une banane et quelques amandes.</dd>
+        <dt>Soir</dt><dd>Soupe ou légumes, une portion de féculents, une protéine. Un dessert lacté si tu as faim.</dd>
+        <dt>Hydratation</dt><dd>De l'eau tout au long de la journée ; l'urine claire est un bon indicateur.</dd>
+      </dl>
+    </div>
+    <div class="panel" role="tabpanel" id="p-qualite" aria-labelledby="t-qualite">
+      <dl class="meal">
+        <dt>2 à 3 h avant</dt><dd>Repas digeste riche en glucides : pâtes ou riz avec un peu de protéines, peu de fibres et de graisses.</dd>
+        <dt>30 à 60 min avant</dt><dd>Si la faim se fait sentir : une banane, une compote ou deux biscuits secs.</dd>
+        <dt>Pendant</dt><dd>De l'eau suffit pour une séance de moins d'une heure.</dd>
+        <dt>Dans l'heure après</dt><dd>Glucides et protéines : lait chocolaté, yogourt et céréales, ou un sandwich jambon ou fromage.</dd>
+        <dt>Repas suivant</dt><dd>Assiette normale avec une bonne part de féculents pour recharger.</dd>
+      </dl>
+    </div>
+    <div class="panel" role="tabpanel" id="p-longue" aria-labelledby="t-longue">
+      <dl class="meal">
+        <dt>Veille au soir</dt><dd>Repas classique avec une portion de féculents un peu plus généreuse.</dd>
+        <dt>Petit-déjeuner</dt><dd>2 h avant le départ : pain, confiture ou miel, une boisson chaude, éventuellement un œuf.</dd>
+        <dt>Pendant</dt><dd>Au-delà d'une heure : manger et boire régulièrement, par petites prises toutes les 20 à 30 minutes. Utilise le calculateur ci-dessous pour tes quantités.</dd>
+        <dt>Après</dt><dd>Boisson de récupération ou collation glucides + protéines, puis un vrai repas dans les 2 heures.</dd>
+        <dt>À tester</dt><dd>La sortie longue est le moment d'essayer les gels, barres et boissons que tu utiliseras en course.</dd>
+      </dl>
+    </div>
+    <div class="panel" role="tabpanel" id="p-veille" aria-labelledby="t-veille">
+      <dl class="meal">
+        <dt>Toute la journée</dt><dd>Des glucides à chaque repas, moins de crudités et d'aliments très fibreux, pas de plat inhabituel.</dd>
+        <dt>Midi</dt><dd>Repas principal de la journée : riz ou pâtes, légumes cuits, protéine maigre.</dd>
+        <dt>Soir</dt><dd>Repas léger et pas trop tardif, que tu connais bien. Évite l'alcool et les plats épicés.</dd>
+        <dt>Hydratation</dt><dd>Bois normalement et régulièrement, sans te forcer à avaler des litres.</dd>
+        <dt>Sac</dt><dd>Prépare ravitaillement, frontale et matériel obligatoire le soir pour dormir tranquille.</dd>
+      </dl>
+    </div>
+    <div class="panel" role="tabpanel" id="p-course" aria-labelledby="t-course">
+      <dl class="meal">
+        <dt>3 h avant</dt><dd>Petit-déjeuner testé à l'entraînement : pain blanc, miel, banane, boisson chaude. Rien de nouveau le jour J.</dd>
+        <dt>Avant le départ</dt><dd>Petites gorgées d'eau ; un gel ou une compote 15 minutes avant si la course dépasse 1 h 30.</dd>
+        <dt>Pendant</dt><dd>Commence à manger tôt, avant d'avoir faim. Alterne sucré et salé sur les longues distances. Profite des ravitos pour remplir tes flasques.</dd>
+        <dt>Arrivée</dt><dd>Boire, manger salé et sucré, puis un repas complet quand l'appétit revient.</dd>
+      </dl>
+    </div>
+    <div class="panel" role="tabpanel" id="p-recup" aria-labelledby="t-recup">
+      <dl class="meal">
+        <dt>Le principe</dt><dd>Les jours de repos ne sont pas des jours de restriction : le corps reconstruit les muscles et refait ses réserves.</dd>
+        <dt>Repas</dt><dd>Des protéines à chaque repas, des légumes et fruits variés, des féculents en quantité habituelle.</dd>
+        <dt>Après une grosse course</dt><dd>Mange à ta faim pendant 2 à 3 jours, bois régulièrement, privilégie le sommeil.</dd>
+      </dl>
+    </div>
+    <p class="note-box" style="margin-top:18px">En cas d'allergie, de maladie, de grossesse ou de régime particulier, demande conseil à un médecin ou à un diététicien diplômé.</p>
+
+    <div class="head" style="margin:64px 0 24px">
+      <h3 id="calculateur">Calculateur de ravitaillement</h3>
+      <p class="lead">Combien emporter pour ta sortie ? Règle la durée et les conditions.</p>
+    </div>
+    <div class="calc">
+      <div>
+        <div class="field">
+          <label for="dur">Durée de l'effort : <span id="durOut">2 h 30</span></label>
+          <input type="range" id="dur" min="30" max="900" step="15" value="150">
+        </div>
+        <div class="field">
+          <label for="heat">Conditions</label>
+          <select id="heat">
+            <option value="0">Frais (moins de 15 °C)</option>
+            <option value="1" selected>Tempéré (15 à 25 °C)</option>
+            <option value="2">Chaud (plus de 25 °C)</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="gut">Ton habitude de manger en courant</label>
+          <select id="gut">
+            <option value="0">Je débute</option>
+            <option value="1" selected>Je mange régulièrement</option>
+            <option value="2">Ventre entraîné</option>
+          </select>
+        </div>
+      </div>
+      <div class="out" aria-live="polite">
+        <div class="tile"><b id="oCarb">–</b><span>glucides au total</span></div>
+        <div class="tile"><b id="oCarbH">–</b><span>glucides par heure</span></div>
+        <div class="tile"><b id="oWater">–</b><span>de boisson au total</span></div>
+        <div class="tile"><b id="oSalt">–</b><span>de sodium par heure</span></div>
+        <div class="tile" style="grid-column:1/-1"><b id="oGels">–</b><span>équivalent en gels de 25 g de glucides (à répartir entre gels, barres, boisson, pâtes de fruits…)</span></div>
+      </div>
+      <p class="calc-advice" id="oAdvice"></p>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="zones">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Les intensités</p>
+      <h2>Comprendre les zones d'entraînement</h2>
+      <p class="lead">Dans ton plan, chaque séance indique une intensité. Pas besoin de cardio : le test de la parole fonctionne très bien.</p>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Zone</th><th>Ressenti</th><th>Test de la parole</th><th>% FC max (repère)</th><th>À quoi ça sert</th></tr></thead>
+        <tbody>
+          <tr><td><span class="zbar" style="background:#9fd4a8"></span>Z1 · Récup</td><td>Très facile</td><td>Tu chantes</td><td>50 à 60 %</td><td>Récupération, échauffement</td></tr>
+          <tr><td><span class="zbar" style="background:#5fb36f"></span>Z2 · Endurance</td><td>Facile, confortable</td><td>Tu tiens une conversation</td><td>60 à 75 %</td><td>La base : 70 à 80 % de ton temps de course</td></tr>
+          <tr><td><span class="zbar" style="background:#e3c53b"></span>Z3 · Tempo</td><td>Soutenu</td><td>Phrases courtes</td><td>75 à 85 %</td><td>Allure marathon et semi, montées longues</td></tr>
+          <tr><td><span class="zbar" style="background:#e88d2f"></span>Z4 · Seuil</td><td>Dur mais tenable</td><td>Quelques mots</td><td>85 à 92 %</td><td>Repousser la fatigue, allure 10 km</td></tr>
+          <tr><td><span class="zbar" style="background:#d2452d"></span>Z5 · VMA</td><td>Très dur, court</td><td>Impossible de parler</td><td>92 à 100 %</td><td>Fractionné court, côtes courtes, vitesse</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="blessures">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Blessures</p>
+      <h2>Les blessures les plus courantes en trail et en course à pied</h2>
+      <p class="lead">La plupart viennent d'une charge qui augmente trop vite. Les reconnaître tôt permet souvent de continuer à s'entraîner en adaptant, plutôt que de devoir tout arrêter.</p>
+    </div>
+    <div class="inj-tools" role="group" aria-label="Filtrer par zone du corps">
+      <button class="chip inj-chip" data-zone="all" aria-pressed="true">Toutes</button>
+      <button class="chip inj-chip" data-zone="Pied" aria-pressed="false">Pied</button>
+      <button class="chip inj-chip" data-zone="Cheville" aria-pressed="false">Cheville</button>
+      <button class="chip inj-chip" data-zone="Jambe" aria-pressed="false">Jambe</button>
+      <button class="chip inj-chip" data-zone="Genou" aria-pressed="false">Genou</button>
+      <button class="chip inj-chip" data-zone="Cuisse et hanche" aria-pressed="false">Cuisse et hanche</button>
+    </div>
+    <div class="inj-layout">
+      <figure class="body-map">
+        <svg id="bodySvg" viewBox="0 0 440 514" role="group" aria-label="Mannequin : clique sur la zone où tu as mal"></svg>
+        <figcaption>
+          <span id="bodyHint">Touche la zone où tu as mal.</span>
+          <span class="legend"><i class="dot"></i>Lieu précis de la douleur</span>
+        </figcaption>
+      </figure>
+      <div class="inj" id="inj"></div>
+    </div>
+
+    <div class="redflag">
+      <h3>Consulte un médecin rapidement si :</h3>
+      <ul>
+        <li>la douleur est forte, apparaît d'un coup ou t'empêche de marcher normalement ;</li>
+        <li>tu as entendu un « clac » ou ressenti un coup de fouet ;</li>
+        <li>il y a un gonflement important, un hématome ou une déformation ;</li>
+        <li>un point précis de l'os fait mal quand tu appuies dessus ;</li>
+        <li>la douleur est présente au repos ou la nuit ;</li>
+        <li>rien ne s'améliore après 1 à 2 semaines d'entraînement allégé.</li>
+      </ul>
+    </div>
+
+    <div class="prevent">
+      <div class="head" style="margin-bottom:22px">
+        <h3>Prévenir plutôt que soigner</h3>
+      </div>
+      <div class="grid g3">
+        <article class="card"><span class="tag">Progression</span><p>Augmente le volume ou le dénivelé petit à petit, et prévois une semaine plus légère toutes les 3 à 4 semaines.</p></article>
+        <article class="card"><span class="tag">Renforcement</span><p>Mollets, cuisses, fessiers et gainage une à deux fois par semaine : c'est la meilleure protection contre la plupart des blessures.</p></article>
+        <article class="card"><span class="tag">Récupération</span><p>Sommeil, alimentation suffisante et jours de repos font partie de l'entraînement.</p></article>
+        <article class="card"><span class="tag">Descentes</span><p>Elles abîment les cuisses et les genoux. Habitue-toi progressivement, surtout avant un trail avec beaucoup de D-.</p></article>
+        <article class="card"><span class="tag">Matériel</span><p>Change tes chaussures quand l'amorti est fatigué, et fais tout changement de modèle ou de drop en douceur.</p></article>
+        <article class="card"><span class="tag">Écoute</span><p>Note tes douleurs dans le journal de l'app : une gêne signalée tôt permet d'adapter le plan avant qu'elle s'installe.</p></article>
+      </div>
+    </div>
+    <p class="note-box" style="margin-top:28px">Ces informations sont générales et ne remplacent pas un diagnostic. En cas de doute, consulte un médecin ou un physiothérapeute.</p>
+  </div>
+</section>
+
+<section id="lexique">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Lexique</p>
+      <h2>Les mots du trail et du running</h2>
+      <p class="lead">D+, VMA, fartlek, barrière horaire… Tous les termes que tu croiseras dans ton plan et sur les courses.</p>
+    </div>
+    <div class="gloss-tools">
+      <label for="q" class="visually-hidden" style="position:absolute;left:-9999px">Chercher un terme</label>
+      <input id="q" type="search" placeholder="Chercher un terme, ex. seuil, D+, ravito…" autocomplete="off">
+      <button class="chip" data-cat="all" aria-pressed="true">Tout</button>
+      <button class="chip" data-cat="Entraînement" aria-pressed="false">Entraînement</button>
+      <button class="chip" data-cat="Trail" aria-pressed="false">Trail</button>
+      <button class="chip" data-cat="Matériel" aria-pressed="false">Matériel</button>
+      <button class="chip" data-cat="Nutrition" aria-pressed="false">Nutrition</button>
+    </div>
+    <div class="gloss" id="gloss"></div>
+    <p class="empty" id="empty">Aucun terme trouvé. Essaie un autre mot.</p>
+  </div>
+</section>
+
+<section class="alt" id="faq">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2>Avant de te lancer</h2>
+    </div>
+    <details><summary>Je n'ai jamais couru, est-ce pour moi ?</summary><p>Oui. Le plan démarre par de la marche-course et progresse à ton rythme. Le questionnaire sert justement à partir de ton niveau réel.</p></details>
+    <details><summary>Je cours sur route, pas en montagne. Ça marche aussi ?</summary><p>Oui. Le coaching couvre la course sur route (10 km, semi, marathon) comme le trail. Tu indiques ta discipline dans le questionnaire.</p></details>
+    <details><summary>Mes horaires changent souvent. Comment faire ?</summary><p>Tu notes tes contraintes dans l'app et le plan de la semaine suivante est construit autour. Une séance ratée n'est pas un échec : elle est déplacée ou remplacée.</p></details>
+    <details><summary>Combien de temps faut-il par semaine ?</summary><p>Ça dépend de ton objectif : à partir de 3 séances de 30 à 45 minutes pour débuter, davantage pour préparer un trail long. C'est toi qui indiques ce qui est réaliste.</p></details>
+    <details><summary>Faut-il une montre GPS ou un cardiofréquencemètre ?</summary><p>Non. Une montre aide, mais les séances peuvent se faire à la sensation avec le test de la parole.</p></details>
+    <details><summary>Comment se passe le paiement ?</summary><p>Rien n'est payé à l'envoi du questionnaire. Après la discussion avec le coach et la première semaine offerte, tu décides si tu continues : 30 CHF le premier mois, puis 40 CHF par mois, sans engagement.</p></details>
+    <details><summary>Et si je me blesse ?</summary><p>Tu le signales dans ton journal et le plan est allégé ou mis en pause. Pour une douleur qui persiste, consulte un médecin ou un physiothérapeute : le coaching ne remplace pas un avis médical.</p></details>
+    <details><summary>Faut-il installer une application ?</summary><p>Non. L'app Montagnoud s'ouvre dans ton navigateur et peut être ajoutée à l'écran d'accueil de ton téléphone comme une vraie application.</p></details>
+  </div>
+</section>
+
+<section class="dark cta">
+  <div class="wrap cta-box">
+    <div class="stack" style="max-width:640px">
+      <h2>Prêt à courir avec un plan fait pour toi ?</h2>
+      <p class="lead">Cinq minutes de questionnaire, une discussion, et ta première semaine est offerte.</p>
+    </div>
+    <a class="btn btn-fluo" href="https://montagnoud-coaching.netlify.app/?src=site" target="_blank" rel="noopener">Remplir le questionnaire</a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Montagnoud Coaching · Coaching trail &amp; running</span>
+    <span><a href="https://www.instagram.com/montagnoud_trail_coaching/" target="_blank" rel="noopener">Instagram @montagnoud_trail_coaching</a> · <a href="https://montagnoud-coaching.netlify.app/?src=site" target="_blank" rel="noopener">Accès à l'app</a></span>
+  </div>
+</footer>
+
+<script>
+// Menu mobile
+const menuBtn=document.getElementById('menuBtn'),menu=document.getElementById('menu');
+menuBtn.addEventListener('click',()=>{const o=menu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)});
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}));
+
+// Crêtes de montagne (canvas)
+(function(){
+  const c=document.getElementById('ridge');if(!c)return;const x=c.getContext('2d');
+  function draw(){
+    const r=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*r;c.height=h*r;x.setTransform(r,0,0,r,0,0);x.clearRect(0,0,w,h);
+    const layers=[{c:'#2b5239',a:.55,s:3},{c:'#3a6b4a',a:.4,s:7},{c:'#e2ff3b',a:.25,s:11}];
+    layers.forEach((L,i)=>{
+      x.beginPath();x.moveTo(0,h);let seed=L.s;
+      const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280};
+      const pts=9+i*3;
+      for(let k=0;k<=pts;k++){const px=k/pts*w;const py=h*(L.a)+rnd()*h*.35-(k===Math.round(pts*.6)&&i===2?h*.2:0);x.lineTo(px,py)}
+      x.lineTo(w,h);x.closePath();
+      x.fillStyle=L.c;x.globalAlpha=i===2?1:1;x.fill();
+    });
+    // tracé du sentier
+    x.globalAlpha=1;x.setLineDash([6,8]);x.strokeStyle='#e2ff3b';x.lineWidth=2;x.beginPath();
+    x.moveTo(w*.05,h*.95);x.bezierCurveTo(w*.3,h*.8,w*.4,h*.55,w*.6,h*.45);x.stroke();x.setLineDash([]);
+    x.fillStyle='#e2ff3b';x.beginPath();x.arc(w*.6,h*.45,5,0,Math.PI*2);x.fill();
+  }
+  draw();addEventListener('resize',draw);
+})();
+
+// Onglets alimentation
+const tabs=[...document.querySelectorAll('.tab')];
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(o=>{o.setAttribute('aria-selected','false');document.getElementById(o.getAttribute('aria-controls')).classList.remove('on')});
+  t.setAttribute('aria-selected','true');document.getElementById(t.getAttribute('aria-controls')).classList.add('on');
+}));
+
+// Calculateur de ravitaillement : repères généraux de nutrition sportive
+function fuelPlan(min,heat,gut){
+  const h=min/60;
+  let carbH = h<1 ? 0 : h<2.5 ? [30,45,60][gut] : [45,60,80][gut];
+  const waterH=[450,600,750][heat];
+  const sodiumH=[300,450,600][heat];
+  const carb=Math.round(carbH*Math.max(0,h-(h<1?0:0.25)));
+  return {carbH,carb,water:Math.round(waterH*h/50)*50,sodiumH:h<1?0:sodiumH,gels:Math.ceil(carb/25)};
+}
+const dur=document.getElementById('dur'),heat=document.getElementById('heat'),gut=document.getElementById('gut');
+function fmt(min){const h=Math.floor(min/60),m=min%60;return h? h+' h'+(m?' '+String(m).padStart(2,'0'):'') : m+' min'}
+function upd(){
+  const m=+dur.value,p=fuelPlan(m,+heat.value,+gut.value);
+  document.getElementById('durOut').textContent=fmt(m);
+  document.getElementById('oCarb').textContent=p.carb+' g';
+  document.getElementById('oCarbH').textContent=p.carbH+' g';
+  document.getElementById('oWater').textContent=(p.water/1000).toLocaleString('fr-CH',{maximumFractionDigits:2})+' l';
+  document.getElementById('oSalt').textContent=p.sodiumH+' mg';
+  document.getElementById('oGels').textContent=p.gels;
+  let adv;
+  if(m<60) adv="Moins d'une heure : de l'eau suffit si tu as mangé normalement avant.";
+  else if(m<150) adv="Commence à manger après 30 à 45 minutes, puis une petite prise toutes les 20 à 30 minutes. Bois quelques gorgées régulièrement plutôt que beaucoup d'un coup.";
+  else adv="Effort long : alterne sucré et salé, prévois du « vrai » solide (pain, fromage, soupe aux ravitos) et augmente les quantités progressivement à l'entraînement. Bois selon ta soif.";
+  if(+heat.value===2) adv+=" Par forte chaleur, pense aux électrolytes et ralentis l'allure.";
+  document.getElementById('oAdvice').textContent=adv+" Repères généraux : ajuste selon ton poids, ta transpiration et ta tolérance.";
+}
+[dur,heat,gut].forEach(e=>e.addEventListener('input',upd));upd();
+
+// Blessures
+const INJ=[
+{n:"Fasciite plantaire",z:"Pied",at:["back",0,481],s:"Douleur sous le talon, surtout aux premiers pas du matin ou après être resté assis.",c:"Hausse rapide du volume, mollets raides, chaussures usées, beaucoup de station debout.",f:"Réduire le volume sans forcément arrêter, étirer mollets et voûte plantaire, rouler une balle sous le pied, renforcer le pied et les mollets.",p:"Progression régulière, renfo des mollets, chaussures en bon état."},
+{n:"Ampoules et ongles noirs",z:"Pied",at:["front",0,484],s:"Cloques sur les orteils ou le talon, ongle qui noircit après les longues descentes.",c:"Frottements, chaussettes humides, chaussure trop petite ou mal serrée en descente.",f:"Protéger l'ampoule sans arracher la peau, garder propre. Un ongle noir douloureux se montre à un médecin ou un podologue.",p:"Chaussure une demi-pointure plus grande, laçage serré en descente, chaussettes techniques, crème anti-frottement."},
+{n:"Entorse de la cheville",z:"Cheville",at:["front",-9,455],s:"Torsion, douleur et gonflement sur l'extérieur de la cheville, parfois hématome.",c:"Pied posé sur une pierre ou une racine, fatigue, ancienne entorse mal rééduquée.",f:"Glace, surélever, marcher si c'est possible sans forte douleur. Consulter si l'appui est impossible ou si le gonflement est important.",p:"Exercices d'équilibre sur une jambe, renfo des chevilles, regard porté 2 à 3 m devant en descente."},
+{n:"Tendinopathie d'Achille",z:"Cheville",at:["back",0,438],s:"Douleur et raideur du tendon à l'arrière de la cheville, plus forte le matin ou au début de la course.",c:"Hausse brutale des côtes ou du volume, passage à des chaussures à faible drop, mollets faibles.",f:"Diminuer les côtes et la vitesse, renforcer les mollets en charge progressive (montées sur pointes lentes). Le repos complet aide rarement à lui seul.",p:"Renfo des mollets toute l'année, côtes ajoutées progressivement."},
+{n:"Périostite tibiale",z:"Jambe",at:["front",6,398],s:"Douleur diffuse le long du bord intérieur du tibia, qui s'échauffe puis revient après l'effort.",c:"Reprise trop rapide, surfaces dures, foulée qui attaque fort le sol.",f:"Réduire le volume et privilégier les terrains souples quelques semaines, renforcer les mollets.",p:"Progression lente, surtout chez les débutants et à la reprise."},
+{n:"Fracture de fatigue",z:"Jambe",at:["front",-1,425],s:"Douleur sur un point précis de l'os (tibia, pied), qui augmente à chaque sortie et peut persister au repos.",c:"Charge trop élevée trop vite, manque d'énergie dans l'alimentation, récupération insuffisante.",f:"Arrêter la course et consulter : un examen est nécessaire et la reprise doit être encadrée.",p:"Progression régulière, manger suffisamment, jours de repos respectés."},
+{n:"Claquage ou contracture du mollet",z:"Jambe",at:["back",-2,378],s:"Douleur vive ou impression de coup de couteau dans le mollet pendant l'effort.",c:"Accélération, côte raide, fatigue, échauffement insuffisant.",f:"Arrêter l'effort, glace, puis reprise progressive de la marche et du renfo. Consulter si la douleur est forte.",p:"Échauffement avant les séances rapides, renfo des mollets."},
+{n:"Syndrome fémoro-patellaire",z:"Genou",at:["front",-1,330],s:"Douleur autour ou derrière la rotule, en descente, dans les escaliers ou après être resté assis longtemps.",c:"Beaucoup de descente, hanches et cuisses faibles, augmentation rapide du D-.",f:"Réduire les descentes, renforcer cuisses et fessiers, utiliser des bâtons en descente.",p:"Renfo des quadriceps et fessiers, descentes intégrées progressivement."},
+{n:"Syndrome de l'essuie-glace",z:"Genou",at:["front",-12,322],s:"Douleur sur l'extérieur du genou, qui apparaît après un certain temps de course, surtout en descente.",c:"Volume ou descentes en hausse, fessiers faibles, toujours courir du même côté d'une route bombée.",f:"Diminuer le volume et les descentes, renforcer les fessiers et les hanches. Le rouleau de massage peut soulager.",p:"Renfo des hanches, variété des parcours."},
+{n:"Tendinopathie rotulienne",z:"Genou",at:["front",-1,347],s:"Douleur juste sous la rotule, en sautant, en montant les escaliers ou en descente rapide.",c:"Sauts, descentes répétées, hausse de l'intensité.",f:"Réduire les impacts, renforcer les cuisses avec des exercices lents (squats contre le mur, chaise).",p:"Charge progressive, renfo des quadriceps."},
+{n:"Lésion des ischio-jambiers",z:"Cuisse et hanche",at:["back",-2,262],s:"Douleur à l'arrière de la cuisse, soudaine en sprint ou progressive en haut de cuisse lors des montées.",c:"Accélérations sans échauffement, fatigue, ischios faibles.",f:"Arrêter l'effort intense, reprise progressive, renfo des ischios. Consulter si la douleur est vive avec un hématome.",p:"Échauffement, renfo des ischios (pont fessier, soulevé de terre jambe tendue léger)."},
+{n:"Douleur de hanche ou du fessier",z:"Cuisse et hanche",at:["back",-10,208],s:"Gêne sur le côté de la hanche ou dans le fessier, parfois en position couchée sur le côté.",c:"Fessiers faibles, hausse du volume, longues montées.",f:"Réduire le volume, renforcer les fessiers et le gainage latéral.",p:"Gainage latéral et renfo des fessiers chaque semaine."}
+];
+const injBox=document.getElementById('inj');
+const NS='http://www.w3.org/2000/svg',svg=document.getElementById('bodySvg');
+const VIEWS={front:110,back:330};
+const ZONES=[["Cuisse et hanche",182,322],["Genou",322,352],["Jambe",352,446],["Cheville",446,462],["Pied",462,496]];
+function el(t,a,parent){const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);(parent||svg).appendChild(e);return e}
+// courbe lisse passant par des points (Catmull-Rom)
+function smooth(pts){let d='M'+pts[0].join(',');for(let i=0;i<pts.length-1;i++){const p0=pts[i-1]||pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]||p2;d+=` C${p1[0]+(p2[0]-p0[0])/6},${p1[1]+(p2[1]-p0[1])/6} ${p2[0]-(p3[0]-p1[0])/6},${p2[1]-(p3[1]-p1[1])/6} ${p2[0]},${p2[1]}`}return d}
+function closedSmooth(pts){const n=pts.length;let d='M'+pts[0].join(',');for(let i=0;i<n;i++){const p0=pts[(i-1+n)%n],p1=pts[i],p2=pts[(i+1)%n],p3=pts[(i+2)%n];d+=` C${(p1[0]+(p2[0]-p0[0])/6).toFixed(1)},${(p1[1]+(p2[1]-p0[1])/6).toFixed(1)} ${(p2[0]-(p3[0]-p1[0])/6).toFixed(1)},${(p2[1]-(p3[1]-p1[1])/6).toFixed(1)} ${p2[0]},${p2[1]}`}return d+'Z'}
+// demi-silhouette (côté droit de l'écran), du cou jusqu'à l'entrejambe
+const HALF_TOP=[[9,61],[10,73],[21,79],[34,83],[42,91],[43,106],[39,126],[36,150],[30,172],[32,190],[35,208],[35,238],[32,278],[28,316],[27,332],[28,348],[31,370],[29,400],[24,430],[21,452],[22,462]];
+const FOOT_FRONT=[[25,472],[27,485],[21,492],[11,492],[6,483]];
+const FOOT_BACK=[[22,472],[20,482],[15,486],[9,484],[6,474]];
+const HALF_IN=[[7,462],[6,446],[8,412],[10,374],[8,350],[6,332],[7,300],[6,252],[3,224],[0,217]];
+function bodyD(X,back){
+  const half=[...HALF_TOP,...(back?FOOT_BACK:FOOT_FRONT),...HALF_IN];
+  const right=half.map(([x,y])=>[X+x,y]);
+  const left=half.slice(0,-1).reverse().map(([x,y])=>[X-x,y]);
+  return closedSmooth([[X,58],...right,...left.slice(0,-1),[X-9,61]].filter((p,i,a)=>i===0||p[0]!==a[i-1][0]||p[1]!==a[i-1][1]));
+}
+const ARM=[[41,90],[49,112],[52,140],[51,164],[54,192],[56,226],[55,240],[58,252],[56,266],[49,268],[46,256],[46,240],[44,206],[41,170],[39,140],[38,118]];
+function armD(X,m){return closedSmooth(ARM.map(([x,y])=>[X+m*x,y]))}
+const defs=el('defs',{});
+const gr=el('linearGradient',{id:'skin',x1:0,x2:1,y1:0,y2:0},defs);
+[[0,'#d5ddd2'],[.35,'#eef2ec'],[.65,'#eef2ec'],[1,'#d2dbcf']].forEach(([o,c])=>el('stop',{offset:o,'stop-color':c},gr));
+const gs=el('radialGradient',{id:'ground'},defs);
+const fb=el('filter',{id:'soft',x:'-20%',y:'-40%',width:'140%',height:'180%'},defs);el('feGaussianBlur',{stdDeviation:3.5},fb);
+el('stop',{offset:0,'stop-color':'#1f3d2b','stop-opacity':.18},gs);el('stop',{offset:1,'stop-color':'#1f3d2b','stop-opacity':0},gs);
+const DET='#b4c0b1';
+Object.entries(VIEWS).forEach(([v,X])=>{
+  const back=v==='back',g=el('g',{});
+  el('ellipse',{cx:X,cy:493,rx:42,ry:6,fill:'url(#ground)'},g);
+  [-1,1].forEach(m=>el('path',{d:armD(X,m),fill:'url(#skin)',stroke:DET,'stroke-width':1.3,'stroke-linejoin':'round'},g));
+  const body=bodyD(X,back);
+  el('path',{d:body,fill:'url(#skin)',stroke:DET,'stroke-width':1.4,'stroke-linejoin':'round'},g);
+  el('ellipse',{cx:X,cy:36,rx:19,ry:23,fill:'url(#skin)',stroke:DET,'stroke-width':1.4},g);
+  const line=(d,w)=>el('path',{d,fill:'none',stroke:DET,'stroke-width':w||1.1,'stroke-linecap':'round',opacity:.85},g);
+  if(!back){
+    line(`M${X-22},88 Q${X-10},92 ${X-3},88 M${X+22},88 Q${X+10},92 ${X+3},88`);           // clavicules
+    line(`M${X-28},118 Q${X-14},130 ${X-2},122 M${X+28},118 Q${X+14},130 ${X+2},122`);     // pectoraux
+    el('circle',{cx:X,cy:168,r:1.6,fill:DET},g);                                              // nombril
+    line(`M${X-28},196 Q${X-14},206 ${X-4},218 M${X+28},196 Q${X+14},206 ${X+4},218`);     // aines
+    [-1,1].forEach(m=>{const k=X+m*14;line(`M${k-6},328 Q${k},322 ${k+6},328 Q${k+7},336 ${k},341 Q${k-7},336 ${k-6},328`,1)}); // rotules
+    [-1,1].forEach(m=>{const k=X+m*14;line(`M${k-m*2},352 Q${k-m*1},400 ${k-m*3},440`,.9)});  // tibias
+  } else {
+    line(`M${X},80 L${X},176`,1);                                                              // colonne
+    line(`M${X-30},100 Q${X-18},116 ${X-24},138 M${X+30},100 Q${X+18},116 ${X+24},138`);   // omoplates
+    line(`M${X},188 L${X},212 M${X-3},214 Q${X-18},222 ${X-31},212 M${X+3},214 Q${X+18},222 ${X+31},212`); // fessiers
+    [-1,1].forEach(m=>{const k=X+m*14;line(`M${k-6},336 Q${k},340 ${k+6},336`,1);line(`M${k},356 Q${k+m*-2},378 ${k},398`,.9)}); // creux poplité, mollets
+    [-1,1].forEach(m=>{const k=X+m*14;line(`M${k},430 L${k},458`,.9)});                          // tendons d'Achille
+  }
+  // zone de découpe : la silhouette sans les bras
+  const cp=el('clipPath',{id:'clip-'+v},defs);
+  el('path',{d:body},cp);
+  ZONES.forEach(([z,y1,y2])=>{
+    const r=el('rect',{x:X-60,y:y1,width:120,height:y2-y1,class:'bm-zone','clip-path':`url(#clip-${v})`,'data-zone':z,tabindex:0,role:'button','aria-label':'Zone : '+z});
+    el('title',{},r).textContent=z;
+  });
+  el('text',{x:X,y:508,'text-anchor':'middle',class:'bm-label'}).textContent=back?'Dos':'Face';
+});
+const dotLayer=el('g',{});
+let curZone='all';
+function selectZone(z){
+  curZone=z;
+  document.querySelectorAll('.inj-chip').forEach(o=>o.setAttribute('aria-pressed',o.dataset.zone===z?'true':'false'));
+  svg.querySelectorAll('.bm-zone').forEach(r=>r.classList.toggle('on',r.dataset.zone===z));
+  document.getElementById('bodyHint').textContent=z==='all'?'Touche la zone où tu as mal.':'Zone : '+z+' · retouche pour tout afficher';
+  renderInj(z);
+}
+function renderInj(z){
+  const list=INJ.filter(i=>z==='all'||i.z===z);
+  injBox.innerHTML=list.map((i,k)=>`<article class="injury" data-k="${INJ.indexOf(i)}"><header><h3>${i.n}</h3><span class="zone-tag">${i.z}</span></header><dl><div><dt>Les signes</dt><dd>${i.s}</dd></div><div><dt>Causes fréquentes</dt><dd>${i.c}</dd></div><div><dt>Que faire</dt><dd>${i.f}</dd></div><div><dt>Prévention</dt><dd>${i.p}</dd></div></dl></article>`).join('');
+  dotLayer.innerHTML='';
+  if(z==='all')return;
+  list.forEach(i=>{
+    const k=INJ.indexOf(i),[v,dx,y]=i.at,cx=VIEWS[v]-14+dx;
+    el('circle',{cx,cy:y,r:6,class:'bm-pulse'},dotLayer);
+    const d=el('circle',{cx,cy:y,r:6,class:'bm-dot','data-k':k,tabindex:0,role:'button','aria-label':i.n},dotLayer);
+    el('title',{},d).textContent=i.n;
+  });
+}
+function hi(k,on){
+  svg.querySelectorAll(`.bm-dot[data-k="${k}"]`).forEach(d=>d.classList.toggle('hi',on));
+  const c=injBox.querySelector(`.injury[data-k="${k}"]`);if(c)c.classList.toggle('hi',on);
+}
+svg.addEventListener('click',e=>{
+  const d=e.target.closest('.bm-dot');
+  if(d){const c=injBox.querySelector(`.injury[data-k="${d.dataset.k}"]`);if(c){c.scrollIntoView({block:'center'});hi(d.dataset.k,true);setTimeout(()=>hi(d.dataset.k,false),1500)}return}
+  const r=e.target.closest('.bm-zone');if(r)selectZone(curZone===r.dataset.zone?'all':r.dataset.zone);
+});
+svg.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('.bm-zone,.bm-dot')){e.preventDefault();e.target.dispatchEvent(new MouseEvent('click',{bubbles:true}))}});
+svg.addEventListener('mouseover',e=>{const d=e.target.closest('.bm-dot');if(d)hi(d.dataset.k,true)});
+svg.addEventListener('mouseout',e=>{const d=e.target.closest('.bm-dot');if(d)hi(d.dataset.k,false)});
+injBox.addEventListener('mouseover',e=>{const c=e.target.closest('.injury');if(c)svg.querySelectorAll(`.bm-dot[data-k="${c.dataset.k}"]`).forEach(d=>d.classList.add('hi'))});
+injBox.addEventListener('mouseout',e=>{const c=e.target.closest('.injury');if(c)svg.querySelectorAll(`.bm-dot[data-k="${c.dataset.k}"]`).forEach(d=>d.classList.remove('hi'))});
+svg.appendChild(dotLayer);
+document.querySelectorAll('.inj-chip').forEach(b=>b.addEventListener('click',()=>selectZone(b.dataset.zone)));
+selectZone('all');
+
+// Lexique
+const T=[
+["Allure","Entraînement","Vitesse exprimée en minutes par kilomètre, par exemple 5'30\"/km."],
+["Endurance fondamentale","Entraînement","Course à allure facile où tu peux parler. C'est la base de tout plan, même pour les traileurs confirmés."],
+["Fractionné","Entraînement","Alternance d'efforts intenses et de récupérations, par exemple 8 × 400 m avec 1 min de récup."],
+["VMA","Entraînement","Vitesse maximale aérobie : la vitesse que tu tiens environ 6 minutes à fond. Sert à calculer les allures de fractionné."],
+["FC max","Entraînement","Fréquence cardiaque maximale. Les formules d'âge sont approximatives ; un test terrain est plus fiable."],
+["Seuil","Entraînement","Intensité difficile mais tenable environ une heure en course. Le travailler retarde l'arrivée de la fatigue."],
+["Tempo","Entraînement","Course soutenue et régulière, entre l'endurance et le seuil, de 15 à 40 minutes."],
+["Fartlek","Entraînement","« Jeu de vitesse » en suédois : des accélérations libres au fil du parcours, selon le terrain et l'envie."],
+["Côtes","Entraînement","Répétitions de montée en courant, pour la force et la puissance. Récupération en redescendant au trot."],
+["Sortie longue","Entraînement","La séance la plus longue de la semaine, à allure facile. Elle développe l'endurance et habitue au temps passé debout."],
+["Récupération active","Entraînement","Footing très léger ou vélo tranquille pour relancer la circulation sans fatiguer."],
+["Affûtage","Entraînement","Baisse du volume les 1 à 3 semaines avant la course, en gardant un peu d'intensité, pour arriver frais."],
+["PPG","Entraînement","Préparation physique générale : gainage, squats, fentes, travail des chevilles. Prévient les blessures."],
+["Renfo","Entraînement","Renforcement musculaire, souvent au poids du corps, intégré au plan une à deux fois par semaine."],
+["Cadence","Entraînement","Nombre de pas par minute. Une cadence un peu plus élevée réduit souvent les chocs."],
+["Bloc","Entraînement","Période de quelques semaines avec un même objectif : développement, spécifique, affûtage."],
+["Zone 2","Entraînement","Intensité d'endurance facile, conversation possible. La majorité de ton volume se fait ici."],
+["Négatif split","Entraînement","Courir la deuxième moitié plus vite que la première. Signe d'une course bien gérée."],
+["D+","Trail","Dénivelé positif : total des mètres montés sur un parcours. 1000 m D+ = monter l'équivalent de 1000 m."],
+["D-","Trail","Dénivelé négatif : total des mètres descendus. Souvent sous-estimé, il fatigue fortement les cuisses."],
+["Km-effort","Trail","Distance + D+ / 100. Un trail de 30 km et 1500 m D+ vaut 45 km-effort. Permet de comparer les courses."],
+["Trail court / long / ultra","Trail","Repères usuels : court jusqu'à environ 42 km, long jusqu'à 80 km, ultra au-delà."],
+["Barrière horaire","Trail","Heure limite pour passer un point du parcours. Au-delà, l'organisation arrête le coureur."],
+["Ravito","Trail","Ravitaillement : poste où l'on trouve boissons et nourriture sur le parcours."],
+["Single","Trail","Sentier étroit où l'on court à la file. Dépasser y demande patience et politesse."],
+["Monotrace","Trail","Autre nom du single : sentier où une seule personne passe à la fois."],
+["Power hiking","Trail","Marche rapide et active en montée, mains sur les cuisses ou avec bâtons. Souvent plus efficace que courir."],
+["Index ITRA","Trail","Note de performance calculée à partir de tes résultats en trail, sur une échelle d'environ 0 à 1000."],
+["UTMB Index","Trail","Indice de performance du circuit UTMB World Series, calculé selon la catégorie de distance."],
+["Running Stones","Trail","Points obtenus sur les courses UTMB World Series, utilisés pour la loterie des grandes finales."],
+["Matériel obligatoire","Trail","Liste imposée par l'organisation (veste, frontale, couverture de survie…). Contrôlée avant ou pendant la course."],
+["Abandon (DNF)","Trail","Did Not Finish : course non terminée. Savoir abandonner fait partie de la sécurité en montagne."],
+["Finisher","Trail","Coureur qui termine la course dans les délais."],
+["Dossard","Trail","Numéro porté par le coureur, souvent avec une puce de chronométrage."],
+["Frontale","Matériel","Lampe portée sur la tête pour courir de nuit. Prévoir une batterie de rechange sur les longs trails."],
+["Bâtons","Matériel","Aident en montée et soulagent les cuisses en descente. À tester à l'entraînement, certaines courses les interdisent."],
+["Gilet d'hydratation","Matériel","Sac léger et ajusté avec flasques à l'avant, pour porter eau, nourriture et matériel."],
+["Flasque","Matériel","Gourde souple qui se range dans le gilet et se compacte en se vidant."],
+["Drop","Matériel","Différence de hauteur entre talon et avant du pied d'une chaussure, en mm. Changer de drop se fait progressivement."],
+["Crampons","Matériel","Relief de la semelle. Plus ils sont marqués, plus la chaussure accroche en terrain gras."],
+["Veste imperméable","Matériel","Indispensable en montagne. Une membrane respirante avec coutures étanches est souvent exigée."],
+["Couverture de survie","Matériel","Feuille isolante très légère, obligatoire sur la plupart des trails."],
+["Gel","Nutrition","Sachet de glucides concentrés (20 à 30 g) qui s'avale avec un peu d'eau."],
+["Électrolytes","Nutrition","Sels minéraux (surtout sodium) perdus dans la sueur, à compenser sur les efforts longs ou par chaleur."],
+["Glucides","Nutrition","Principal carburant de l'effort. Pendant une sortie longue, on vise souvent 30 à 90 g par heure selon l'habitude."],
+["Fringale","Nutrition","Baisse brutale d'énergie quand les réserves sont vides. Se prévient en mangeant tôt et régulièrement."],
+["Ventre entraîné","Nutrition","Capacité à digérer en courant, qui s'améliore en mangeant pendant les sorties longues."],
+["Boisson de récupération","Nutrition","Boisson qui apporte glucides et protéines après l'effort, pour reconstruire et recharger."],
+["Recharge glucidique","Nutrition","Augmenter les glucides 1 à 3 jours avant une course longue pour remplir les réserves."],
+];
+const g=document.getElementById('gloss'),q=document.getElementById('q'),empty=document.getElementById('empty');
+let cat='all';
+function norm(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')}
+function render(){
+  const n=norm(q.value.trim());
+  const list=T.filter(([t,c,d])=>(cat==='all'||c===cat)&&(!n||norm(t+' '+d).includes(n))).sort((a,b)=>a[0].localeCompare(b[0],'fr'));
+  g.innerHTML=list.map(([t,c,d])=>`<article class="term"><h3>${t}<span>${c}</span></h3><p>${d}</p></article>`).join('');
+  empty.style.display=list.length?'none':'block';
+}
+q.addEventListener('input',render);
+document.querySelectorAll('.chip[data-cat]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.chip[data-cat]').forEach(o=>o.setAttribute('aria-pressed','false'));b.setAttribute('aria-pressed','true');cat=b.dataset.cat;render();
+}));
+render();
+</script>
+</body>
+</html>
