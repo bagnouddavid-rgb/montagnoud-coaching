@@ -577,6 +577,10 @@ footer a{color:#dfe7dc}
 </footer>
 
 <script>
+// Provenance : ?src=insta sur le site devient ?src=site-insta vers l'app
+(function(){try{const src=new URLSearchParams(location.search).get('src');if(!src||!/^[a-z0-9_-]{1,30}$/i.test(src))return;
+document.querySelectorAll('a[href*="montagnoud-coaching.netlify.app"]').forEach(a=>{a.href=a.href.replace('src=site','src=site-'+src)})}catch(e){}})();
+
 // Menu mobile
 const menuBtn=document.getElementById('menuBtn'),menu=document.getElementById('menu');
 menuBtn.addEventListener('click',()=>{const o=menu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)});
