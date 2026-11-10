@@ -577,6 +577,24 @@ footer a{color:#dfe7dc}
 </footer>
 
 <script>
+// Compteur de visites du site (même base que l'app, visible dans ses statistiques)
+(function(){
+  try{if(sessionStorage.getItem('mg-site-visit'))return;sessionStorage.setItem('mg-site-visit','1')}catch(e){}
+  const MAP={insta:'Instagram',instagram:'Instagram',ig:'Instagram',google:'Google',whatsapp:'WhatsApp',wa:'WhatsApp',facebook:'Facebook',fb:'Facebook',strava:'Strava',flyer:'Flyer',mail:'E-mail',email:'E-mail',tiktok:'TikTok'};
+  let p='';try{p=(new URLSearchParams(location.search).get('src')||'').toLowerCase()}catch(e){}
+  let src=p?(MAP[p]||p.replace(/[^a-z0-9_-]/g,'').slice(0,20)):'';
+  if(!src){let h='';try{h=document.referrer?new URL(document.referrer).hostname:''}catch(e){}
+    if(h&&h!==location.hostname)src=/instagram/.test(h)?'Instagram':/google\./.test(h)?'Google':/facebook|fb\./.test(h)?'Facebook':/whatsapp|wa\.me/.test(h)?'WhatsApp':/strava/.test(h)?'Strava':/bing|duckduckgo|ecosia|qwant/.test(h)?'Autre moteur':h.replace(/^www\./,'').slice(0,20);
+    else if(/Instagram/.test(navigator.userAgent))src='Instagram';
+    else if(/FBAN|FBAV/.test(navigator.userAgent))src='Facebook';
+    else src='Direct';}
+  const device=/Mobi|Android|iPhone|iPad/.test(navigator.userAgent)?'mobile':'desktop';
+  const K='sb_publishable_cnTKGVr4yCxWpFz9qHy5SQ_dEoilati';
+  fetch('https://euwlhzgixgutzusicbuc.supabase.co/rest/v1/visits',{method:'POST',keepalive:true,
+    headers:{'apikey':K,'Content-Type':'application/json','Prefer':'return=minimal'},
+    body:JSON.stringify({src:'Site · '+src,device,page:'site'})}).catch(()=>{});
+})();
+
 // Provenance : ?src=insta sur le site devient ?src=site-insta vers l'app
 (function(){try{const src=new URLSearchParams(location.search).get('src');if(!src||!/^[a-z0-9_-]{1,30}$/i.test(src))return;
 document.querySelectorAll('a[href*="montagnoud-coaching.netlify.app"]').forEach(a=>{a.href=a.href.replace('src=site','src=site-'+src)})}catch(e){}})();
