@@ -68,14 +68,17 @@ header.top{position:sticky;top:0;z-index:20;background:var(--forest);color:#fff}
 }
 
 /* Hero */
-.hero{background:var(--forest);color:#fff;padding:56px 0 0;overflow:hidden}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:end}
+.hero{background:var(--forest);color:#fff;padding:56px 0 40px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
 .hero h1 em{font-style:normal;color:var(--fluo)}
 .hero .lead{color:#c5d3c8;margin:20px 0 28px}
-.hero-facts{display:flex;flex-wrap:wrap;gap:10px 22px;margin:26px 0 48px;padding:0;list-style:none;color:#c5d3c8;font-size:.95rem}
+.hero-facts{display:flex;flex-wrap:wrap;gap:10px 22px;margin:26px 0 8px;padding:0;list-style:none;color:#c5d3c8;font-size:.95rem}
 .hero-facts li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--fluo);margin-right:8px;vertical-align:middle}
-.hero canvas{width:100%;height:300px;display:block}
-@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.hero canvas{height:180px}}
+.hero svg#topo{width:100%;height:auto;display:block;margin-bottom:24px}
+.topo-trace{animation:draw 3.2s ease-out .3s both}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.topo-pulse{transform-box:fill-box;transform-origin:center;animation:pulse 1.8s ease-out infinite}
+@media (max-width:820px){.hero-grid{grid-template-columns:1fr}.hero svg#topo{max-width:460px;margin:0 auto 16px}}
 
 /* Cards / grids */
 .grid{display:grid;gap:20px}
@@ -252,7 +255,7 @@ footer a{color:#dfe7dc}
         <li>Route ou trail</li>
       </ul>
     </div>
-    <canvas id="ridge" aria-hidden="true"></canvas>
+    <svg id="topo" viewBox="0 0 520 330" aria-hidden="true"></svg>
   </div>
 </section>
 
@@ -604,26 +607,34 @@ const menuBtn=document.getElementById('menuBtn'),menu=document.getElementById('m
 menuBtn.addEventListener('click',()=>{const o=menu.classList.toggle('open');menuBtn.setAttribute('aria-expanded',o)});
 menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.classList.remove('open');menuBtn.setAttribute('aria-expanded','false')}));
 
-// Crêtes de montagne (canvas)
+// Carte topographique + trace GPS
 (function(){
-  const c=document.getElementById('ridge');if(!c)return;const x=c.getContext('2d');
-  function draw(){
-    const r=window.devicePixelRatio||1,w=c.clientWidth,h=c.clientHeight;c.width=w*r;c.height=h*r;x.setTransform(r,0,0,r,0,0);x.clearRect(0,0,w,h);
-    const layers=[{c:'#2b5239',a:.55,s:3},{c:'#3a6b4a',a:.4,s:7},{c:'#e2ff3b',a:.25,s:11}];
-    layers.forEach((L,i)=>{
-      x.beginPath();x.moveTo(0,h);let seed=L.s;
-      const rnd=()=>{seed=(seed*9301+49297)%233280;return seed/233280};
-      const pts=9+i*3;
-      for(let k=0;k<=pts;k++){const px=k/pts*w;const py=h*(L.a)+rnd()*h*.35-(k===Math.round(pts*.6)&&i===2?h*.2:0);x.lineTo(px,py)}
-      x.lineTo(w,h);x.closePath();
-      x.fillStyle=L.c;x.globalAlpha=i===2?1:1;x.fill();
-    });
-    // tracé du sentier
-    x.globalAlpha=1;x.setLineDash([6,8]);x.strokeStyle='#e2ff3b';x.lineWidth=2;x.beginPath();
-    x.moveTo(w*.05,h*.95);x.bezierCurveTo(w*.3,h*.8,w*.4,h*.55,w*.6,h*.45);x.stroke();x.setLineDash([]);
-    x.fillStyle='#e2ff3b';x.beginPath();x.arc(w*.6,h*.45,5,0,Math.PI*2);x.fill();
-  }
-  draw();addEventListener('resize',draw);
+  const s=document.getElementById('topo');if(!s)return;
+  const N='http://www.w3.org/2000/svg',F='#e2ff3b';
+  const mk=(t,a,p)=>{const e=document.createElementNS(N,t);for(const k in a)e.setAttribute(k,a[k]);(p||s).appendChild(e);return e};
+  const lab=(x,y,t,a,p)=>{const e=mk('text',Object.assign({x,y,'font-family':'Figtree, system-ui, sans-serif','font-size':12,fill:'#9fb8a6'},a||{}),p);e.textContent=t;return e};
+  function closed(p){const n=p.length;let d='M'+p[0][0].toFixed(1)+','+p[0][1].toFixed(1);for(let i=0;i<n;i++){const a=p[(i-1+n)%n],b=p[i],c=p[(i+1)%n],e=p[(i+2)%n];d+=` C${(b[0]+(c[0]-a[0])/6).toFixed(1)},${(b[1]+(c[1]-a[1])/6).toFixed(1)} ${(c[0]-(e[0]-b[0])/6).toFixed(1)},${(c[1]-(e[1]-b[1])/6).toFixed(1)} ${c[0].toFixed(1)},${c[1].toFixed(1)}`}return d+'Z'}
+  function ring(cx,cy,r,sd){const p=[];for(let i=0;i<36;i++){const a=i/36*Math.PI*2,k=1+.17*Math.sin(a*3+sd)+.09*Math.sin(a*5+sd*1.7)+.05*Math.cos(a*7+sd*.6);p.push([cx+Math.cos(a)*r*k*1.45,cy+Math.sin(a)*r*k])}return closed(p)}
+  const cl=mk('clipPath',{id:'topoClip'});mk('rect',{x:0,y:0,width:520,height:330,rx:22},cl);
+  const g=mk('g',{'clip-path':'url(#topoClip)'});
+  mk('rect',{x:0,y:0,width:520,height:330,fill:'#24452f'},g);
+  [[165,140,1.3,10],[390,185,2.2,9],[300,40,4,6]].forEach(([cx,cy,sd,n])=>{for(let i=1;i<=n;i++){const r=i*14;mk('path',{d:ring(cx,cy,r,sd+r/80),fill:'none',stroke:i%4===0?'#4f8460':'#33604a','stroke-width':i%4===0?1.5:1},g)}});
+  const tr='M38,296 C95,272 105,222 132,204 S172,170 170,146 S214,96 266,126 S334,226 378,210 S426,160 472,178 S505,240 492,290';
+  mk('path',{d:tr,fill:'none',stroke:'#1f3d2b','stroke-width':8,'stroke-linecap':'round'},g);
+  const m=mk('mask',{id:'topoMask'});
+  mk('path',{d:tr,fill:'none',stroke:'#fff','stroke-width':10,'stroke-linecap':'round',pathLength:1,'stroke-dasharray':1,class:'topo-trace'},m);
+  mk('path',{d:tr,fill:'none',stroke:F,'stroke-width':3.5,'stroke-linecap':'round','stroke-dasharray':'9 7',mask:'url(#topoMask)'},g);
+  mk('path',{d:'M128,140 l8,-17 l8,17 z',fill:'#fff'},g);
+  lab(122,138,'2 105 m',{fill:'#dfe7dc','font-weight':700,'text-anchor':'end'});
+  lab(340,256,'1 870 m');
+  mk('circle',{cx:38,cy:296,r:7,fill:F,stroke:'#1f3d2b','stroke-width':3},g);
+  lab(26,322,'Départ',{fill:'#fff','font-weight':700});
+  mk('circle',{cx:492,cy:290,r:7,fill:'none',stroke:F,'stroke-width':2,class:'topo-pulse'},g);
+  mk('circle',{cx:492,cy:290,r:7,fill:F,stroke:'#1f3d2b','stroke-width':3},g);
+  lab(478,306,'Arrivée',{fill:'#fff','font-weight':700,'text-anchor':'end'});
+  const bx=mk('g',{transform:'translate(22,22)'});
+  mk('rect',{width:150,height:30,rx:15,fill:'#13261a',opacity:.85},bx);
+  lab(75,20,'34 km · 1 600 m D+',{fill:F,'font-weight':700,'text-anchor':'middle','font-size':13},bx);
 })();
 
 // Onglets alimentation
