@@ -188,6 +188,47 @@ td:first-child{font-weight:700;white-space:nowrap}
 .redflag ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
 .prevent{margin-top:40px}
 
+.utmb{--night:#0d1a2b;--night-2:#15283f;--night-3:#1f3a5a;--ice:#e7eef7;--mist:#9db0c8;background:var(--night);color:var(--ice);position:relative;overflow:hidden}
+.utmb::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 0%,#1f3a5a 0,transparent 45%),radial-gradient(circle at 0% 100%,#15283f 0,transparent 40%);pointer-events:none}
+.utmb .wrap{position:relative}
+.utmb .eyebrow{color:var(--fluo)}
+.utmb .lead{color:var(--mist)}
+.u-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:end}
+@media (max-width:760px){.u-tiers{grid-template-columns:1fr}}
+.u-tier{background:var(--night-2);border:1px solid var(--night-3);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:8px}
+.u-tier.t2{padding-top:34px}.u-tier.t3{padding-top:48px;border-color:var(--fluo);box-shadow:0 0 0 1px var(--fluo) inset}
+.u-tier .lvl{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--mist)}
+.u-tier h3{color:#fff}
+.u-tier p{color:var(--mist);font-size:.95rem}
+.u-tier .big{font-family:var(--display);font-size:1.15rem;color:var(--fluo)}
+.u-sub{margin:56px 0 20px;display:flex;flex-direction:column;gap:8px}
+.u-sub h3{color:#fff;font-size:1.7rem}
+.u-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.u-cat{background:var(--night-2);border:1px solid var(--night-3);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.u-cat b{font-family:var(--display);font-weight:400;font-size:2.4rem;line-height:1;color:#fff}
+.u-cat small{color:var(--mist);font-size:.88rem}
+.stones{display:flex;gap:6px;align-items:center}
+.stone{width:22px;height:18px;background:var(--fluo);border-radius:48% 52% 45% 55% / 55% 50% 50% 45%;box-shadow:inset -3px -3px 0 #b9d21f}
+.stone.x2{background:transparent;border:2px dashed var(--fluo);box-shadow:none}
+.u-cat .st-label{font-size:.85rem;color:var(--ice)}
+.u-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:12px;align-items:stretch}
+@media (max-width:860px){.u-flow{grid-template-columns:1fr}.u-flow .arr{transform:rotate(90deg);justify-self:center}}
+.u-step{background:var(--night-2);border:1px solid var(--night-3);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:6px}
+.u-step strong{color:#fff;font-size:1.05rem}
+.u-step span{color:var(--mist);font-size:.94rem}
+.u-step.goal{border-color:var(--fluo)}
+.arr{align-self:center;color:var(--fluo);font-size:1.6rem;font-weight:700}
+.u-or{margin-top:14px;background:transparent;border:1px dashed var(--night-3);border-radius:16px;padding:16px 20px;color:var(--mist);font-size:.95rem}
+.u-or b{color:var(--fluo)}
+.u-gloss{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:12px}
+.u-term{background:var(--night-2);border-left:3px solid var(--fluo);border-radius:0 12px 12px 0;padding:14px 16px}
+.u-term h4{margin:0 0 4px;font-size:1rem;color:#fff}
+.u-term p{color:var(--mist);font-size:.92rem}
+.u-news{margin-top:40px;display:flex;gap:16px;align-items:center;background:linear-gradient(90deg,#1f3a5a,#15283f);border-radius:16px;padding:18px 22px}
+.u-news .tag{background:var(--fluo);color:var(--night);font-weight:700;font-size:.78rem;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.u-news p{color:var(--ice)}
+.u-legal{margin-top:22px;font-size:.8rem;color:#6f84a0}
+
 /* Glossary */
 .gloss-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
 .gloss-tools input{flex:1 1 260px;padding:13px 16px;border-radius:999px;border:1px solid var(--line);font:500 1rem var(--body);background:#fff}
@@ -231,6 +272,7 @@ footer a{color:#dfe7dc}
       <li><a href="#alimentation">Alimentation</a></li>
       <li><a href="#zones">Intensités</a></li>
       <li><a href="#blessures">Blessures</a></li>
+      <li><a href="#utmb">UTMB</a></li>
       <li><a href="#lexique">Lexique</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
@@ -520,6 +562,61 @@ footer a{color:#dfe7dc}
       </div>
     </div>
     <p class="note-box" style="margin-top:28px">Ces informations sont générales et ne remplacent pas un diagnostic. En cas de doute, consulte un médecin ou un physiothérapeute.</p>
+  </div>
+</section>
+
+<section class="utmb" id="utmb">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Le monde UTMB</p>
+      <h2>UTMB World Series : comment ça marche ?</h2>
+      <p class="lead">Running Stones, Index, Majors, loterie… Tout ce qu'il faut savoir pour comprendre le circuit et viser un jour les finales à Chamonix.</p>
+    </div>
+
+    <div class="u-tiers">
+      <article class="u-tier t1"><span class="lvl">Niveau 1</span><h3>Events</h3><p>Plus de 60 courses labellisées sur tous les continents. Tu y gagnes des Running Stones et un UTMB Index.</p><span class="big">Stones × 1</span></article>
+      <article class="u-tier t2"><span class="lvl">Niveau 2</span><h3>Majors</h3><p>Les courses phares de chaque continent. Les Running Stones y comptent double et le top 10 est qualifié direct.</p><span class="big">Stones × 2</span></article>
+      <article class="u-tier t3"><span class="lvl">Niveau 3</span><h3>Finals</h3><p>À Chamonix, fin août : OCC (50K), CCC (100K) et UTMB (100M). On y entre par la loterie ou par qualification directe.</p><span class="big">Le graal</span></article>
+    </div>
+
+    <div class="u-sub"><h3>Les 4 catégories et leurs Running Stones</h3><p class="lead">Les catégories se basent sur le km-effort (distance + D+ / 100), pas seulement sur les kilomètres.</p></div>
+    <div class="u-cats">
+      <article class="u-cat"><b>20K</b><small>Le format le plus accessible</small><div class="stones"><i class="stone"></i></div><span class="st-label">1 Running Stone</span></article>
+      <article class="u-cat"><b>50K</b><small>Finale : OCC</small><div class="stones"><i class="stone"></i><i class="stone"></i></div><span class="st-label">2 Running Stones</span></article>
+      <article class="u-cat"><b>100K</b><small>Finale : CCC</small><div class="stones"><i class="stone"></i><i class="stone"></i><i class="stone"></i></div><span class="st-label">3 Running Stones</span></article>
+      <article class="u-cat"><b>100M</b><small>Finale : UTMB (environ 170 km)</small><div class="stones"><i class="stone"></i><i class="stone"></i><i class="stone"></i><i class="stone"></i></div><span class="st-label">4 Running Stones</span></article>
+    </div>
+    <p class="u-or">Sur un <b>Major</b>, chaque finisher reçoit <b>le double</b> : un 100K y rapporte 6 Running Stones au lieu de 3.</p>
+
+    <div class="u-sub"><h3>Le chemin vers les finales</h3></div>
+    <div class="u-flow">
+      <div class="u-step"><strong>1. Termine une course du circuit</strong><span>Event ou Major, dans l'une des 4 catégories.</span></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="u-step"><strong>2. Collecte Stones + Index</strong><span>Il faut au moins 1 Running Stone et un UTMB Index valide.</span></div>
+      <div class="arr" aria-hidden="true">→</div>
+      <div class="u-step goal"><strong>3. Tente la loterie</strong><span>Chaque Stone accumulé augmente tes chances d'être tiré au sort.</span></div>
+    </div>
+    <p class="u-or"><b>Qualification directe</b>, sans loterie : finir dans le top 3 d'un Event ou le top 10 d'un Major (50K, 100K, 100M), ou réaliser un UTMB Score assez élevé.</p>
+
+    <div class="u-sub"><h3>Le lexique UTMB</h3></div>
+    <div class="u-gloss">
+      <article class="u-term"><h4>UTMB Mont-Blanc</h4><p>Le festival de trail de Chamonix, fin août, où se courent les finales du circuit.</p></article>
+      <article class="u-term"><h4>UTMB World Series</h4><p>Le circuit mondial des courses labellisées UTMB : Events, Majors et Finals.</p></article>
+      <article class="u-term"><h4>Event</h4><p>Course du circuit. Elle rapporte des Running Stones ; le top 3 hommes et femmes (50K, 100K, 100M) est qualifié pour les finales.</p></article>
+      <article class="u-term"><h4>Major</h4><p>Course phare d'un continent : Running Stones doublés et top 10 qualifié direct pour les finales.</p></article>
+      <article class="u-term"><h4>Finals</h4><p>Les trois finales mondiales à Chamonix : OCC (50K), CCC (100K) et UTMB (100M).</p></article>
+      <article class="u-term"><h4>OCC · CCC · UTMB</h4><p>Les trois courses finales de l'UTMB Mont-Blanc, dans les catégories 50K, 100K et 100M.</p></article>
+      <article class="u-term"><h4>Catégorie (20K, 50K, 100K, 100M)</h4><p>Classement d'une course selon son km-effort. Une course « 50K » ne fait pas forcément 50 km.</p></article>
+      <article class="u-term"><h4>Running Stones</h4><p>Points gagnés en terminant une course du circuit. Ils se cumulent et augmentent tes chances à la loterie.</p></article>
+      <article class="u-term"><h4>Loterie</h4><p>Tirage au sort des places pour les finales. Condition : au moins 1 Running Stone et un UTMB Index valide.</p></article>
+      <article class="u-term"><h4>UTMB Index</h4><p>Ton niveau de performance, calculé séparément pour chaque catégorie (20K, 50K, 100K, 100M).</p></article>
+      <article class="u-term"><h4>UTMB Score</h4><p>La note obtenue sur une course précise. L'Index, lui, résume tes meilleurs résultats.</p></article>
+      <article class="u-term"><h4>Qualification directe</h4><p>Place aux finales sans loterie, grâce au classement (top 3 Event, top 10 Major) ou à un UTMB Score élevé.</p></article>
+      <article class="u-term"><h4>Km-effort</h4><p>Distance + D+ / 100. C'est la base des catégories UTMB : 30 km et 1500 m D+ = 45 km-effort.</p></article>
+    </div>
+
+    <div class="u-news"><span class="tag">Nouveau 2027</span><p>Wildstrubel by UTMB, en Suisse, devient un Major de l'UTMB World Series : Running Stones doublés pour tous les finishers.</p></div>
+    <p class="u-legal">Montagnoud Coaching n'est pas affilié à UTMB®. UTMB® et les noms de courses cités sont des marques de leurs propriétaires. Infos de novembre 2026 : vérifie les règles à jour sur utmb.world.</p>
   </div>
 </section>
 
@@ -815,8 +912,6 @@ const T=[
 ["Monotrace","Trail","Autre nom du single : sentier où une seule personne passe à la fois."],
 ["Power hiking","Trail","Marche rapide et active en montée, mains sur les cuisses ou avec bâtons. Souvent plus efficace que courir."],
 ["Index ITRA","Trail","Note de performance calculée à partir de tes résultats en trail, sur une échelle d'environ 0 à 1000."],
-["UTMB Index","Trail","Indice de performance du circuit UTMB World Series, calculé selon la catégorie de distance."],
-["Running Stones","Trail","Points obtenus sur les courses UTMB World Series, utilisés pour la loterie des grandes finales."],
 ["Matériel obligatoire","Trail","Liste imposée par l'organisation (veste, frontale, couverture de survie…). Contrôlée avant ou pendant la course."],
 ["Abandon (DNF)","Trail","Did Not Finish : course non terminée. Savoir abandonner fait partie de la sécurité en montagne."],
 ["Finisher","Trail","Coureur qui termine la course dans les délais."],
