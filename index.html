@@ -116,6 +116,19 @@ header.top{position:sticky;top:0;z-index:20;background:var(--forest);color:#fff}
 .card.featured{border:2px solid var(--forest);box-shadow:0 14px 34px #1f3d2b22}
 .badge{align-self:flex-start;background:var(--fluo);color:var(--forest);font-weight:700;font-size:.78rem;padding:4px 12px;border-radius:999px}
 
+.opt-head{margin:56px 0 22px;display:flex;flex-direction:column;gap:10px}
+.opt-head h3{font-size:1.8rem}
+.opt-price{font-family:var(--display);font-size:2.2rem;line-height:1;color:var(--forest)}
+.opt-price small{font-family:var(--body);font-size:.95rem;color:var(--muted)}
+.opt-when{font-weight:600}
+.wk{display:flex;gap:5px}
+.wk span{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-size:.78rem;font-weight:700;background:var(--rock);color:var(--muted)}
+.wk span.on{background:var(--forest);color:var(--fluo)}
+.sum{margin-top:40px;display:flex;flex-direction:column;gap:16px}
+.sum h3{font-size:1.5rem}
+.sum-t{min-width:520px}
+.sum-t td:not(:first-child),.sum-t th:not(:first-child){text-align:center;font-variant-numeric:tabular-nums}
+
 /* Tabs nutrition */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
 .tab{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font:600 .92rem var(--body);cursor:pointer;color:var(--ink)}
@@ -374,6 +387,49 @@ footer a{color:#dfe7dc}
       <article class="card featured"><span class="badge">Pour démarrer</span><h3>Premier mois</h3><p class="price">30 <small>CHF</small></p><p>Plan personnalisé, app, notes du coach sur tes séances et bilan chaque semaine.</p></article>
       <article class="card"><span class="tag">Ensuite</span><h3>Suivi mensuel</h3><p class="price">40 <small>CHF / mois</small></p><p>Le même suivi complet, ajusté en continu jusqu'à ton objectif et au-delà.</p></article>
     </div>
+    <div class="opt-head">
+      <h3>Choisis ton niveau de suivi</h3>
+      <p class="lead">Le plan, l'app et les notes sur tes séances sont toujours compris. Ce qui change, c'est <strong>à quelle fréquence le coach fait le point avec toi</strong> et ajuste ton plan.</p>
+    </div>
+    <div class="grid g3 opts">
+      <article class="card opt">
+        <span class="tag">Inclus</span><h3>Suivi hebdomadaire</h3>
+        <p class="opt-price">+ 0 <small>CHF</small></p>
+        <div class="wk" aria-hidden="true"><span class="">L</span><span class="">M</span><span class="">M</span><span class="">J</span><span class="">V</span><span class="">S</span><span class="on">D</span></div>
+        <p class="opt-when">1 bilan par semaine, <strong>le dimanche</strong></p>
+        <p>Le coach relit toute ta semaine et prépare la suivante, avec une explication de ce qui change. Idéal pour la majorité des coureurs.</p>
+      </article>
+      <article class="card opt">
+        <span class="tag">Option</span><h3>Suivi renforcé</h3>
+        <p class="opt-price">+ 15 <small>CHF / mois</small></p>
+        <div class="wk" aria-hidden="true"><span class="">L</span><span class="">M</span><span class="on">M</span><span class="">J</span><span class="">V</span><span class="">S</span><span class="on">D</span></div>
+        <p class="opt-when">2 bilans par semaine, <strong>le mercredi et le dimanche</strong></p>
+        <p>Un point en milieu de semaine pour corriger le tir sans attendre : fatigue, imprévu, séance ratée. Utile avant une course ou si ton emploi du temps bouge souvent.</p>
+      </article>
+      <article class="card opt">
+        <span class="tag">Option</span><h3>Suivi quotidien</h3>
+        <p class="opt-price">+ 30 <small>CHF / mois</small></p>
+        <div class="wk" aria-hidden="true"><span class="on">L</span><span class="on">M</span><span class="on">M</span><span class="on">J</span><span class="on">V</span><span class="on">S</span><span class="on">D</span></div>
+        <p class="opt-when">Un retour du coach <strong>chaque jour</strong></p>
+        <p>Le coach lit ton journal tous les jours, te répond et adapte la séance du lendemain si besoin. Pour un objectif important ou une reprise après blessure.</p>
+      </article>
+    </div>
+
+    <div class="sum">
+      <h3>Ce que tu paies, en clair</h3>
+      <div class="table-scroll">
+        <table class="sum-t">
+          <thead><tr><th>Suivi</th><th>Première semaine</th><th>Premier mois</th><th>Ensuite, par mois</th></tr></thead>
+          <tbody>
+            <tr><td>Hebdomadaire</td><td>Offerte</td><td>30 CHF</td><td>40 CHF</td></tr>
+            <tr><td>Renforcé (mercredi + dimanche)</td><td>Offerte</td><td>45 CHF</td><td>55 CHF</td></tr>
+            <tr><td>Quotidien</td><td>Offerte</td><td>60 CHF</td><td>70 CHF</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note-box">Tu peux changer de niveau de suivi d'un mois à l'autre, par exemple passer au suivi renforcé les semaines avant ta course, puis revenir au suivi hebdomadaire.</p>
+    </div>
+
     <div class="btn-row" style="margin-top:32px">
       <a class="btn btn-fluo" href="https://montagnoud-coaching.netlify.app/?src=site" target="_blank" rel="noopener">Commencer par le questionnaire</a>
     </div>
@@ -652,7 +708,7 @@ footer a{color:#dfe7dc}
     <details><summary>Mes horaires changent souvent. Comment faire ?</summary><p>Tu notes tes contraintes dans l'app et le plan de la semaine suivante est construit autour. Une séance ratée n'est pas un échec : elle est déplacée ou remplacée.</p></details>
     <details><summary>Combien de temps faut-il par semaine ?</summary><p>Ça dépend de ton objectif : à partir de 3 séances de 30 à 45 minutes pour débuter, davantage pour préparer un trail long. C'est toi qui indiques ce qui est réaliste.</p></details>
     <details><summary>Faut-il une montre GPS ou un cardiofréquencemètre ?</summary><p>Non. Une montre aide, mais les séances peuvent se faire à la sensation avec le test de la parole.</p></details>
-    <details><summary>Comment se passe le paiement ?</summary><p>Rien n'est payé à l'envoi du questionnaire. Après la discussion avec le coach et la première semaine offerte, tu décides si tu continues : 30 CHF le premier mois, puis 40 CHF par mois, sans engagement.</p></details>
+    <details><summary>Comment se passe le paiement ?</summary><p>Rien n'est payé à l'envoi du questionnaire. Après la discussion avec le coach et la première semaine offerte, tu décides si tu continues : 30 CHF le premier mois, puis 40 CHF par mois, sans engagement. Les options de suivi renforcé (+ 15 CHF) ou quotidien (+ 30 CHF) s'ajoutent si tu les choisis.</p></details>
     <details><summary>Et si je me blesse ?</summary><p>Tu le signales dans ton journal et le plan est allégé ou mis en pause. Pour une douleur qui persiste, consulte un médecin ou un physiothérapeute : le coaching ne remplace pas un avis médical.</p></details>
     <details><summary>Faut-il installer une application ?</summary><p>Non. L'app Montagnoud s'ouvre dans ton navigateur et peut être ajoutée à l'écran d'accueil de ton téléphone comme une vraie application.</p></details>
   </div>
