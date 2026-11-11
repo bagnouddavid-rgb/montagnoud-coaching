@@ -242,6 +242,39 @@ td:first-child{font-weight:700;white-space:nowrap}
 .u-news p{color:var(--ice)}
 .u-legal{margin-top:22px;font-size:.8rem;color:#6f84a0}
 
+/* Couleurs par section + animations */
+#pour-qui{background:#f4efe4}
+#methode{background:#183224}
+#app{background:#e8f2ea}
+#tarifs{background:#f3f8d6}
+#alimentation{background:#fbefe2}
+#zones{background:#e6eef6}
+#blessures{background:#f9ece8}
+#lexique{background:#eceae3}
+#faq{background:#e3e7df}
+main>section:not(.hero){position:relative;isolation:isolate;overflow:hidden}
+main>section:not(.hero)::before{content:"";position:absolute;inset:-20%;z-index:-1;pointer-events:none;
+  background:radial-gradient(closest-side,var(--blob,#ffffff80),transparent) 18% 22%/55% 60% no-repeat,
+             radial-gradient(closest-side,var(--blob2,#ffffff55),transparent) 82% 72%/55% 65% no-repeat;
+  animation:drift 11s ease-in-out infinite alternate}
+@keyframes drift{0%{transform:translate(-10%,-6%) rotate(-6deg) scale(1)}50%{transform:translate(9%,4%) rotate(5deg) scale(1.12)}100%{transform:translate(-4%,9%) rotate(-3deg) scale(.95)}}
+#pour-qui{--blob:#ffc98a;--blob2:#ffffff}
+#methode{--blob:#3a7d52;--blob2:#e2ff3b2e}
+#app{--blob:#a9dbb4;--blob2:#ffffff}
+#tarifs{--blob:#e2ff3bcc;--blob2:#ffffff}
+#alimentation{--blob:#ffb980;--blob2:#ffffff}
+#zones{--blob:#9fc3ea;--blob2:#ffffff}
+#blessures{--blob:#f4a594;--blob2:#ffffff}
+#utmb{--blob:#2f6aa0aa;--blob2:#e2ff3b26}
+#lexique{--blob:#d3cbb3;--blob2:#ffffff}
+#faq{--blob:#b6c9ae;--blob2:#ffffff}
+.cta{--blob:#3a7d52;--blob2:#e2ff3b2e}
+.utmb::before{animation:drift 11s ease-in-out infinite alternate}
+/* apparition : contenu toujours visible, il glisse juste en place */
+.rv{transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .7s}
+.rv.pre{transform:translateY(26px);opacity:.35}
+@media (prefers-reduced-motion: reduce){.rv.pre{transform:none;opacity:1}main>section::before{animation:none}}
+
 /* Glossary */
 .gloss-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
 .gloss-tools input{flex:1 1 260px;padding:13px 16px;border-radius:999px;border:1px solid var(--line);font:500 1rem var(--body);background:#fff}
@@ -375,7 +408,7 @@ footer a{color:#dfe7dc}
   </div>
 </section>
 
-<section class="alt" id="tarifs">
+<section id="tarifs">
   <div class="wrap">
     <div class="head">
       <p class="eyebrow">Tarifs</p>
@@ -544,7 +577,7 @@ footer a{color:#dfe7dc}
   </div>
 </section>
 
-<section class="alt" id="zones">
+<section id="zones">
   <div class="wrap">
     <div class="head">
       <p class="eyebrow">Les intensités</p>
@@ -697,7 +730,7 @@ footer a{color:#dfe7dc}
   </div>
 </section>
 
-<section class="alt" id="faq">
+<section id="faq">
   <div class="wrap">
     <div class="head">
       <p class="eyebrow">Questions fréquentes</p>
@@ -754,6 +787,14 @@ footer a{color:#dfe7dc}
 // Provenance : ?src=insta sur le site devient ?src=site-insta vers l'app
 (function(){try{const src=new URLSearchParams(location.search).get('src');if(!src||!/^[a-z0-9_-]{1,30}$/i.test(src))return;
 document.querySelectorAll('a[href*="montagnoud-coaching.netlify.app"]').forEach(a=>{a.href=a.href.replace('src=site','src=site-'+src)})}catch(e){}})();
+
+// Apparition des blocs au défilement
+(function(){
+  if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const items=document.querySelectorAll('main>section:not(.hero) .head, main>section .card, main>section .steps li, .injury, .u-tier, .u-cat, .u-step, .u-term, .meal, .calc, .table-scroll, details, .phone, .body-map');
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{threshold:.12});
+  items.forEach((el,i)=>{const r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add('rv','pre');el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)}});
+})();
 
 // Menu mobile
 const menuBtn=document.getElementById('menuBtn'),menu=document.getElementById('menu');
