@@ -129,6 +129,17 @@ header.top{position:sticky;top:0;z-index:20;background:var(--forest);color:#fff}
 .sum-t{min-width:520px}
 .sum-t td:not(:first-child),.sum-t th:not(:first-child){text-align:center;font-variant-numeric:tabular-nums}
 
+.rpe{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rpe-box{margin-top:56px}
+.rpe-box h3{font-size:1.7rem}
+.rpe-scale{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.rpe-scale li{background:#fff;border:1px solid var(--line);border-top:8px solid var(--c);border-radius:12px;padding:10px 8px 12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.rpe-scale b{font-family:var(--display);font-weight:400;font-size:1.9rem;line-height:1;color:var(--forest)}
+.rpe-scale .t{font-weight:700;font-size:.82rem;line-height:1.25}
+.rpe-scale .d{font-size:.78rem;color:var(--muted);line-height:1.3}
+@media (max-width:980px){.rpe-scale{grid-template-columns:repeat(5,1fr)}}
+@media (max-width:520px){.rpe-scale{grid-template-columns:1fr}.rpe-scale li{flex-direction:row;align-items:center;gap:12px;border-top-width:1px;border-left:8px solid var(--c)}.rpe-scale b{min-width:36px}.rpe-scale .d{margin-left:auto;text-align:right}}
+
 /* Tabs nutrition */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
 .tab{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font:600 .92rem var(--body);cursor:pointer;color:var(--ink)}
@@ -582,19 +593,31 @@ footer a{color:#dfe7dc}
     <div class="head">
       <p class="eyebrow">Les intensités</p>
       <h2>Comprendre les zones d'entraînement</h2>
-      <p class="lead">Dans ton plan, chaque séance indique une intensité. Pas besoin de cardio : le test de la parole fonctionne très bien.</p>
+      <p class="lead">Dans ton plan, chaque séance indique une intensité. Pas besoin de cardio : l'échelle RPE et le test de la parole fonctionnent très bien.</p>
     </div>
     <div class="table-scroll">
       <table>
-        <thead><tr><th>Zone</th><th>Ressenti</th><th>Test de la parole</th><th>% FC max (repère)</th><th>À quoi ça sert</th></tr></thead>
+        <thead><tr><th>Zone</th><th>RPE</th><th>Ressenti</th><th>Test de la parole</th><th>% FC max (repère)</th><th>À quoi ça sert</th></tr></thead>
         <tbody>
-          <tr><td><span class="zbar" style="background:#9fd4a8"></span>Z1 · Récup</td><td>Très facile</td><td>Tu chantes</td><td>50 à 60 %</td><td>Récupération, échauffement</td></tr>
-          <tr><td><span class="zbar" style="background:#5fb36f"></span>Z2 · Endurance</td><td>Facile, confortable</td><td>Tu tiens une conversation</td><td>60 à 75 %</td><td>La base : 70 à 80 % de ton temps de course</td></tr>
-          <tr><td><span class="zbar" style="background:#e3c53b"></span>Z3 · Tempo</td><td>Soutenu</td><td>Phrases courtes</td><td>75 à 85 %</td><td>Allure marathon et semi, montées longues</td></tr>
-          <tr><td><span class="zbar" style="background:#e88d2f"></span>Z4 · Seuil</td><td>Dur mais tenable</td><td>Quelques mots</td><td>85 à 92 %</td><td>Repousser la fatigue, allure 10 km</td></tr>
-          <tr><td><span class="zbar" style="background:#d2452d"></span>Z5 · VMA</td><td>Très dur, court</td><td>Impossible de parler</td><td>92 à 100 %</td><td>Fractionné court, côtes courtes, vitesse</td></tr>
+          <tr><td><span class="zbar" style="background:#9fd4a8"></span>Z1 · Récup</td><td class="rpe">1 – 2</td><td>Très facile</td><td>Tu chantes</td><td>50 à 60 %</td><td>Récupération, échauffement</td></tr>
+          <tr><td><span class="zbar" style="background:#5fb36f"></span>Z2 · Endurance</td><td class="rpe">3 – 4</td><td>Facile, confortable</td><td>Tu tiens une conversation</td><td>60 à 75 %</td><td>La base : 70 à 80 % de ton temps de course</td></tr>
+          <tr><td><span class="zbar" style="background:#e3c53b"></span>Z3 · Tempo</td><td class="rpe">5 – 6</td><td>Soutenu</td><td>Phrases courtes</td><td>75 à 85 %</td><td>Allure marathon et semi, montées longues</td></tr>
+          <tr><td><span class="zbar" style="background:#e88d2f"></span>Z4 · Seuil</td><td class="rpe">7 – 8</td><td>Dur mais tenable</td><td>Quelques mots</td><td>85 à 92 %</td><td>Repousser la fatigue, allure 10 km</td></tr>
+          <tr><td><span class="zbar" style="background:#d2452d"></span>Z5 · VMA</td><td class="rpe">9 – 10</td><td>Très dur, court</td><td>Impossible de parler</td><td>92 à 100 %</td><td>Fractionné court, côtes courtes, vitesse</td></tr>
         </tbody>
       </table>
+    </div>
+    <div class="rpe-box">
+      <div class="head" style="margin-bottom:18px">
+        <h3>L'échelle RPE : ton effort noté sur 10</h3>
+        <p class="lead">RPE veut dire « Rating of Perceived Exertion », l'effort perçu. Après chaque séance, tu donnes une note de 1 à 10 à la difficulté ressentie. Pas de montre nécessaire : c'est ton corps qui juge, en tenant compte de la fatigue, de la chaleur, du dénivelé et du manque de sommeil.</p>
+      </div>
+      <ol class="rpe-scale"><li style="--c:#bfe6c6"><b>1</b><span class="t">Très, très facile</span><span class="d">Marche tranquille</span></li><li style="--c:#9fd4a8"><b>2</b><span class="t">Très facile</span><span class="d">Footing de récupération</span></li><li style="--c:#7cc489"><b>3</b><span class="t">Facile</span><span class="d">Tu discutes sans effort</span></li><li style="--c:#5fb36f"><b>4</b><span class="t">Facile à modéré</span><span class="d">Phrases complètes, respiration un peu plus marquée</span></li><li style="--c:#c9d43f"><b>5</b><span class="t">Modéré</span><span class="d">Tu parles encore, mais tu dois te concentrer</span></li><li style="--c:#e3c53b"><b>6</b><span class="t">Soutenu</span><span class="d">Phrases courtes</span></li><li style="--c:#eba43a"><b>7</b><span class="t">Difficile</span><span class="d">Quelques mots seulement</span></li><li style="--c:#e88d2f"><b>8</b><span class="t">Très difficile</span><span class="d">Tu ne parles presque plus</span></li><li style="--c:#dd6a2e"><b>9</b><span class="t">Extrêmement difficile</span><span class="d">Impossible de parler, tu tiens peu de temps</span></li><li style="--c:#d2452d"><b>10</b><span class="t">Maximal</span><span class="d">Effort à fond, quelques secondes</span></li></ol>
+      <div class="grid g3" style="margin-top:22px">
+        <article class="card"><span class="tag">Dans ton plan</span><p>Chaque séance indique le RPE visé. Une sortie facile se court à 3 – 4, même en montée : n'hésite pas à marcher pour y rester.</p></article>
+        <article class="card"><span class="tag">Dans l'app</span><p>Tu notes ton RPE dans le journal après chaque séance. Le coach suit ta moyenne de la semaine et voit tout de suite si une séance a été plus dure que prévu.</p></article>
+        <article class="card"><span class="tag">Signal d'alerte</span><p>Un RPE de 8 ou plus sur une sortie prévue facile, c'est souvent le signe de fatigue, de maladie qui couve ou de récupération insuffisante. Le plan est alors allégé.</p></article>
+      </div>
     </div>
   </div>
 </section>
@@ -997,6 +1020,7 @@ const T=[
 ["Renfo","Entraînement","Renforcement musculaire, souvent au poids du corps, intégré au plan une à deux fois par semaine."],
 ["Cadence","Entraînement","Nombre de pas par minute. Une cadence un peu plus élevée réduit souvent les chocs."],
 ["Bloc","Entraînement","Période de quelques semaines avec un même objectif : développement, spécifique, affûtage."],
+["RPE","Entraînement","Effort perçu noté de 1 à 10 après la séance. 3 – 4 = facile, tu parles en phrases ; 7 – 8 = dur, quelques mots ; 10 = effort maximal."],
 ["Zone 2","Entraînement","Intensité d'endurance facile, conversation possible. La majorité de ton volume se fait ici."],
 ["Négatif split","Entraînement","Courir la deuxième moitié plus vite que la première. Signe d'une course bien gérée."],
 ["D+","Trail","Dénivelé positif : total des mètres montés sur un parcours. 1000 m D+ = monter l'équivalent de 1000 m."],
