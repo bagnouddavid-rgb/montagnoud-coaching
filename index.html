@@ -286,6 +286,24 @@ main>section:not(.hero)::before{content:"";position:absolute;inset:-20%;z-index:
 .rv.pre{transform:translateY(26px);opacity:.35}
 @media (prefers-reduced-motion: reduce){.rv.pre{transform:none;opacity:1}main>section::before{animation:none}}
 
+/* Bouton flottant des sections */
+.fab-wrap{position:fixed;right:18px;bottom:18px;z-index:40;display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none}
+.fab{pointer-events:auto;display:inline-flex;align-items:center;gap:8px;background:var(--fluo);color:var(--forest);border:0;border-radius:999px;padding:12px 18px 12px 14px;font:700 .95rem var(--body);cursor:pointer;box-shadow:0 10px 28px #13261a55;transform:translateY(120px);opacity:0;transition:transform .35s cubic-bezier(.2,.8,.2,1),opacity .35s}
+.fab-wrap.show .fab{transform:none;opacity:1}
+.fab svg{transition:transform .3s}
+.fab[aria-expanded="true"] svg{transform:rotate(180deg)}
+.fab-panel{pointer-events:auto;background:var(--forest);color:#eef2ea;border-radius:20px;padding:16px;width:min(300px,calc(100vw - 36px));max-height:min(70vh,560px);overflow:auto;box-shadow:0 18px 40px #13261a66;transform-origin:bottom right;animation:pop .25s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{transform:scale(.85) translateY(10px);opacity:0}to{transform:none;opacity:1}}
+.fab-title{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--fluo);margin-bottom:8px}
+.fab-panel ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.fab-panel a{display:flex;align-items:center;gap:12px;padding:10px 10px;border-radius:12px;color:#eef2ea;text-decoration:none;font-weight:600}
+.fab-panel a:hover,.fab-panel a:focus-visible{background:#2b5239}
+.fab-panel a.cur{background:#2b5239;color:var(--fluo)}
+.fab-panel a.cur::after{content:"tu es ici";margin-left:auto;font-size:.72rem;font-weight:700;color:#b9c8bc}
+.fab-panel i{width:14px;height:14px;border-radius:5px;flex:none;box-shadow:0 0 0 1px #ffffff40}
+.fab-top{margin-top:8px;border-top:1px solid #3d6a4c;border-radius:0!important;padding-top:12px!important;color:var(--fluo)!important}
+@media (prefers-reduced-motion: reduce){.fab,.fab-panel{transition:none;animation:none}}
+
 /* Glossary */
 .gloss-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
 .gloss-tools input{flex:1 1 260px;padding:13px 16px;border-radius:999px;border:1px solid var(--line);font:500 1rem var(--body);background:#fff}
@@ -781,6 +799,18 @@ footer a{color:#dfe7dc}
 </section>
 </main>
 
+<div class="fab-wrap" id="fabWrap">
+  <nav class="fab-panel" id="fabPanel" aria-label="Aller à une section" hidden>
+    <p class="fab-title">Aller directement à…</p>
+    <ul><li><a href="#pour-qui" data-sec="pour-qui"><i style="background:#f4efe4"></i>Pour qui</a></li><li><a href="#methode" data-sec="methode"><i style="background:#183224"></i>La méthode</a></li><li><a href="#app" data-sec="app"><i style="background:#e8f2ea"></i>L'app</a></li><li><a href="#tarifs" data-sec="tarifs"><i style="background:#f3f8d6"></i>Tarifs</a></li><li><a href="#alimentation" data-sec="alimentation"><i style="background:#fbefe2"></i>Alimentation</a></li><li><a href="#calculateur" data-sec="calculateur"><i style="background:#fbefe2"></i>Calculateur de ravitaillement</a></li><li><a href="#zones" data-sec="zones"><i style="background:#e6eef6"></i>Intensités et RPE</a></li><li><a href="#blessures" data-sec="blessures"><i style="background:#f9ece8"></i>Blessures</a></li><li><a href="#utmb" data-sec="utmb"><i style="background:#0d1a2b"></i>Le monde UTMB</a></li><li><a href="#lexique" data-sec="lexique"><i style="background:#eceae3"></i>Lexique</a></li><li><a href="#faq" data-sec="faq"><i style="background:#e3e7df"></i>Questions fréquentes</a></li></ul>
+    <a class="fab-top" href="#accueil">↑ Revenir en haut</a>
+  </nav>
+  <button class="fab" id="fab" aria-expanded="false" aria-controls="fabPanel" aria-label="Ouvrir le menu des sections">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span>Sections</span>
+  </button>
+</div>
+
 <footer>
   <div class="wrap">
     <span>© 2026 Montagnoud Coaching · Coaching trail &amp; running</span>
@@ -810,6 +840,23 @@ footer a{color:#dfe7dc}
 // Provenance : ?src=insta sur le site devient ?src=site-insta vers l'app
 (function(){try{const src=new URLSearchParams(location.search).get('src');if(!src||!/^[a-z0-9_-]{1,30}$/i.test(src))return;
 document.querySelectorAll('a[href*="montagnoud-coaching.netlify.app"]').forEach(a=>{a.href=a.href.replace('src=site','src=site-'+src)})}catch(e){}})();
+
+// Bouton flottant : accès direct aux sections
+(function(){
+  const wrap=document.getElementById('fabWrap'),btn=document.getElementById('fab'),panel=document.getElementById('fabPanel');if(!wrap)return;
+  const links=[...panel.querySelectorAll('a[data-sec]')];
+  const toggle=o=>{panel.hidden=!o;btn.setAttribute('aria-expanded',o);btn.setAttribute('aria-label',o?'Fermer le menu des sections':'Ouvrir le menu des sections')};
+  btn.addEventListener('click',e=>{e.stopPropagation();toggle(panel.hidden)});
+  panel.addEventListener('click',e=>{if(e.target.closest('a'))toggle(false)});
+  document.addEventListener('click',e=>{if(!panel.hidden&&!wrap.contains(e.target))toggle(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!panel.hidden){toggle(false);btn.focus()}});
+  const onScroll=()=>{const show=scrollY>500;wrap.classList.toggle('show',show);if(!show)toggle(false)};
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+  // section en cours
+  const secs=links.map(a=>document.getElementById(a.dataset.sec)).filter(Boolean);
+  const mark=()=>{let cur=null;const y=innerHeight*.35;secs.forEach(sc=>{const r=sc.getBoundingClientRect();if(r.top<=y&&r.bottom>y)cur=sc.id});links.forEach(a=>a.classList.toggle('cur',a.dataset.sec===cur))};
+  addEventListener('scroll',mark,{passive:true});mark();
+})();
 
 // Apparition des blocs au défilement
 (function(){
