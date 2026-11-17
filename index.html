@@ -819,14 +819,26 @@ footer a{color:#dfe7dc}
 </footer>
 
 <script>
-// Compteur de visites du site (même base que l'app, visible dans ses statistiques)
+// Provenance du visiteur (?src=…) : lettres avec accents, chiffres, - et _ acceptés
+const SITE_SRC=(function(){try{
+  const p=(new URLSearchParams(location.search).get('src')||'').trim().toLowerCase().normalize('NFC');
+  return /^[\p{L}\p{N}_-]{1,40}$/u.test(p)?p:'';
+}catch(e){return ''}})();
+
+// Liens vers l'app : ?src=xxx sur le site devient ?src=site-xxx
+(function(){if(!SITE_SRC)return;try{
+  document.querySelectorAll('a[href*="montagnoud-coaching.netlify.app"]').forEach(a=>{
+    const u=new URL(a.href);u.searchParams.set('src','site-'+SITE_SRC);a.href=u.toString();
+  });
+}catch(e){}})();
+
+// Compteur de visites du site (table visits de Supabase, visible dans les statistiques de l'app)
 (function(){
   try{if(sessionStorage.getItem('mg-site-visit'))return;sessionStorage.setItem('mg-site-visit','1')}catch(e){}
   const MAP={insta:'Instagram',instagram:'Instagram',ig:'Instagram',google:'Google',whatsapp:'WhatsApp',wa:'WhatsApp',facebook:'Facebook',fb:'Facebook',strava:'Strava',flyer:'Flyer',mail:'E-mail',email:'E-mail',tiktok:'TikTok'};
-  let p='';try{p=(new URLSearchParams(location.search).get('src')||'').toLowerCase()}catch(e){}
-  let src=p?(MAP[p]||p.replace(/[^a-z0-9_-]/g,'').slice(0,20)):'';
+  let src=SITE_SRC?(MAP[SITE_SRC]||SITE_SRC):'';
   if(!src){let h='';try{h=document.referrer?new URL(document.referrer).hostname:''}catch(e){}
-    if(h&&h!==location.hostname)src=/instagram/.test(h)?'Instagram':/google\./.test(h)?'Google':/facebook|fb\./.test(h)?'Facebook':/whatsapp|wa\.me/.test(h)?'WhatsApp':/strava/.test(h)?'Strava':/bing|duckduckgo|ecosia|qwant/.test(h)?'Autre moteur':h.replace(/^www\./,'').slice(0,20);
+    if(h&&h!==location.hostname)src=/instagram/.test(h)?'Instagram':/google\./.test(h)?'Google':/facebook|fb\./.test(h)?'Facebook':/whatsapp|wa\.me/.test(h)?'WhatsApp':/strava/.test(h)?'Strava':/bing|duckduckgo|ecosia|qwant/.test(h)?'Autre moteur':h.replace(/^www\./,'').slice(0,30);
     else if(/Instagram/.test(navigator.userAgent))src='Instagram';
     else if(/FBAN|FBAV/.test(navigator.userAgent))src='Facebook';
     else src='Direct';}
@@ -836,10 +848,6 @@ footer a{color:#dfe7dc}
     headers:{'apikey':K,'Content-Type':'application/json','Prefer':'return=minimal'},
     body:JSON.stringify({src:'Site · '+src,device,page:'site'})}).catch(()=>{});
 })();
-
-// Provenance : ?src=insta sur le site devient ?src=site-insta vers l'app
-(function(){try{const src=new URLSearchParams(location.search).get('src');if(!src||!/^[a-z0-9_-]{1,30}$/i.test(src))return;
-document.querySelectorAll('a[href*="montagnoud-coaching.netlify.app"]').forEach(a=>{a.href=a.href.replace('src=site','src=site-'+src)})}catch(e){}})();
 
 // Bouton flottant : accès direct aux sections
 (function(){
