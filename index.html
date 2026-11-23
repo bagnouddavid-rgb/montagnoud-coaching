@@ -140,6 +140,135 @@ header.top{position:sticky;top:0;z-index:20;background:var(--forest);color:#fff}
 @media (max-width:980px){.rpe-scale{grid-template-columns:repeat(5,1fr)}}
 @media (max-width:520px){.rpe-scale{grid-template-columns:1fr}.rpe-scale li{flex-direction:row;align-items:center;gap:12px;border-top-width:1px;border-left:8px solid var(--c)}.rpe-scale b{min-width:36px}.rpe-scale .d{margin-left:auto;text-align:right}}
 
+.rv-wrap{margin-top:64px;scroll-margin-top:80px}
+.rv-wrap>summary{list-style:none}
+.rv-wrap>summary::-webkit-details-marker{display:none}
+.rv-wrap>summary::after{content:none!important}
+.rv-card{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:20px;align-items:center;cursor:pointer;background:linear-gradient(120deg,#fff 0%,#fff6ec 100%);border:1px solid #efd6c0;border-radius:24px;padding:22px 24px;box-shadow:0 16px 40px #7a3d0f18;transition:transform .2s,box-shadow .2s}
+.rv-card:hover{transform:translateY(-2px);box-shadow:0 22px 50px #7a3d0f26}
+.rv-card:focus-visible{outline:3px solid var(--forest);outline-offset:3px}
+.rv-wrap[open]>.rv-card{border-radius:24px 24px 0 0;border-bottom-color:transparent;box-shadow:none;transform:none}
+.rv-ico{display:grid;place-items:center;width:68px;height:68px;border-radius:20px;background:#fff1df}
+.rv-card-txt{display:flex;flex-direction:column;gap:4px}
+.rv-card-txt .eyebrow{margin:0}
+.rv-card-txt b{font-family:var(--display);font-weight:400;font-size:clamp(1.5rem,3vw,2rem);line-height:1.1}
+.rv-card-txt small{font-size:.95rem;color:var(--muted);max-width:60ch}
+.rv-badges{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
+.rv-badges span{font-size:.7rem;font-weight:700;letter-spacing:.08em;border:1px solid #e0b38a;color:#8a4b1a;border-radius:999px;padding:3px 9px;background:#fff8}
+.rv-open{display:inline-flex;align-items:center;gap:10px;background:var(--fluo);color:var(--forest);font-weight:800;border-radius:999px;padding:12px 16px 12px 20px;white-space:nowrap}
+.rv-open i{width:22px;height:22px;border-radius:50%;background:var(--forest);position:relative;transition:transform .3s}
+.rv-open i::before{content:"";position:absolute;left:7px;top:5px;width:6px;height:6px;border:solid var(--fluo);border-width:0 2px 2px 0;transform:rotate(45deg)}
+.rv-wrap[open] .rv-open i{transform:rotate(180deg)}
+.rv-open .o2{display:none}.rv-wrap[open] .rv-open .o1{display:none}.rv-wrap[open] .rv-open .o2{display:inline}
+@media (max-width:700px){.rv-card{grid-template-columns:auto minmax(0,1fr);padding:18px}.rv-open{grid-column:1/-1;justify-content:center}.rv-ico{width:54px;height:54px}}
+.rv-wrap[open]>.rv{border-radius:0 0 26px 26px;border-top:1px solid #f1dfcf;animation:accIn .35s ease}
+.rv-wrap .rv-sources{margin-top:14px}
+
+/* Planificateur de ravitaillement */
+.rv-head{margin:72px 0 24px;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;scroll-margin-top:80px}
+.rv-head>div{display:flex;flex-direction:column;gap:10px;max-width:70ch}
+.rv-head h3{font-size:clamp(1.8rem,3.4vw,2.4rem)}
+.rv-badges{list-style:none;margin:0;padding:0;display:flex;gap:6px}
+.rv-badges li{font-size:.72rem;font-weight:700;letter-spacing:.08em;border:1px solid #e0b38a;color:#8a4b1a;border-radius:999px;padding:4px 10px;background:#fff8}
+.rv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);border-radius:26px;overflow:hidden;box-shadow:0 26px 60px #7a3d0f22;border:1px solid #efd6c0;background:#fff}
+@media (max-width:900px){.rv{grid-template-columns:minmax(0,1fr)}.rv-in{border-right:0;border-bottom:1px solid #f1dfcf}}
+.rv-in{padding:26px 26px 30px;display:flex;flex-direction:column;gap:6px;background:#fffaf5;border-right:1px solid #f1dfcf}
+.rv-in fieldset{border:0;margin:0;padding:0 0 18px;display:flex;flex-direction:column;gap:12px}
+.rv-in fieldset+fieldset{border-top:1px solid #f1dfcf;padding-top:18px}
+.rv-in legend{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;padding:0;margin-bottom:12px}
+.rv-in legend span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--forest);color:var(--fluo);font-size:.8rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:480px){.row4{grid-template-columns:1fr 1fr}}
+.num{position:relative;display:flex;flex-direction:column;gap:5px}
+.num span,.sel span,.lbl,.rng>span{font-size:.82rem;font-weight:600;color:var(--muted)}
+.num input{width:100%;padding:12px 48px 12px 14px;border:1.5px solid #ead9c9;border-radius:12px;font:700 1.15rem var(--body);color:var(--ink);background:#fff;font-variant-numeric:tabular-nums;-moz-appearance:textfield}
+.num input::-webkit-outer-spin-button,.num input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.num input:focus{border-color:var(--forest);outline:none;box-shadow:0 0 0 3px #e2ff3b88}
+.num em{position:absolute;right:12px;bottom:14px;font-style:normal;font-size:.8rem;color:var(--muted);font-weight:600}
+.row4 .num input{padding:10px 30px 10px 10px;font-size:1rem}.row4 .num em{right:8px;bottom:12px}
+.sel{display:flex;flex-direction:column;gap:5px}
+.sel select{padding:12px;border:1.5px solid #ead9c9;border-radius:12px;font:600 .95rem var(--body);background:#fff;color:var(--ink)}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:#f3e6d8;border-radius:14px;padding:4px;gap:4px}
+.seg3{grid-template-columns:repeat(3,1fr)}
+.seg label{position:relative;cursor:pointer}
+.seg input{position:absolute;opacity:0}
+.seg span{display:block;text-align:center;padding:9px 6px;border-radius:10px;font-weight:600;font-size:.9rem;color:#7a5a40;transition:background .2s,color .2s,box-shadow .2s}
+.seg input:checked+span{background:#fff;color:var(--forest);box-shadow:0 2px 8px #7a3d0f22}
+.seg input:focus-visible+span{outline:3px solid var(--forest)}
+.rv-est{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;background:#fff;border:1px dashed #e0b38a;border-radius:12px;padding:10px 12px;font-size:.92rem}
+.rv-est button{margin-left:auto;background:none;border:0;color:var(--forest-2);font:700 .85rem var(--body);text-decoration:underline;cursor:pointer}
+.rng{display:flex;flex-direction:column;gap:8px}
+.rng>span{display:flex;justify-content:space-between}
+.rng output{font-weight:800;color:var(--forest);font-size:1rem;font-variant-numeric:tabular-nums}
+.rng input{width:100%;accent-color:var(--forest)}
+.chk{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:.93rem}
+.chk input{position:absolute;opacity:0}
+.chk .box{flex:none;width:22px;height:22px;border-radius:7px;border:2px solid #d9bfa6;background:#fff;display:grid;place-items:center;transition:background .2s,border-color .2s;margin-top:1px}
+.chk input:checked+.box{background:var(--forest);border-color:var(--forest)}
+.chk input:checked+.box::after{content:"";width:10px;height:6px;border:solid var(--fluo);border-width:0 0 3px 3px;transform:rotate(-45deg) translate(1px,-1px)}
+.chk input:focus-visible+.box{outline:3px solid var(--forest);outline-offset:2px}
+.foods{display:flex;flex-wrap:wrap;gap:6px}
+.food{cursor:pointer}
+.food input{position:absolute;opacity:0}
+.food span{display:inline-block;border:1.5px solid #ead9c9;background:#fff;border-radius:999px;padding:7px 12px;font-size:.86rem;font-weight:600;color:#7a5a40;transition:all .15s}
+.food span i{font-style:normal;font-weight:500;font-size:.72rem;opacity:.7}
+.food input:checked+span{background:var(--forest);border-color:var(--forest);color:#fff}
+.food input:focus-visible+span{outline:3px solid var(--forest)}
+.rv-sweat{background:#fff;border:1px solid #ead9c9;border-radius:12px;padding:10px 14px}
+.rv-sweat summary{font-weight:600;font-size:.9rem;padding:2px 0}
+.rv-sweat summary>span{flex:1}
+.rv-sweat summary small{font-weight:500;color:var(--muted)}
+.rv-sweat summary::after{font-size:1.2rem}
+.rv-sweat p{font-size:.86rem;color:var(--muted);margin:8px 0}
+.sw-res{font-size:.9rem!important;color:var(--ink)!important}
+.rv-out{padding:26px;display:flex;flex-direction:column;gap:16px;background:#fff}
+.rv-sum{background:linear-gradient(150deg,#1f3d2b,#2b5239);color:#fff;border-radius:20px;padding:20px 20px 18px;position:relative;overflow:hidden}
+.rv-sum::after{content:"";position:absolute;right:-40px;top:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(closest-side,#e2ff3b33,transparent)}
+.rv-sum-top{display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:600;color:#cfe0d3;font-size:.92rem}
+.rv-pill{background:var(--fluo);color:var(--forest);font-weight:800;border-radius:999px;padding:4px 12px;font-size:.8rem}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 12px}
+.kpi{background:#ffffff12;border:1px solid #ffffff22;border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:2px}
+.kpi span{font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#b9c8bc}
+.kpi b{font-family:var(--display);font-weight:400;font-size:clamp(1.6rem,3vw,2.1rem);line-height:1.05;font-variant-numeric:tabular-nums;color:#fff}
+.kpi.k1 b{color:var(--fluo)}
+.kpi small{font-size:.78rem;color:#b9c8bc}
+.rv-why{font-size:.88rem;color:#cfe0d3}
+.rv-block h4{margin:0 0 10px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--forest-2)}
+.rv-block h4 small{text-transform:none;letter-spacing:0;color:var(--muted);font-weight:500}
+.totals{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:560px){.totals{grid-template-columns:1fr 1fr}}
+.totals div{background:#fbf6f1;border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:1px}
+.totals span{font-size:.75rem;color:var(--muted);font-weight:600}
+.totals b{font-size:1.15rem;font-variant-numeric:tabular-nums}
+.totals small{font-size:.74rem;color:var(--muted)}
+.carry{background:#f6faf0;border:1px solid #dbe8cf;border-radius:14px;padding:14px 16px}
+.carry-head{font-size:.92rem;margin-bottom:8px}
+.carry ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.carry li{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.95rem}
+.dot{width:10px;height:10px;border-radius:50%;flex:none}
+.d1{background:#e8a23a}.d2{background:#4a90d9}.d3{background:#9aa3a0}
+.hour{list-style:none;margin:0;padding:0;position:relative;display:flex;flex-direction:column;gap:8px}
+.hour li{display:grid;grid-template-columns:52px 1fr auto auto;gap:10px;align-items:center;background:#fbf6f1;border-radius:12px;padding:10px 12px;font-size:.92rem}
+.hour .t{font-weight:800;color:var(--forest);font-variant-numeric:tabular-nums}
+.hour .w{font-size:.8rem;font-weight:700;color:#2f6fae;background:#e5f0fb;border-radius:999px;padding:3px 9px;white-space:nowrap}
+.hour .s{font-size:.75rem;font-weight:700;color:#5b6461;background:#eceeea;border-radius:999px;padding:3px 9px}
+.hour li.extra{grid-template-columns:52px 1fr;background:#fff3e2}
+.rv-two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.rv-two{grid-template-columns:1fr}}
+.rv-list{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:.9rem;color:var(--muted)}
+.rv-list b{color:var(--ink)}
+.rv-caf{background:#f4f0fb;border-radius:14px;padding:14px 16px}
+.rv-warn{display:flex;flex-direction:column;gap:8px}
+.rv-warn p{font-size:.86rem;color:#6b4a2f;background:#fff6ea;border-left:3px solid #e8a23a;border-radius:0 10px 10px 0;padding:8px 12px}
+.rv-actions{display:flex;gap:10px;flex-wrap:wrap}
+.rv-ghost{background:none;border:1.5px solid var(--line);border-radius:999px;padding:12px 18px;font:600 .92rem var(--body);cursor:pointer;color:var(--muted)}
+.rv-sources{margin-top:16px;background:#fff;border:1px solid #efd6c0;border-radius:14px;padding:6px 18px}
+.rv-sources summary{font-size:.98rem}
+.rv-sources ul{margin:10px 0 8px;padding-left:18px;display:flex;flex-direction:column;gap:8px;font-size:.9rem;color:var(--muted)}
+.rv-sources b{color:var(--ink)}
+@media (max-width:520px){.rv-in,.rv-out{padding:18px 14px}.kpis{gap:6px}.kpi{padding:10px 8px}.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.kpi b{font-size:1.15rem;white-space:nowrap}.kpi small{white-space:nowrap;font-size:.72rem}.kpi span{font-size:.68rem}.hour li{display:flex;flex-wrap:wrap;gap:6px 8px}.hour li .t{width:40px}.hour li>span:nth-child(2){flex:1 1 calc(100% - 52px)}.hour li .w{margin-left:48px}.rv-sum-top{flex-wrap:wrap}}
+
 /* Tabs nutrition */
 .tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
 .tab{background:#fff;border:1px solid var(--line);border-radius:999px;padding:9px 16px;font:600 .92rem var(--body);cursor:pointer;color:var(--ink)}
@@ -174,45 +303,95 @@ td:first-child{font-weight:700;white-space:nowrap}
 .zbar{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:8px}
 
 /* Injuries */
-.inj-tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:22px}
-.inj{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
-.inj-layout{display:grid;grid-template-columns:340px 1fr;gap:28px;align-items:start}
-.inj-layout .inj{grid-template-columns:repeat(auto-fill,minmax(290px,1fr))}
-@media (max-width:860px){.inj-layout{grid-template-columns:1fr}}
-.body-map{margin:0;position:sticky;top:84px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px 14px 14px}
-@media (max-width:860px){.body-map{position:static;max-width:420px;width:100%;margin:0 auto}}
-.body-map svg{width:100%;height:auto;display:block}
-.body-map figcaption{display:flex;flex-direction:column;gap:6px;align-items:center;font-size:.9rem;color:var(--muted);text-align:center;margin-top:6px}
-#bodyHint{font-weight:600;color:var(--ink)}
-.legend{display:inline-flex;align-items:center;gap:8px;font-size:.82rem}
+.inj-layout{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:900px){.inj-layout{grid-template-columns:minmax(0,1fr)}}
+.body-map{margin:0;position:sticky;top:84px;background:#fff;border:1px solid #ecd9d3;border-radius:22px;padding:18px 16px 14px;box-shadow:0 18px 40px #8f2a1612}
+@media (max-width:900px){.body-map{position:static;max-width:460px;width:100%;margin:0 auto}}
+.bm-top{display:flex;gap:10px;align-items:flex-start;font-size:.9rem;color:var(--muted);margin-bottom:8px}
+.bm-top b{color:#c63d22}
+.bm-step{flex:none;display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--forest);color:var(--fluo);font-weight:800;font-size:.78rem}
+.body-map svg{width:100%;height:auto;display:block;overflow:visible}
+.body-map figcaption{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:center;font-size:.82rem;color:var(--muted);margin-top:4px}
+.legend{display:inline-flex;align-items:center;gap:8px}
 .legend .dot{width:12px;height:12px;border-radius:50%;background:#d63c2a;box-shadow:0 0 0 2px #fff,0 0 0 3px #d63c2a55}
+.legend .zone-sw{width:14px;height:10px;border-radius:3px;background:#d63c2aa6}
 .bm-body{fill:#e6ebe3;stroke:#b7c3b4;stroke-width:1.5;stroke-linejoin:round}
-.bm-arm{stroke:#e6ebe3;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.bm-arm-o{stroke:#b7c3b4;stroke-linecap:round;stroke-linejoin:round;fill:none}
-.bm-zone{fill:transparent;cursor:pointer;transition:fill .15s}
-.bm-zone:hover{fill:#1f3d2b26}
-.bm-zone.on{fill:#d63c2aa6;filter:url(#soft)}
+.bm-zone{fill:transparent;cursor:pointer;transition:fill .2s}
+.bm-zone:hover{fill:#1f3d2b22}
+.bm-zone.on{fill:#d63c2a99;filter:url(#soft)}
 .bm-zone:focus{outline:none}
 .bm-zone:focus-visible{fill:#1f3d2b40}
 .bm-label{font:700 11px var(--body);fill:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-.bm-dot{fill:#d63c2a;stroke:#fff;stroke-width:2;cursor:pointer;transition:r .15s}
-.bm-dot.hi{r:9}
+.bm-lab{cursor:pointer}
+.bm-lead{fill:none;stroke:#b7c3b4;stroke-width:1.2;stroke-dasharray:2 3;transition:stroke .2s}
+.bm-lead-dot{fill:#b7c3b4;transition:fill .2s}
+.bm-lab-t{font:700 12.5px var(--body);fill:var(--ink);transition:fill .2s}
+.bm-lab-n{fill:var(--rock);transition:fill .2s}
+.bm-lab-c{font:800 10px var(--body);fill:var(--forest);pointer-events:none}
+.bm-lab:hover .bm-lab-t,.bm-lab:focus-visible .bm-lab-t{fill:#c63d22}
+.bm-lab:focus{outline:none}
+.bm-lab.on .bm-lead{stroke:#d63c2a;stroke-dasharray:none;stroke-width:1.6}
+.bm-lab.on .bm-lead-dot{fill:#d63c2a}
+.bm-lab.on .bm-lab-t{fill:#c63d22}
+.bm-lab.on .bm-lab-n{fill:#d63c2a}.bm-lab.on .bm-lab-c{fill:#fff}
+.bm-dot{fill:#d63c2a;stroke:#fff;stroke-width:2;cursor:pointer;transition:r .15s,opacity .2s}
+.bm-dot.dim{opacity:.75}
+.bm-dot.hov,.bm-dot:hover{r:8;opacity:1}
+.bm-dot.on{fill:#b3261e;stroke-width:2.5}
 .bm-pulse{fill:none;stroke:#d63c2a;stroke-width:2;opacity:.6;transform-box:fill-box;transform-origin:center;animation:pulse 1.6s ease-out infinite;pointer-events:none}
 @keyframes pulse{from{transform:scale(1);opacity:.7}to{transform:scale(2.6);opacity:0}}
-.injury.hi{border-color:#d63c2a;box-shadow:0 0 0 2px #d63c2a33}
-.injury{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:12px}
-.injury header{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.injury h3{font-size:1.35rem}
-.zone-tag{font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:var(--rock);color:var(--forest-2);padding:3px 10px;border-radius:999px;white-space:nowrap}
-.injury dl{margin:0;display:flex;flex-direction:column;gap:8px;font-size:.94rem}
-.injury dt{font-weight:700;color:var(--forest-2);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}
-.injury dd{margin:0;color:var(--ink)}
+.inj-panel{display:flex;flex-direction:column;gap:12px;min-width:0}
+.ip-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.ip-kicker{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c63d22;margin-bottom:4px}
+.ip-head h3{font-size:clamp(1.5rem,2.6vw,2rem)}
+.ip-all{background:none;border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;font:600 .88rem var(--body);cursor:pointer;color:var(--ink)}
+.ip-all:hover{border-color:var(--forest)}
+.ip-legend{display:flex;flex-wrap:wrap;gap:6px}
+.u{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:700;border-radius:999px;padding:4px 10px;white-space:nowrap}
+.u::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.u-adapt{background:#e6f4e8;color:#1f6b33}.u-watch{background:#fff1dc;color:#9a5a00}.u-doc{background:#fde7e3;color:#b3261e}
+.acc{display:flex;flex-direction:column;gap:10px}
+.acc-group{display:flex;flex-direction:column;gap:8px}
+.acc-group+.acc-group{margin-top:10px}
+.acc-group h4{margin:0}
+.acc-group h4 button{background:none;border:0;padding:4px 0;cursor:pointer;display:flex;align-items:center;gap:8px;font:700 .78rem var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--forest-2)}
+.acc-group h4 button span{background:var(--rock);color:var(--forest);border-radius:999px;padding:1px 8px;letter-spacing:0}
+.acc-group h4 button:hover{color:#c63d22}
+details.acc-i{background:#fff;border:1px solid #ecdcd6;border-radius:16px;padding:0;overflow:hidden;transition:box-shadow .25s,border-color .25s}
+details.acc-i[open]{border-color:#e0b4a8;box-shadow:0 14px 34px #8f2a161a}
+details.acc-i>summary{display:grid;grid-template-columns:6px minmax(0,1fr) auto 22px;gap:14px;align-items:center;padding:14px 16px 14px 0;cursor:pointer;list-style:none}
+details.acc-i>summary::-webkit-details-marker{display:none}
+details.acc-i>summary::after,details.acc-i[open]>summary::after{content:none!important;display:none}
+.acc-bar{align-self:stretch;border-radius:0 6px 6px 0}
+.lv-adapt .acc-bar{background:#4caf63}.lv-watch .acc-bar{background:#e8a23a}.lv-doc .acc-bar{background:#d63c2a}
+.acc-main{display:flex;flex-direction:column;gap:2px;min-width:0}
+.acc-main b{font-size:1.05rem}
+.acc-main small{color:var(--muted);font-size:.85rem}
+.acc-tags{display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+.fq{display:inline-flex;align-items:center;gap:3px;font-size:.72rem;font-weight:600;color:var(--muted);white-space:nowrap}
+.fq i{width:5px;height:12px;border-radius:2px;background:#e3ddd9}
+.fq i:last-of-type{margin-right:5px}
+.f1 i:nth-child(1),.f2 i:nth-child(-n+2),.f3 i{background:#c63d22}
+.chev{width:22px;height:22px;border-radius:50%;background:var(--rock);position:relative;transition:transform .3s,background .2s}
+.chev::before{content:"";position:absolute;left:7px;top:6px;width:6px;height:6px;border:solid var(--forest);border-width:0 2px 2px 0;transform:rotate(45deg)}
+details.acc-i[open] .chev{transform:rotate(180deg);background:#fde7e3}
+details.acc-i>summary:hover .acc-main b{color:#b3261e}
+details.acc-i>summary:focus-visible{outline:3px solid var(--forest);outline-offset:-3px;border-radius:16px}
+.acc-body{padding:0 18px 18px 20px;animation:accIn .3s ease}
+@keyframes accIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+.acc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px;border-top:1px solid #f1e5e0;padding-top:14px}
+@media (max-width:560px){.acc-grid{grid-template-columns:1fr}details.acc-i>summary{grid-template-columns:6px minmax(0,1fr) 22px}.acc-tags{grid-column:2;grid-row:2;flex-direction:row;flex-wrap:wrap;justify-content:flex-start}}
+.acc-grid h5{margin:0 0 4px;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--forest-2)}
+.acc-grid p{font-size:.93rem;color:var(--ink)}
+.acc-doc{margin-top:14px;background:#fff4f1;border-left:4px solid #d63c2a;border-radius:0 10px 10px 0;padding:10px 14px;font-size:.92rem;color:#5c2318}
+.acc-doc b{color:#b3261e}
+.inj-src{margin-top:14px;font-size:.8rem;color:var(--muted)}
 .redflag{background:#fff4f1;border:1px solid #f1c3b8;border-left:5px solid #c63d22;border-radius:12px;padding:18px 22px;margin-top:28px}
 .redflag h3{font-family:var(--body);font-weight:700;font-size:1.05rem;color:#8f2a16;margin-bottom:8px}
 .redflag ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
 .prevent{margin-top:40px}
 
-.utmb{--night:#0d1a2b;--night-2:#15283f;--night-3:#1f3a5a;--ice:#e7eef7;--mist:#9db0c8;background:var(--night);color:var(--ice);position:relative;overflow:hidden}
+.utmb{--night:#0d1a2b;--night-2:#15283f;--night-3:#1f3a5a;--ice:#e7eef7;--mist:#9db0c8;background:var(--night);color:var(--ice);position:relative;overflow:hidden;overflow:clip}
 .utmb::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 0%,#1f3a5a 0,transparent 45%),radial-gradient(circle at 0% 100%,#15283f 0,transparent 40%);pointer-events:none}
 .utmb .wrap{position:relative}
 .utmb .eyebrow{color:var(--fluo)}
@@ -263,7 +442,7 @@ td:first-child{font-weight:700;white-space:nowrap}
 #blessures{background:#f9ece8}
 #lexique{background:#eceae3}
 #faq{background:#e3e7df}
-main>section:not(.hero){position:relative;isolation:isolate;overflow:hidden}
+main>section:not(.hero){position:relative;isolation:isolate;overflow:hidden;overflow:clip}
 main>section:not(.hero)::before{content:"";position:absolute;inset:-20%;z-index:-1;pointer-events:none;
   background:radial-gradient(closest-side,var(--blob,#ffffff80),transparent) 18% 22%/55% 60% no-repeat,
              radial-gradient(closest-side,var(--blob2,#ffffff55),transparent) 82% 72%/55% 65% no-repeat;
@@ -282,9 +461,9 @@ main>section:not(.hero)::before{content:"";position:absolute;inset:-20%;z-index:
 .cta{--blob:#3a7d52;--blob2:#e2ff3b2e}
 .utmb::before{animation:drift 11s ease-in-out infinite alternate}
 /* apparition : contenu toujours visible, il glisse juste en place */
-.rv{transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .7s}
-.rv.pre{transform:translateY(26px);opacity:.35}
-@media (prefers-reduced-motion: reduce){.rv.pre{transform:none;opacity:1}main>section::before{animation:none}}
+.reveal{transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .7s}
+.reveal.pre{transform:translateY(26px);opacity:.35}
+@media (prefers-reduced-motion: reduce){.reveal.pre{transform:none;opacity:1}main>section::before{animation:none}}
 
 /* Bouton flottant des sections */
 .fab-wrap{position:fixed;right:18px;bottom:18px;z-index:40;display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none}
@@ -716,42 +895,146 @@ footer a{color:#dfe7dc}
     </div>
     <p class="note-box" style="margin-top:18px">En cas d'allergie, de maladie, de grossesse ou de régime particulier, demande conseil à un médecin ou à un diététicien diplômé.</p>
 
-    <div class="head" style="margin:64px 0 24px">
-      <h3 id="calculateur">Calculateur de ravitaillement</h3>
-      <p class="lead">Combien emporter pour ta sortie ? Règle la durée et les conditions.</p>
-    </div>
-    <div class="calc">
-      <div>
-        <div class="field">
-          <label for="dur">Durée de l'effort : <span id="durOut">2 h 30</span></label>
-          <input type="range" id="dur" min="30" max="900" step="15" value="150">
+    <details class="rv-wrap" id="calculateur">
+      <summary class="rv-card">
+        <span class="rv-ico" aria-hidden="true"><svg viewBox="0 0 48 48" width="44" height="44"><rect x="15" y="4" width="18" height="8" rx="3" fill="#1f3d2b"/><path d="M13 12h22l3 8v20a5 5 0 0 1-5 5H15a5 5 0 0 1-5-5V20z" fill="#e2ff3b" stroke="#1f3d2b" stroke-width="2.5"/><path d="M10 24h28" stroke="#1f3d2b" stroke-width="2.5"/><path d="M17 32h14M17 38h9" stroke="#1f3d2b" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+        <span class="rv-card-txt">
+          <span class="eyebrow">Outil</span>
+          <b>Planificateur de ravitaillement</b>
+          <small>Glucides, boisson et sel par heure, quoi emporter entre deux ravitos et une heure type, calculés pour ta course.</small>
+          <span class="rv-badges"><span>ACSM</span><span>ISSN</span><span>Recherche 2026</span></span>
+        </span>
+        <span class="rv-open"><span class="o1">Ouvrir le planificateur</span><span class="o2">Fermer</span><i aria-hidden="true"></i></span>
+      </summary>
+    <div class="rv">
+      <!-- RÉGLAGES -->
+      <form class="rv-in" id="rvForm" onsubmit="return false">
+        <fieldset>
+          <legend><span>1</span>Ta course</legend>
+          <div class="seg" role="radiogroup" aria-label="Comment indiquer la durée">
+            <label><input type="radio" name="rvMode" value="dist" checked><span>Distance et D+</span></label>
+            <label><input type="radio" name="rvMode" value="time"><span>Je connais ma durée</span></label>
+          </div>
+          <div class="rv-dist">
+            <div class="row2">
+              <label class="num"><span>Distance</span><input id="rvKm" type="number" inputmode="decimal" min="1" max="400" step="0.5" value="34"><em>km</em></label>
+              <label class="num"><span>Dénivelé positif</span><input id="rvDp" type="number" inputmode="numeric" min="0" max="30000" step="50" value="1600"><em>m D+</em></label>
+            </div>
+            <label class="sel"><span>Ton niveau</span>
+              <select id="rvLvl">
+                <option value="11">Débutant · environ 11 min par km-effort</option>
+                <option value="9" selected>Intermédiaire · environ 9 min par km-effort</option>
+                <option value="7.5">Confirmé · environ 7 min 30 par km-effort</option>
+                <option value="6">Très performant · environ 6 min par km-effort</option>
+              </select>
+            </label>
+            <p class="rv-est" id="rvEst"></p>
+          </div>
+          <div class="rv-time" hidden>
+            <label class="rng"><span>Durée prévue <output id="rvDurOut">4 h 00</output></span>
+              <input id="rvDur" type="range" min="30" max="2880" step="15" value="240"></label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span>2</span>Toi et les conditions</legend>
+          <div class="row2">
+            <label class="num"><span>Ton poids</span><input id="rvKg" type="number" inputmode="decimal" min="35" max="150" step="1" value="70"><em>kg</em></label>
+            <label class="num"><span>Température prévue</span><input id="rvTemp" type="number" inputmode="numeric" min="-15" max="45" step="1" value="18"><em>°C</em></label>
+          </div>
+          <span class="lbl">Tu transpires…</span>
+          <div class="seg seg3" role="radiogroup" aria-label="Transpiration">
+            <label><input type="radio" name="rvSweat" value="0.8"><span>Peu</span></label>
+            <label><input type="radio" name="rvSweat" value="1" checked><span>Normalement</span></label>
+            <label><input type="radio" name="rvSweat" value="1.2"><span>Beaucoup</span></label>
+          </div>
+          <label class="chk"><input type="checkbox" id="rvSalty"><span class="box"></span><span>J'ai souvent des <b>traces blanches de sel</b> sur mes vêtements ou ma casquette</span></label>
+          <details class="rv-sweat">
+            <summary><span>Je connais mon taux de sudation <small>(plus précis)</small></span></summary>
+            <p>Pèse-toi sans vêtements avant et après une sortie d'environ 1 h, à l'allure de course, et note ce que tu as bu.</p>
+            <div class="row4">
+              <label class="num"><span>Avant</span><input id="swA" type="number" step="0.1" placeholder="70.0"><em>kg</em></label>
+              <label class="num"><span>Après</span><input id="swB" type="number" step="0.1" placeholder="69.2"><em>kg</em></label>
+              <label class="num"><span>Bu</span><input id="swD" type="number" step="50" placeholder="300"><em>ml</em></label>
+              <label class="num"><span>Durée</span><input id="swT" type="number" step="5" placeholder="60"><em>min</em></label>
+            </div>
+            <p class="sw-res" id="swRes">Taux de sudation : –</p>
+          </details>
+        </fieldset>
+
+        <fieldset>
+          <legend><span>3</span>Ton ventre et ta stratégie</legend>
+          <span class="lbl">Manger en courant, pour toi c'est…</span>
+          <div class="seg seg3" role="radiogroup" aria-label="Habitude de manger en courant">
+            <label><input type="radio" name="rvGut" value="0"><span>Nouveau</span></label>
+            <label><input type="radio" name="rvGut" value="1" checked><span>Habituel</span></label>
+            <label><input type="radio" name="rvGut" value="2"><span>Ventre entraîné</span></label>
+          </div>
+          <label class="rng"><span>Temps entre deux ravitos <output id="rvAidOut">1 h 30</output></span>
+            <input id="rvAid" type="range" min="30" max="300" step="15" value="90"></label>
+          <span class="lbl">Ce que tu aimes manger en course</span>
+          <div class="foods" id="rvFoods"></div>
+          <label class="chk"><input type="checkbox" id="rvCaf"><span class="box"></span><span>J'utilise la <b>caféine</b> en course</span></label>
+        </fieldset>
+      </form>
+
+      <!-- RÉSULTATS -->
+      <div class="rv-out" aria-live="polite">
+        <div class="rv-sum">
+          <div class="rv-sum-top"><span class="rv-pill" id="rvCat">Trail long</span><span id="rvDurTxt">4 h 00 d'effort</span></div>
+          <div class="kpis">
+            <div class="kpi k1"><span>Glucides</span><b id="kCarb">–</b><small>par heure</small></div>
+            <div class="kpi k2"><span>Boisson</span><b id="kWater">–</b><small>par heure</small></div>
+            <div class="kpi k3"><span>Sodium</span><b id="kNa">–</b><small>par heure</small></div>
+          </div>
+          <p class="rv-why" id="rvWhy"></p>
         </div>
-        <div class="field">
-          <label for="heat">Conditions</label>
-          <select id="heat">
-            <option value="0">Frais (moins de 15 °C)</option>
-            <option value="1" selected>Tempéré (15 à 25 °C)</option>
-            <option value="2">Chaud (plus de 25 °C)</option>
-          </select>
+
+        <div class="rv-block">
+          <h4>Sur toute la course</h4>
+          <div class="totals" id="rvTot"></div>
         </div>
-        <div class="field">
-          <label for="gut">Ton habitude de manger en courant</label>
-          <select id="gut">
-            <option value="0">Je débute</option>
-            <option value="1" selected>Je mange régulièrement</option>
-            <option value="2">Ventre entraîné</option>
-          </select>
+
+        <div class="rv-block">
+          <h4>Entre deux ravitos, emporte</h4>
+          <div class="carry" id="rvCarry"></div>
+        </div>
+
+        <div class="rv-block">
+          <h4>Une heure type <small>(à répéter)</small></h4>
+          <ol class="hour" id="rvHour"></ol>
+        </div>
+
+        <div class="rv-block rv-two">
+          <div><h4>Avant le départ</h4><ul class="rv-list" id="rvPre"></ul></div>
+          <div><h4>Après l'arrivée</h4><ul class="rv-list" id="rvPost"></ul></div>
+        </div>
+
+        <div class="rv-block rv-caf" id="rvCafBox" hidden>
+          <h4>Caféine</h4><ul class="rv-list" id="rvCafList"></ul>
+        </div>
+
+        <div class="rv-warn" id="rvWarn"></div>
+
+        <div class="rv-actions">
+          <button type="button" class="btn btn-fluo" id="rvCopy">Copier mon plan</button>
+          <button type="button" class="rv-ghost" id="rvReset">Réinitialiser</button>
         </div>
       </div>
-      <div class="out" aria-live="polite">
-        <div class="tile"><b id="oCarb">–</b><span>glucides au total</span></div>
-        <div class="tile"><b id="oCarbH">–</b><span>glucides par heure</span></div>
-        <div class="tile"><b id="oWater">–</b><span>de boisson au total</span></div>
-        <div class="tile"><b id="oSalt">–</b><span>de sodium par heure</span></div>
-        <div class="tile" style="grid-column:1/-1"><b id="oGels">–</b><span>équivalent en gels de 25 g de glucides (à répartir entre gels, barres, boisson, pâtes de fruits…)</span></div>
-      </div>
-      <p class="calc-advice" id="oAdvice"></p>
     </div>
+
+    <details class="rv-sources">
+      <summary>Sur quoi se basent ces chiffres ?</summary>
+      <ul>
+        <li><b>Glucides pendant l'effort</b> : jusqu'à 30 g/h pour 1 à 2 h, jusqu'à 60 g/h pour 2 à 3 h, jusqu'à 90 g/h au-delà de 2 h 30 avec un mélange glucose-fructose (recommandations ACSM 2016, Thomas, Erdman et Burke). Des travaux récents montrent que des athlètes entraînés peuvent aller jusqu'à 120 g/h, mais ce n'est pas encore prouvé pour tout le monde (Morton et Fell, The Journal of Nutrition, 2026).</li>
+        <li><b>Ultra-trail</b> : 30 à 50 g de glucides et 5 à 10 g de protéines par heure, avec des aliments variés, et 450 à 750 ml de boisson par heure (position de l'International Society of Sports Nutrition, 2019).</li>
+        <li><b>Sodium</b> : 300 à 600 mg par heure au-delà de 2 h (ACSM). Les pertes de sel varient énormément d'une personne à l'autre.</li>
+        <li><b>Caféine</b> : effet démontré entre 3 et 6 mg/kg, rien de plus au-delà (position ISSN 2021).</li>
+        <li><b>Entraîner son ventre</b> : deux semaines d'entraînement à manger en courant réduisent nettement les troubles digestifs (Costa et coll., 2017).</li>
+        <li><b>Taux de sudation</b> : (poids avant − poids après + boisson bue) ÷ durée en heures, méthode classique d'A. Jeukendrup.</li>
+      </ul>
+    </details>
+    </details>
   </div>
 </section>
 
@@ -796,25 +1079,26 @@ footer a{color:#dfe7dc}
       <h2>Les blessures les plus courantes en trail et en course à pied</h2>
       <p class="lead">La plupart viennent d'une charge qui augmente trop vite. Les reconnaître tôt permet souvent de continuer à s'entraîner en adaptant, plutôt que de devoir tout arrêter.</p>
     </div>
-    <div class="inj-tools" role="group" aria-label="Filtrer par zone du corps">
-      <button class="chip inj-chip" data-zone="all" aria-pressed="true">Toutes</button>
-      <button class="chip inj-chip" data-zone="Pied" aria-pressed="false">Pied</button>
-      <button class="chip inj-chip" data-zone="Cheville" aria-pressed="false">Cheville</button>
-      <button class="chip inj-chip" data-zone="Jambe" aria-pressed="false">Jambe</button>
-      <button class="chip inj-chip" data-zone="Genou" aria-pressed="false">Genou</button>
-      <button class="chip inj-chip" data-zone="Cuisse et hanche" aria-pressed="false">Cuisse et hanche</button>
-    </div>
     <div class="inj-layout">
       <figure class="body-map">
-        <svg id="bodySvg" viewBox="0 0 440 514" role="group" aria-label="Mannequin : clique sur la zone où tu as mal"></svg>
+        <div class="bm-top"><span class="bm-step">1</span><p>Touche la zone où tu as mal, ou un <b>point rouge</b> pour aller directement à la blessure.</p></div>
+        <svg id="bodySvg" viewBox="-92 0 532 516" role="group" aria-label="Schéma du corps : choisis la zone douloureuse"></svg>
         <figcaption>
-          <span id="bodyHint">Touche la zone où tu as mal.</span>
           <span class="legend"><i class="dot"></i>Lieu précis de la douleur</span>
+          <span class="legend"><i class="zone-sw"></i>Zone sélectionnée</span>
         </figcaption>
       </figure>
-      <div class="inj" id="inj"></div>
+      <div class="inj-panel">
+        <div class="ip-head">
+          <div><p class="ip-kicker" id="ipKicker">Toutes les zones</p><h3 id="ipTitle">12 blessures fréquentes</h3></div>
+          <button type="button" class="ip-all" id="ipAll" hidden>Voir toutes les zones</button>
+        </div>
+        <div class="ip-legend" aria-label="Que faire">
+          <span class="u u-adapt">Adapter l'entraînement</span><span class="u u-watch">Surveiller de près</span><span class="u u-doc">Consulter</span>
+        </div>
+        <div class="acc" id="inj"></div>
+      </div>
     </div>
-
     <div class="redflag">
       <h3>Consulte un médecin rapidement si :</h3>
       <ul>
@@ -840,6 +1124,7 @@ footer a{color:#dfe7dc}
         <article class="card"><span class="tag">Écoute</span><p>Note tes douleurs dans le journal de l'app : une gêne signalée tôt permet d'adapter le plan avant qu'elle s'installe.</p></article>
       </div>
     </div>
+    <p class="inj-src">Fréquences d'après les revues scientifiques sur les blessures des coureurs : Lopes et coll., <i>Sports Medicine</i> 2012 ; Kakouris et coll., <i>Journal of Sport and Health Science</i> 2021 ; Viljoen et coll., revue sur les traileurs 2021.</p>
     <p class="note-box" style="margin-top:28px">Ces informations sont générales et ne remplacent pas un diagnostic. En cas de doute, consulte un médecin ou un physiothérapeute.</p>
   </div>
 </section>
@@ -1225,9 +1510,9 @@ const SITE_SRC=(function(){try{
 // Apparition des blocs au défilement
 (function(){
   if(!('IntersectionObserver' in window)||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  const items=document.querySelectorAll('main>section:not(.hero) .head, main>section .card, main>section .steps li, .injury, .u-tier, .u-cat, .u-step, .u-term, .meal, .calc, .table-scroll, details, .phone, .body-map');
+  const items=document.querySelectorAll('main>section:not(.hero) .head, main>section .card, main>section .steps li, .injury, .u-tier, .u-cat, .u-step, .u-term, .meal, .table-scroll, #faq details, .phone, .body-map, .rv-card');
   const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target)}}),{threshold:.12});
-  items.forEach((el,i)=>{const r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add('rv','pre');el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)}});
+  items.forEach((el,i)=>{const r=el.getBoundingClientRect();if(r.top>innerHeight){el.classList.add('reveal','pre');el.style.transitionDelay=(i%4)*70+'ms';io.observe(el)}});
 })();
 
 // Menu mobile
@@ -1272,49 +1557,207 @@ tabs.forEach(t=>t.addEventListener('click',()=>{
   t.setAttribute('aria-selected','true');document.getElementById(t.getAttribute('aria-controls')).classList.add('on');
 }));
 
-// Calculateur de ravitaillement : repères généraux de nutrition sportive
-function fuelPlan(min,heat,gut){
-  const h=min/60;
-  let carbH = h<1 ? 0 : h<2.5 ? [30,45,60][gut] : [45,60,80][gut];
-  const waterH=[450,600,750][heat];
-  const sodiumH=[300,450,600][heat];
-  const carb=Math.round(carbH*Math.max(0,h-(h<1?0:0.25)));
-  return {carbH,carb,water:Math.round(waterH*h/50)*50,sodiumH:h<1?0:sodiumH,gels:Math.ceil(carb/25)};
-}
-const dur=document.getElementById('dur'),heat=document.getElementById('heat'),gut=document.getElementById('gut');
-function fmt(min){const h=Math.floor(min/60),m=min%60;return h? h+' h'+(m?' '+String(m).padStart(2,'0'):'') : m+' min'}
-function upd(){
-  const m=+dur.value,p=fuelPlan(m,+heat.value,+gut.value);
-  document.getElementById('durOut').textContent=fmt(m);
-  document.getElementById('oCarb').textContent=p.carb+' g';
-  document.getElementById('oCarbH').textContent=p.carbH+' g';
-  document.getElementById('oWater').textContent=(p.water/1000).toLocaleString('fr-CH',{maximumFractionDigits:2})+' l';
-  document.getElementById('oSalt').textContent=p.sodiumH+' mg';
-  document.getElementById('oGels').textContent=p.gels;
-  let adv;
-  if(m<60) adv="Moins d'une heure : de l'eau suffit si tu as mangé normalement avant.";
-  else if(m<150) adv="Commence à manger après 30 à 45 minutes, puis une petite prise toutes les 20 à 30 minutes. Bois quelques gorgées régulièrement plutôt que beaucoup d'un coup.";
-  else adv="Effort long : alterne sucré et salé, prévois du « vrai » solide (pain, fromage, soupe aux ravitos) et augmente les quantités progressivement à l'entraînement. Bois selon ta soif.";
-  if(+heat.value===2) adv+=" Par forte chaleur, pense aux électrolytes et ralentis l'allure.";
-  document.getElementById('oAdvice').textContent=adv+" Repères généraux : ajuste selon ton poids, ta transpiration et ta tolérance.";
-}
-[dur,heat,gut].forEach(e=>e.addEventListener('input',upd));upd();
+// Planificateur : s'ouvre quand on arrive sur #calculateur
+(function(){const w=document.getElementById('calculateur');if(!w)return;
+  const openIf=()=>{if(location.hash==='#calculateur'){w.open=true}};
+  addEventListener('hashchange',openIf);openIf();
+  document.addEventListener('click',e=>{const a=e.target.closest('a[href="#calculateur"]');if(a)w.open=true});
+})();
+
+// Planificateur de ravitaillement (repères ACSM 2016, ISSN 2019 et 2021, Morton & Fell 2026)
+(function(){
+  const $=id=>document.getElementById(id), form=$('rvForm'); if(!form) return;
+  const FOODS=[
+    {id:'gel',n:'Gels',one:'gel',many:'gels',c:25,na:50},
+    {id:'boisson',n:'Boisson d\'effort',one:'flasque de boisson d\'effort (500 ml)',many:'flasques de boisson d\'effort (500 ml)',c:35,na:300,drink:500},
+    {id:'barre',n:'Barres',one:'barre énergétique',many:'barres énergétiques',c:40,na:100},
+    {id:'pate',n:'Pâtes de fruits',one:'portion de pâtes de fruits (2 pièces)',many:'portions de pâtes de fruits (2 pièces)',c:20,na:10},
+    {id:'compote',n:'Compotes',one:'compote en gourde',many:'compotes en gourde',c:20,na:0},
+    {id:'banane',n:'Banane',one:'demi-banane',many:'demi-bananes',c:12,na:0},
+    {id:'sale',n:'Salé (pain, fromage)',one:'petit sandwich salé',many:'petits sandwichs salés',c:25,na:450,slow:1},
+    {id:'coca',n:'Coca',one:'gobelet de coca (25 cl)',many:'gobelets de coca (25 cl)',c:27,na:10,aid:1},
+    {id:'soupe',n:'Soupe salée',one:'bol de soupe ou bouillon',many:'bols de soupe ou bouillon',c:8,na:700,aid:1},
+  ];
+  const DEF={mode:'dist',km:34,dp:1600,lvl:'9',dur:240,kg:70,temp:18,sweat:'1',salty:false,gut:'1',aid:90,caf:false,foods:['gel','boisson','pate','sale']};
+  const foodsBox=$('rvFoods');
+  foodsBox.innerHTML=FOODS.map(f=>`<label class="food"><input type="checkbox" value="${f.id}"><span>${f.n}${f.aid?' <i>au ravito</i>':''}</span></label>`).join('');
+  const r5=x=>Math.round(x/5)*5, r50=x=>Math.round(x/50)*50, clamp=(x,a,b)=>Math.min(b,Math.max(a,x));
+  const fmt=m=>{m=Math.round(m);const h=Math.floor(m/60),mm=m%60;return h?`${h} h ${String(mm).padStart(2,'0')}`:`${mm} min`};
+  const L=ml=>ml>=1000?(ml/1000).toLocaleString('fr-CH',{maximumFractionDigits:1})+' l':Math.round(ml)+' ml';
+  const g=x=>Math.round(x)+' g', mg=x=>Math.round(x)+' mg';
+
+  function read(){
+    const v=n=>form.querySelector(`input[name="${n}"]:checked`).value;
+    return {mode:v('rvMode'),km:+$('rvKm').value||0,dp:+$('rvDp').value||0,lvl:$('rvLvl').value,dur:+$('rvDur').value,kg:clamp(+$('rvKg').value||70,35,150),temp:+$('rvTemp').value,sweat:v('rvSweat'),salty:$('rvSalty').checked,gut:v('rvGut'),aid:+$('rvAid').value,caf:$('rvCaf').checked,foods:[...foodsBox.querySelectorAll('input:checked')].map(i=>i.value)};
+  }
+  function write(s){
+    const set=(n,val)=>{const i=form.querySelector(`input[name="${n}"][value="${val}"]`);if(i)i.checked=true};
+    set('rvMode',s.mode);$('rvKm').value=s.km;$('rvDp').value=s.dp;$('rvLvl').value=s.lvl;$('rvDur').value=s.dur;$('rvKg').value=s.kg;$('rvTemp').value=s.temp;set('rvSweat',s.sweat);$('rvSalty').checked=s.salty;set('rvGut',s.gut);$('rvAid').value=s.aid;$('rvCaf').checked=s.caf;
+    foodsBox.querySelectorAll('input').forEach(i=>i.checked=s.foods.includes(i.value));
+  }
+  function sweatRate(){
+    const a=+$('swA').value,b=+$('swB').value,d=+$('swD').value||0,t=+$('swT').value;
+    if(!a||!b||!t)return null; const r=(a-b+d/1000)/(t/60); return r>0.2&&r<3.5?r:null;
+  }
+  function estimate(s){
+    const ke=s.km+s.dp/100; let min=ke*(+s.lvl);
+    if(ke>60) min*=1+Math.min(.35,(ke-60)/400); // on ralentit sur les très longues distances
+    return {ke,min:Math.round(min/5)*5};
+  }
+
+  // composer un panier d'aliments pour atteindre une quantité de glucides
+  function basket(carbs,foods,startC=0,startNa=0){
+    let list=FOODS.filter(f=>foods.includes(f.id)&&!f.aid&&!f.drink);
+    if(!list.length) list=[FOODS[0]];
+    const out={}; let c=startC,na=startNa,i=0,guard=0;
+    while(c<carbs-6&&guard++<200){const f=list[i++%list.length];out[f.id]=(out[f.id]||0)+1;c+=f.c;na+=f.na}
+    return {items:Object.entries(out).map(([id,n])=>({f:FOODS.find(x=>x.id===id),n})),c,na};
+  }
+  const itemTxt=({f,n})=>`${n} ${n>1?f.many:f.one}`;
+
+  function compute(s){
+    const est=estimate(s), min=s.mode==='dist'?est.min:s.dur, h=min/60, kg=s.kg, gut=+s.gut, sf=+s.sweat;
+    const cat=h<1.25?'Sortie courte':h<=3?'Trail court':h<=8?'Trail long':'Ultra-trail';
+    // glucides par heure
+    const TAB=h<1.25?[[0,0],[0,0],[0,0]]:h<2?[[20,30],[25,30],[30,40]]:h<3?[[30,45],[45,60],[55,70]]:h<=8?[[40,55],[60,75],[75,90]]:[[40,50],[50,65],[60,80]];
+    const [cLo,cHi]=TAB[gut], carbH=r5((cLo+cHi)/2);
+    // boisson
+    const sr=sweatRate();
+    let fluid=s.temp<5?400:s.temp<15?500:s.temp<22?600:s.temp<28?700:800; fluid*=sf;
+    if(sr) fluid=sr*1000*0.75;
+    fluid=clamp(r50(fluid),300,sr?Math.min(900,sr*1000):900);
+    // sodium
+    let na=s.temp<10?300:s.temp<25?400:600; if(sr) na=clamp(sr*600,300,900);
+    if(sf>1) na+=150; if(sf<1) na-=50; if(s.salty) na+=250; na=clamp(r50(na),250,1000);
+    const needNa=h>=2||(h>=1&&s.temp>=25);
+    if(!needNa) na=0;
+    const eatFrom=h<1.25?0:20/60, effH=Math.max(0,h-eatFrom);
+    return {h,min,est,cat,carbH,cLo,cHi,fluid,na,needNa,sr,
+      tot:{c:carbH*effH,f:fluid*h,na:na*h,prot:h>8?7.5*h:0},kg,s};
+  }
+
+  function render(){
+    const s=read(); save(s);
+    form.querySelector('.rv-dist').hidden=s.mode!=='dist'; form.querySelector('.rv-time').hidden=s.mode!=='time';
+    const p=compute(s);
+    $('rvDurOut').textContent=fmt(s.dur); $('rvAidOut').textContent=fmt(s.aid);
+    $('rvEst').innerHTML=`<b>${Math.round(p.est.ke)} km-effort</b> · temps estimé <b>${fmt(p.est.min)}</b><button type="button" id="rvAdj">Ajuster</button>`;
+    $('rvAdj').onclick=()=>{$('rvDur').value=p.est.min;form.querySelector('input[name="rvMode"][value="time"]').checked=true;render()};
+    const sr=sweatRate(); $('swRes').innerHTML=sr?`Taux de sudation : <b>${sr.toFixed(2).replace('.',',')} l/h</b> · utilisé dans ton plan`:'Taux de sudation : –';
+    $('rvCat').textContent=p.cat; $('rvDurTxt').textContent=fmt(p.min)+" d'effort";
+    $('kCarb').textContent=p.carbH?p.carbH+' g':'0 g'; $('kWater').textContent=L(p.fluid); $('kNa').textContent=p.needNa?mg(p.na):'–';
+    let why=p.h<1.25?"Moins de 1 h 15 : tes réserves suffisent. De l'eau selon ta soif, pas besoin de manger."
+      :`Fourchette conseillée : ${p.cLo} à ${p.cHi} g de glucides par heure pour cette durée et ton habitude de manger en courant.`+(p.h>8?' Sur un ultra, varie sucré et salé et ajoute un peu de protéines.':'')+(p.sr?' Boisson calculée sur ton taux de sudation mesuré.':'');
+    $('rvWhy').textContent=why;
+    // totaux
+    $('rvTot').innerHTML=[
+      ['Glucides',g(p.tot.c),Math.round(p.tot.c/25)+' gels équivalents'],
+      ['Boisson',L(p.tot.f),Math.ceil(p.tot.f/500)+' flasques de 500 ml'],
+      ['Sodium',p.needNa?(p.tot.na/1000).toLocaleString('fr-CH',{maximumFractionDigits:1})+' g':'–',p.needNa?'≈ '+Math.round(p.tot.na/250)+' capsules de 250 mg':'pas nécessaire'],
+      ['Énergie',Math.round((p.tot.c+p.tot.prot)*4)+' kcal',p.tot.prot?Math.round(p.tot.prot)+' g de protéines':'apportée par les glucides']
+    ].map(([a,b,c])=>`<div><span>${a}</span><b>${b}</b><small>${c}</small></div>`).join('');
+    // entre deux ravitos
+    const segMin=Math.min(s.aid,p.min), seg=segMin/60, segEat=Math.max(0,seg-(p.h<1.25?seg:0));
+    const sc=p.carbH*segEat, sf=p.fluid*seg, sna=p.na*seg;
+    const hasDrink=s.foods.includes('boisson'), flasks=Math.max(1,Math.ceil(sf/500)), share=p.h>8?1/3:1/2, dFl=hasDrink&&p.h>=1.25?Math.max(1,Math.round(flasks*share)):0;
+    const bk=basket(sc,s.foods,dFl*35,dFl*300);
+    const naLeft=Math.max(0,sna-bk.na), caps=p.needNa?Math.ceil(naLeft/250):0;
+    $('rvCarry').innerHTML=`<p class="carry-head">Pour <b>${fmt(segMin)}</b> d'autonomie : <b>${g(sc)}</b> de glucides, <b>${L(sf)}</b> à boire${p.needNa?`, <b>${mg(sna)}</b> de sodium`:''}.</p>
+      <ul>${p.h<1.25?'':bk.items.map(it=>`<li><i class="dot d1"></i>${itemTxt(it)}</li>`).join('')}
+      <li><i class="dot d2"></i>${flasks} flasque${flasks>1?'s':''} de 500 ml${dFl?` : ${dFl} de boisson d'effort${flasks-dFl?` + ${flasks-dFl} d'eau`:''}`:` d'eau`}</li>
+      ${caps?`<li><i class="dot d3"></i>${caps} capsule${caps>1?'s':''} de sel de 250 mg</li>`:''}</ul>`;
+    // heure type
+    const hDrinkC=hasDrink?p.fluid*share/500*35:0, hb=basket(p.carbH,s.foods,hDrinkC,hasDrink?p.fluid*share/500*300:0); const slots=[[],[],[]];
+    let k=0; hb.items.forEach(it=>{for(let i=0;i<it.n;i++)slots[(k++)%3].push(it.f.one)});
+    const sip=r50(p.fluid/3)||150, capH=p.needNa?Math.min(3,Math.max(0,Math.round((p.na-hb.na)/250))):0;
+    const selAt=i=>capH>=3||(capH===2&&i!==1)||(capH===1&&i===2);
+    $('rvHour').innerHTML=p.h<1.25?`<li><span class="t">Toutes les 15 à 20 min</span><span>Quelques gorgées d'eau, selon ta soif</span></li>`
+      :['0:20','0:40','1:00'].map((t,i)=>`<li><span class="t">${t}</span><span>${slots[i].length?slots[i].join(' + '):'Boisson seulement'}</span><span class="w">${sip} ml${hasDrink?((share<.5?i!==0:i===1)?' eau':' boisson'):''}</span>${selAt(i)?`<span class="s">+ sel</span>`:''}</li>`).join('')
+      +(p.h>8?`<li class="extra"><span class="t">Ravito</span><span>Un aliment salé ou une soupe à chaque ravito, et quelque chose de chaud la nuit</span></li>`:'');
+    // avant / après
+    const meal=p.h>=3?[2,3]:p.h>=1.25?[1,2]:[1,1];
+    $('rvPre').innerHTML=[
+      `<li><b>${p.h>=3?'3 à 4 h':'2 à 3 h'} avant</b> : un repas que tu connais, riche en glucides, pauvre en fibres et en graisses, soit ${g(meal[0]*p.kg)}${meal[1]!==meal[0]?' à '+g(meal[1]*p.kg):''} de glucides (${meal[0]}${meal[1]!==meal[0]?' à '+meal[1]:''} g par kg).</li>`,
+      `<li><b>Hydratation</b> : environ ${r50(p.kg*6)} ml dans les 4 heures avant le départ, par petites quantités.</li>`,
+      p.h>=1.5?`<li><b>15 min avant</b> : environ 25 g de glucides si tu as faim (un gel ou une compote).</li>`:''
+    ].join('');
+    $('rvPost').innerHTML=[
+      `<li><b>Dans l'heure</b> : environ ${g(p.kg*1)} de glucides et 20 à 30 g de protéines (lait chocolaté, sandwich, riz et œufs).</li>`,
+      `<li><b>Bois régulièrement</b> jusqu'à ce que ton urine redevienne claire, avec un peu de sel.</li>`,
+      p.h>8?`<li><b>Les jours suivants</b> : mange à ta faim, priorité au sommeil.</li>`:''
+    ].join('');
+    // caféine
+    $('rvCafBox').hidden=!s.caf;
+    if(s.caf){const lo=Math.round(3*p.kg/10)*10,hi=Math.round(6*p.kg/10)*10;
+      $('rvCafList').innerHTML=(p.h<3?`<li><b>Environ ${lo} mg, 1 h avant le départ</b> (3 mg par kg) : c'est le moment le plus utilisé dans les études.</li>`
+        :`<li><b>Pars sans ou avec peu</b>, puis environ ${Math.round(p.kg/10)*10} mg (1 mg par kg) toutes les 2 à 3 h ${p.h>8?'à partir de la nuit ou de la deuxième moitié':'dans la deuxième moitié de course'}.</li>`)
+        +`<li><b>Ne dépasse pas ${hi} mg</b> sur toute la course (6 mg par kg) : au-delà, pas de bénéfice et plus d'effets indésirables.</li><li>Regarde la teneur sur l'emballage des gels caféinés : elle varie beaucoup d'une marque à l'autre.</li><li>Déconseillé aux moins de 18 ans, pendant la grossesse ou en cas de problème cardiaque.</li>`}
+    // alertes
+    const w=[];
+    if(+s.gut===0&&p.carbH>=50) w.push("<b>Ton ventre n'est pas habitué ?</b> Entraîne-le : mange pendant tes sorties longues, en augmentant progressivement. Deux semaines suffisent déjà à réduire nettement les troubles digestifs.");
+    if(s.temp>=28) w.push("<b>Forte chaleur</b> : ralentis, mouille ta casquette et ta nuque, et ne néglige pas le sel.");
+    w.push("<b>Ne bois pas plus que ce que tu transpires.</b> Prendre du poids pendant une course, des mains ou des chevilles gonflées, c'est le signe que tu bois trop : risque d'hyponatrémie.");
+    w.push("<b>Teste tout à l'entraînement</b> : aliments, quantités et boisson. Rien de nouveau le jour de la course.");
+    $('rvWarn').innerHTML=w.map(x=>`<p>${x}</p>`).join('');
+    window.__rvPlan={p,bk,segMin,sc,sf,sna,flasks,dFl,caps,hb,slots,sip};
+  }
+
+  // copier le plan
+  $('rvCopy').addEventListener('click',async()=>{
+    const P=window.__rvPlan,p=P.p,s=p.s,T=[];
+    T.push('MON PLAN DE RAVITAILLEMENT · Montagnoud Coaching');
+    T.push(`${p.cat} · ${fmt(p.min)}${s.mode==='dist'?` · ${s.km} km, ${s.dp} m D+`:''} · ${s.temp} °C`);
+    T.push('');T.push('PAR HEURE');
+    T.push(`- Glucides : ${p.carbH} g (fourchette ${p.cLo}-${p.cHi} g)`);T.push(`- Boisson : ${L(p.fluid)}`);T.push(`- Sodium : ${p.needNa?mg(p.na):'pas nécessaire'}`);
+    T.push('');T.push(`ENTRE DEUX RAVITOS (${fmt(P.segMin)})`);
+    P.bk.items.forEach(it=>T.push('- '+itemTxt(it)));T.push(`- ${P.flasks} flasque(s) de 500 ml${P.dFl?` (dont ${P.dFl} de boisson d'effort)`:''}`);if(P.caps)T.push(`- ${P.caps} capsule(s) de sel de 250 mg`);
+    if(p.h>=1.25){T.push('');T.push('UNE HEURE TYPE');['0:20','0:40','1:00'].forEach((t,i)=>T.push(`${t} : ${P.slots[i].join(' + ')||'boisson seulement'} · ${P.sip} ml`))}
+    T.push('');T.push('Repères généraux, à tester à l\'entraînement.');T.push('https://bagnouddavid-rgb.github.io/montagnoud-coaching/#calculateur');
+    const txt=T.join('\n');let ok=false;
+    try{await navigator.clipboard.writeText(txt);ok=true}catch(e){try{const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();ok=document.execCommand('copy');ta.remove()}catch(e){}}
+    const t=$('toast');if(t){t.textContent=ok?'Plan copié !':'Copie impossible';t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)}
+  });
+  $('rvReset').addEventListener('click',()=>{write(DEF);['swA','swB','swD','swT'].forEach(i=>$(i).value='');render()});
+
+  function save(s){try{localStorage.setItem('mg-rv',JSON.stringify(s))}catch(e){}}
+  let start=DEF;try{const j=JSON.parse(localStorage.getItem('mg-rv')||'null');if(j)start=Object.assign({},DEF,j)}catch(e){}
+  write(start);
+  form.addEventListener('input',render);form.addEventListener('change',render);
+  render();
+})();
+
 
 // Blessures
 const INJ=[
-{n:"Fasciite plantaire",z:"Pied",at:["back",0,481],s:"Douleur sous le talon, surtout aux premiers pas du matin ou après être resté assis.",c:"Hausse rapide du volume, mollets raides, chaussures usées, beaucoup de station debout.",f:"Réduire le volume sans forcément arrêter, étirer mollets et voûte plantaire, rouler une balle sous le pied, renforcer le pied et les mollets.",p:"Progression régulière, renfo des mollets, chaussures en bon état."},
-{n:"Ampoules et ongles noirs",z:"Pied",at:["front",0,484],s:"Cloques sur les orteils ou le talon, ongle qui noircit après les longues descentes.",c:"Frottements, chaussettes humides, chaussure trop petite ou mal serrée en descente.",f:"Protéger l'ampoule sans arracher la peau, garder propre. Un ongle noir douloureux se montre à un médecin ou un podologue.",p:"Chaussure une demi-pointure plus grande, laçage serré en descente, chaussettes techniques, crème anti-frottement."},
-{n:"Entorse de la cheville",z:"Cheville",at:["front",-9,455],s:"Torsion, douleur et gonflement sur l'extérieur de la cheville, parfois hématome.",c:"Pied posé sur une pierre ou une racine, fatigue, ancienne entorse mal rééduquée.",f:"Glace, surélever, marcher si c'est possible sans forte douleur. Consulter si l'appui est impossible ou si le gonflement est important.",p:"Exercices d'équilibre sur une jambe, renfo des chevilles, regard porté 2 à 3 m devant en descente."},
-{n:"Tendinopathie d'Achille",z:"Cheville",at:["back",0,438],s:"Douleur et raideur du tendon à l'arrière de la cheville, plus forte le matin ou au début de la course.",c:"Hausse brutale des côtes ou du volume, passage à des chaussures à faible drop, mollets faibles.",f:"Diminuer les côtes et la vitesse, renforcer les mollets en charge progressive (montées sur pointes lentes). Le repos complet aide rarement à lui seul.",p:"Renfo des mollets toute l'année, côtes ajoutées progressivement."},
-{n:"Périostite tibiale",z:"Jambe",at:["front",6,398],s:"Douleur diffuse le long du bord intérieur du tibia, qui s'échauffe puis revient après l'effort.",c:"Reprise trop rapide, surfaces dures, foulée qui attaque fort le sol.",f:"Réduire le volume et privilégier les terrains souples quelques semaines, renforcer les mollets.",p:"Progression lente, surtout chez les débutants et à la reprise."},
-{n:"Fracture de fatigue",z:"Jambe",at:["front",-1,425],s:"Douleur sur un point précis de l'os (tibia, pied), qui augmente à chaque sortie et peut persister au repos.",c:"Charge trop élevée trop vite, manque d'énergie dans l'alimentation, récupération insuffisante.",f:"Arrêter la course et consulter : un examen est nécessaire et la reprise doit être encadrée.",p:"Progression régulière, manger suffisamment, jours de repos respectés."},
-{n:"Claquage ou contracture du mollet",z:"Jambe",at:["back",-2,378],s:"Douleur vive ou impression de coup de couteau dans le mollet pendant l'effort.",c:"Accélération, côte raide, fatigue, échauffement insuffisant.",f:"Arrêter l'effort, glace, puis reprise progressive de la marche et du renfo. Consulter si la douleur est forte.",p:"Échauffement avant les séances rapides, renfo des mollets."},
-{n:"Syndrome fémoro-patellaire",z:"Genou",at:["front",-1,330],s:"Douleur autour ou derrière la rotule, en descente, dans les escaliers ou après être resté assis longtemps.",c:"Beaucoup de descente, hanches et cuisses faibles, augmentation rapide du D-.",f:"Réduire les descentes, renforcer cuisses et fessiers, utiliser des bâtons en descente.",p:"Renfo des quadriceps et fessiers, descentes intégrées progressivement."},
-{n:"Syndrome de l'essuie-glace",z:"Genou",at:["front",-12,322],s:"Douleur sur l'extérieur du genou, qui apparaît après un certain temps de course, surtout en descente.",c:"Volume ou descentes en hausse, fessiers faibles, toujours courir du même côté d'une route bombée.",f:"Diminuer le volume et les descentes, renforcer les fessiers et les hanches. Le rouleau de massage peut soulager.",p:"Renfo des hanches, variété des parcours."},
-{n:"Tendinopathie rotulienne",z:"Genou",at:["front",-1,347],s:"Douleur juste sous la rotule, en sautant, en montant les escaliers ou en descente rapide.",c:"Sauts, descentes répétées, hausse de l'intensité.",f:"Réduire les impacts, renforcer les cuisses avec des exercices lents (squats contre le mur, chaise).",p:"Charge progressive, renfo des quadriceps."},
-{n:"Lésion des ischio-jambiers",z:"Cuisse et hanche",at:["back",-2,262],s:"Douleur à l'arrière de la cuisse, soudaine en sprint ou progressive en haut de cuisse lors des montées.",c:"Accélérations sans échauffement, fatigue, ischios faibles.",f:"Arrêter l'effort intense, reprise progressive, renfo des ischios. Consulter si la douleur est vive avec un hématome.",p:"Échauffement, renfo des ischios (pont fessier, soulevé de terre jambe tendue léger)."},
-{n:"Douleur de hanche ou du fessier",z:"Cuisse et hanche",at:["back",-10,208],s:"Gêne sur le côté de la hanche ou dans le fessier, parfois en position couchée sur le côté.",c:"Fessiers faibles, hausse du volume, longues montées.",f:"Réduire le volume, renforcer les fessiers et le gainage latéral.",p:"Gainage latéral et renfo des fessiers chaque semaine."}
+{n:"Fasciite plantaire",z:"Pied",at:["back",0,481],s:"Douleur sous le talon, surtout aux premiers pas du matin ou après être resté assis.",c:"Hausse rapide du volume, mollets raides, chaussures usées, beaucoup de station debout.",f2:"Réduire le volume sans forcément arrêter, étirer mollets et voûte plantaire, rouler une balle sous le pied, renforcer le pied et les mollets.",p:"Progression régulière, renfo des mollets, chaussures en bon état."},
+{n:"Ampoules et ongles noirs",z:"Pied",at:["front",0,484],s:"Cloques sur les orteils ou le talon, ongle qui noircit après les longues descentes.",c:"Frottements, chaussettes humides, chaussure trop petite ou mal serrée en descente.",f2:"Protéger l'ampoule sans arracher la peau, garder propre. Un ongle noir douloureux se montre à un médecin ou un podologue.",p:"Chaussure une demi-pointure plus grande, laçage serré en descente, chaussettes techniques, crème anti-frottement."},
+{n:"Entorse de la cheville",z:"Cheville",at:["front",-9,455],s:"Torsion, douleur et gonflement sur l'extérieur de la cheville, parfois hématome.",c:"Pied posé sur une pierre ou une racine, fatigue, ancienne entorse mal rééduquée.",f2:"Glace, surélever, marcher si c'est possible sans forte douleur. Consulter si l'appui est impossible ou si le gonflement est important.",p:"Exercices d'équilibre sur une jambe, renfo des chevilles, regard porté 2 à 3 m devant en descente."},
+{n:"Tendinopathie d'Achille",z:"Cheville",at:["back",0,438],s:"Douleur et raideur du tendon à l'arrière de la cheville, plus forte le matin ou au début de la course.",c:"Hausse brutale des côtes ou du volume, passage à des chaussures à faible drop, mollets faibles.",f2:"Diminuer les côtes et la vitesse, renforcer les mollets en charge progressive (montées sur pointes lentes). Le repos complet aide rarement à lui seul.",p:"Renfo des mollets toute l'année, côtes ajoutées progressivement."},
+{n:"Périostite tibiale",z:"Jambe",at:["front",6,398],s:"Douleur diffuse le long du bord intérieur du tibia, qui s'échauffe puis revient après l'effort.",c:"Reprise trop rapide, surfaces dures, foulée qui attaque fort le sol.",f2:"Réduire le volume et privilégier les terrains souples quelques semaines, renforcer les mollets.",p:"Progression lente, surtout chez les débutants et à la reprise."},
+{n:"Fracture de fatigue",z:"Jambe",at:["front",-1,425],s:"Douleur sur un point précis de l'os (tibia, pied), qui augmente à chaque sortie et peut persister au repos.",c:"Charge trop élevée trop vite, manque d'énergie dans l'alimentation, récupération insuffisante.",f2:"Arrêter la course et consulter : un examen est nécessaire et la reprise doit être encadrée.",p:"Progression régulière, manger suffisamment, jours de repos respectés."},
+{n:"Claquage ou contracture du mollet",z:"Jambe",at:["back",-2,378],s:"Douleur vive ou impression de coup de couteau dans le mollet pendant l'effort.",c:"Accélération, côte raide, fatigue, échauffement insuffisant.",f2:"Arrêter l'effort, glace, puis reprise progressive de la marche et du renfo. Consulter si la douleur est forte.",p:"Échauffement avant les séances rapides, renfo des mollets."},
+{n:"Syndrome fémoro-patellaire",z:"Genou",at:["front",-1,330],s:"Douleur autour ou derrière la rotule, en descente, dans les escaliers ou après être resté assis longtemps.",c:"Beaucoup de descente, hanches et cuisses faibles, augmentation rapide du D-.",f2:"Réduire les descentes, renforcer cuisses et fessiers, utiliser des bâtons en descente.",p:"Renfo des quadriceps et fessiers, descentes intégrées progressivement."},
+{n:"Syndrome de l'essuie-glace",z:"Genou",at:["front",-12,322],s:"Douleur sur l'extérieur du genou, qui apparaît après un certain temps de course, surtout en descente.",c:"Volume ou descentes en hausse, fessiers faibles, toujours courir du même côté d'une route bombée.",f2:"Diminuer le volume et les descentes, renforcer les fessiers et les hanches. Le rouleau de massage peut soulager.",p:"Renfo des hanches, variété des parcours."},
+{n:"Tendinopathie rotulienne",z:"Genou",at:["front",-1,347],s:"Douleur juste sous la rotule, en sautant, en montant les escaliers ou en descente rapide.",c:"Sauts, descentes répétées, hausse de l'intensité.",f2:"Réduire les impacts, renforcer les cuisses avec des exercices lents (squats contre le mur, chaise).",p:"Charge progressive, renfo des quadriceps."},
+{n:"Lésion des ischio-jambiers",z:"Cuisse et hanche",at:["back",-2,262],s:"Douleur à l'arrière de la cuisse, soudaine en sprint ou progressive en haut de cuisse lors des montées.",c:"Accélérations sans échauffement, fatigue, ischios faibles.",f2:"Arrêter l'effort intense, reprise progressive, renfo des ischios. Consulter si la douleur est vive avec un hématome.",p:"Échauffement, renfo des ischios (pont fessier, soulevé de terre jambe tendue léger)."},
+{n:"Douleur de hanche ou du fessier",z:"Cuisse et hanche",at:["back",-10,208],s:"Gêne sur le côté de la hanche ou dans le fessier, parfois en position couchée sur le côté.",c:"Fessiers faibles, hausse du volume, longues montées.",f2:"Réduire le volume, renforcer les fessiers et le gainage latéral.",p:"Gainage latéral et renfo des fessiers chaque semaine."}
 ];
+const META={
+"Fasciite plantaire":{loc:"Sous le talon",f:2,u:"adapt",doc:"la douleur dure plus de 6 semaines malgré l'allègement, ou si le talon gonfle."},
+"Ampoules et ongles noirs":{loc:"Orteils, talon",f:2,u:"adapt",doc:"la peau devient rouge et chaude autour, avec du pus ou de la fièvre (infection)."},
+"Entorse de la cheville":{loc:"Extérieur de la cheville",f:3,u:"watch",doc:"tu ne peux pas faire 4 pas en appui, un point de l'os est douloureux au toucher, ou le gonflement est important."},
+"Tendinopathie d'Achille":{loc:"Arrière de la cheville",f:3,u:"watch",doc:"la douleur est apparue d'un coup avec un claquement, ou tu ne peux plus monter sur la pointe du pied (rupture possible)."},
+"Périostite tibiale":{loc:"Bord intérieur du tibia",f:3,u:"adapt",doc:"la douleur se concentre sur un point précis de l'os ou persiste au repos (fracture de fatigue possible)."},
+"Fracture de fatigue":{loc:"Tibia, pied",f:1,u:"doc",doc:"tu la soupçonnes : arrête la course et consulte rapidement, un examen est nécessaire."},
+"Claquage ou contracture du mollet":{loc:"Mollet",f:2,u:"watch",doc:"un hématome apparaît, la marche est douloureuse, ou le mollet est gonflé, chaud et douloureux au repos."},
+"Syndrome fémoro-patellaire":{loc:"Autour de la rotule",f:3,u:"adapt",doc:"le genou gonfle, se bloque ou se dérobe."},
+"Syndrome de l'essuie-glace":{loc:"Extérieur du genou",f:2,u:"adapt",doc:"rien ne s'améliore après 3 à 4 semaines d'entraînement allégé."},
+"Tendinopathie rotulienne":{loc:"Sous la rotule",f:1,u:"adapt",doc:"la douleur augmente malgré l'allègement ou le genou gonfle."},
+"Lésion des ischio-jambiers":{loc:"Arrière de la cuisse",f:1,u:"watch",doc:"la douleur est vive avec un hématome, ou tu ne peux plus marcher normalement."},
+"Douleur de hanche ou du fessier":{loc:"Hanche, fessier",f:1,u:"watch",doc:"la douleur est dans l'aine, présente la nuit, ou t'empêche de marcher (fracture de fatigue du col du fémur possible)."}
+};
+INJ.forEach(i=>Object.assign(i,META[i.n]||{}));
+const FREQ={3:'Très fréquente',2:'Fréquente',1:'Moins fréquente'}, URG={adapt:"Adapter l'entraînement",watch:'Surveiller de près',doc:'Consulter'};
 const injBox=document.getElementById('inj');
 const NS='http://www.w3.org/2000/svg',svg=document.getElementById('bodySvg');
 const VIEWS={front:110,back:330};
@@ -1374,43 +1817,73 @@ Object.entries(VIEWS).forEach(([v,X])=>{
   });
   el('text',{x:X,y:508,'text-anchor':'middle',class:'bm-label'}).textContent=back?'Dos':'Face';
 });
+// étiquettes des zones avec traits de rappel (vue de face)
+const LABELS=[["Cuisse et hanche",250,62],["Genou",336,69],["Jambe",395,67],["Cheville",452,75],["Pied",486,72]];
+const labLayer=el('g',{class:'bm-labels'});
+LABELS.forEach(([z,y,tx])=>{
+  const n=INJ.filter(i=>i.z===z).length, g=el('g',{class:'bm-lab','data-zone':z,tabindex:0,role:'button','aria-label':'Zone '+z+', '+n+' blessures'},labLayer);
+  el('path',{d:`M-4,${y} L${tx-22},${y} L${tx},${y}`,class:'bm-lead'},g);
+  el('circle',{cx:tx,cy:y,r:2.6,class:'bm-lead-dot'},g);
+  const t=el('text',{x:-84,y:y+4,class:'bm-lab-t'},g);t.textContent=z==='Cuisse et hanche'?'Hanche':z;
+  el('circle',{cx:-12,cy:y,r:9,class:'bm-lab-n'},g);
+  const c=el('text',{x:-12,y:y+3.8,'text-anchor':'middle',class:'bm-lab-c'},g);c.textContent=n;
+});
 const dotLayer=el('g',{});
-let curZone='all';
-function selectZone(z){
-  curZone=z;
-  document.querySelectorAll('.inj-chip').forEach(o=>o.setAttribute('aria-pressed',o.dataset.zone===z?'true':'false'));
-  svg.querySelectorAll('.bm-zone').forEach(r=>r.classList.toggle('on',r.dataset.zone===z));
-  document.getElementById('bodyHint').textContent=z==='all'?'Touche la zone où tu as mal.':'Zone : '+z+' · retouche pour tout afficher';
-  renderInj(z);
+let curZone='all',openK=null;
+const ZORDER=['Pied','Cheville','Jambe','Genou','Cuisse et hanche'];
+function itemHTML(i){
+  const k=INJ.indexOf(i);
+  return `<details class="acc-i lv-${i.u}" data-k="${k}" id="bl-${k}">
+    <summary><span class="acc-bar"></span><span class="acc-main"><b>${i.n}</b><small>${i.loc||i.z}</small></span>
+    <span class="acc-tags"><span class="fq f${i.f}"><i></i><i></i><i></i>${FREQ[i.f]}</span><span class="u u-${i.u}">${URG[i.u]}</span></span><span class="chev" aria-hidden="true"></span></summary>
+    <div class="acc-body"><div class="acc-grid">
+      <div><h5>Les signes</h5><p>${i.s}</p></div><div><h5>Causes fréquentes</h5><p>${i.c}</p></div>
+      <div><h5>Que faire</h5><p>${i.f2}</p></div><div><h5>Prévention</h5><p>${i.p}</p></div>
+    </div><p class="acc-doc"><b>Consulte un médecin si</b> ${i.doc||''}</p></div></details>`;
 }
-function renderInj(z){
+function selectZone(z,keepOpen){
+  curZone=z; if(!keepOpen) openK=null;
+  svg.querySelectorAll('.bm-zone').forEach(r=>r.classList.toggle('on',r.dataset.zone===z));
+  svg.querySelectorAll('.bm-lab').forEach(r=>r.classList.toggle('on',r.dataset.zone===z));
   const list=INJ.filter(i=>z==='all'||i.z===z);
-  injBox.innerHTML=list.map((i,k)=>`<article class="injury" data-k="${INJ.indexOf(i)}"><header><h3>${i.n}</h3><span class="zone-tag">${i.z}</span></header><dl><div><dt>Les signes</dt><dd>${i.s}</dd></div><div><dt>Causes fréquentes</dt><dd>${i.c}</dd></div><div><dt>Que faire</dt><dd>${i.f}</dd></div><div><dt>Prévention</dt><dd>${i.p}</dd></div></dl></article>`).join('');
+  document.getElementById('ipKicker').textContent=z==='all'?'Toutes les zones':'Zone sélectionnée';
+  document.getElementById('ipTitle').textContent=z==='all'?`${INJ.length} blessures fréquentes`:`${z==='Cuisse et hanche'?'Hanche et cuisse':z} · ${list.length} blessure${list.length>1?'s':''}`;
+  document.getElementById('ipAll').hidden=z==='all';
+  injBox.innerHTML=z==='all'
+    ? ZORDER.map(zz=>{const l=INJ.filter(i=>i.z===zz);return `<div class="acc-group"><h4><button type="button" data-zone="${zz}">${zz==='Cuisse et hanche'?'Hanche et cuisse':zz}<span>${l.length}</span></button></h4>${l.map(itemHTML).join('')}</div>`}).join('')
+    : list.sort((a,b)=>b.f-a.f).map(itemHTML).join('');
+  drawDots();
+}
+function drawDots(){
   dotLayer.innerHTML='';
-  if(z==='all')return;
-  list.forEach(i=>{
-    const k=INJ.indexOf(i),[v,dx,y]=i.at,cx=VIEWS[v]-14+dx;
-    el('circle',{cx,cy:y,r:6,class:'bm-pulse'},dotLayer);
-    const d=el('circle',{cx,cy:y,r:6,class:'bm-dot','data-k':k,tabindex:0,role:'button','aria-label':i.n},dotLayer);
+  INJ.forEach((i,k)=>{
+    if(curZone!=='all'&&i.z!==curZone)return;
+    const [v,dx,y]=i.at,cx=VIEWS[v]-14+dx,on=openK===k;
+    if(on) el('circle',{cx,cy:y,r:6,class:'bm-pulse'},dotLayer);
+    const d=el('circle',{cx,cy:y,r:on?8:curZone==='all'?4.5:6,class:'bm-dot'+(on?' on':'')+(curZone==='all'?' dim':''),'data-k':k,tabindex:0,role:'button','aria-label':i.n},dotLayer);
     el('title',{},d).textContent=i.n;
   });
 }
-function hi(k,on){
-  svg.querySelectorAll(`.bm-dot[data-k="${k}"]`).forEach(d=>d.classList.toggle('hi',on));
-  const c=injBox.querySelector(`.injury[data-k="${k}"]`);if(c)c.classList.toggle('hi',on);
+function openItem(k,scroll){
+  injBox.querySelectorAll('details.acc-i').forEach(d=>{d.open=+d.dataset.k===k});
+  openK=k; drawDots();
+  const d=injBox.querySelector(`details[data-k="${k}"]`);
+  if(d&&scroll){const r=d.getBoundingClientRect();if(r.top<80||r.bottom>innerHeight)d.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'center'})}
 }
+injBox.addEventListener('toggle',e=>{const d=e.target;if(!d.matches||!d.matches('details.acc-i'))return;
+  if(d.open){injBox.querySelectorAll('details.acc-i[open]').forEach(o=>{if(o!==d)o.open=false});openK=+d.dataset.k;drawDots()}
+  else if(openK===+d.dataset.k){openK=null;drawDots()}},true);
+injBox.addEventListener('click',e=>{const b=e.target.closest('.acc-group h4 button');if(b)selectZone(b.dataset.zone)});
 svg.addEventListener('click',e=>{
   const d=e.target.closest('.bm-dot');
-  if(d){const c=injBox.querySelector(`.injury[data-k="${d.dataset.k}"]`);if(c){c.scrollIntoView({block:'center'});hi(d.dataset.k,true);setTimeout(()=>hi(d.dataset.k,false),1500)}return}
-  const r=e.target.closest('.bm-zone');if(r)selectZone(curZone===r.dataset.zone?'all':r.dataset.zone);
+  if(d){const k=+d.dataset.k,z=INJ[k].z;if(curZone!==z)selectZone(z,true);openItem(k,true);return}
+  const r=e.target.closest('.bm-zone,.bm-lab');if(r)selectZone(curZone===r.dataset.zone?'all':r.dataset.zone);
 });
-svg.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('.bm-zone,.bm-dot')){e.preventDefault();e.target.dispatchEvent(new MouseEvent('click',{bubbles:true}))}});
-svg.addEventListener('mouseover',e=>{const d=e.target.closest('.bm-dot');if(d)hi(d.dataset.k,true)});
-svg.addEventListener('mouseout',e=>{const d=e.target.closest('.bm-dot');if(d)hi(d.dataset.k,false)});
-injBox.addEventListener('mouseover',e=>{const c=e.target.closest('.injury');if(c)svg.querySelectorAll(`.bm-dot[data-k="${c.dataset.k}"]`).forEach(d=>d.classList.add('hi'))});
-injBox.addEventListener('mouseout',e=>{const c=e.target.closest('.injury');if(c)svg.querySelectorAll(`.bm-dot[data-k="${c.dataset.k}"]`).forEach(d=>d.classList.remove('hi'))});
+svg.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.closest('.bm-zone,.bm-dot,.bm-lab')){e.preventDefault();e.target.closest('.bm-zone,.bm-dot,.bm-lab').dispatchEvent(new MouseEvent('click',{bubbles:true}))}});
+injBox.addEventListener('mouseover',e=>{const c=e.target.closest('.acc-i');svg.querySelectorAll('.bm-dot').forEach(d=>d.classList.toggle('hov',!!c&&d.dataset.k===c.dataset.k))});
+injBox.addEventListener('mouseleave',()=>svg.querySelectorAll('.bm-dot').forEach(d=>d.classList.remove('hov')));
+document.getElementById('ipAll').addEventListener('click',()=>selectZone('all'));
 svg.appendChild(dotLayer);
-document.querySelectorAll('.inj-chip').forEach(b=>b.addEventListener('click',()=>selectZone(b.dataset.zone)));
 selectZone('all');
 
 // Lexique
