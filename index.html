@@ -173,7 +173,7 @@ header.top{position:sticky;top:0;z-index:20;background:var(--forest);color:#fff}
 .rv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);border-radius:26px;overflow:hidden;box-shadow:0 26px 60px #7a3d0f22;border:1px solid #efd6c0;background:#fff}
 @media (max-width:900px){.rv{grid-template-columns:minmax(0,1fr)}.rv-in{border-right:0;border-bottom:1px solid #f1dfcf}}
 .rv-in{padding:26px 26px 30px;display:flex;flex-direction:column;gap:6px;background:#fffaf5;border-right:1px solid #f1dfcf}
-.rv-in fieldset{border:0;margin:0;padding:0 0 18px;display:flex;flex-direction:column;gap:12px}
+.rv-in fieldset{border:0;margin:0;padding:0 0 18px;display:flex;flex-direction:column;gap:12px;min-width:0}
 .rv-in fieldset+fieldset{border-top:1px solid #f1dfcf;padding-top:18px}
 .rv-in legend{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.05rem;padding:0;margin-bottom:12px}
 .rv-in legend span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--forest);color:var(--fluo);font-size:.8rem}
@@ -188,7 +188,9 @@ header.top{position:sticky;top:0;z-index:20;background:var(--forest);color:#fff}
 .num em{position:absolute;right:12px;bottom:14px;font-style:normal;font-size:.8rem;color:var(--muted);font-weight:600}
 .row4 .num input{padding:10px 30px 10px 10px;font-size:1rem}.row4 .num em{right:8px;bottom:12px}
 .sel{display:flex;flex-direction:column;gap:5px}
-.sel select{padding:12px;border:1.5px solid #ead9c9;border-radius:12px;font:600 .95rem var(--body);background:#fff;color:var(--ink)}
+.sel select{width:100%;min-width:0;max-width:100%;padding:12px;border:1.5px solid #ead9c9;border-radius:12px;font:600 .95rem var(--body);background:#fff;color:var(--ink);text-overflow:ellipsis}
+.num,.sel,.seg label{min-width:0}
+.seg span{overflow:hidden;text-overflow:ellipsis}
 .seg{display:grid;grid-template-columns:1fr 1fr;background:#f3e6d8;border-radius:14px;padding:4px;gap:4px}
 .seg3{grid-template-columns:repeat(3,1fr)}
 .seg label{position:relative;cursor:pointer}
@@ -514,7 +516,8 @@ header.top .wrap.nav{max-width:1440px}
   .share-btn span{display:inline}.share-btn{padding:9px 16px}
 }
 @media (max-width:900px){.nav ul{left:0;right:0;width:auto;border-radius:0}.share-btn{padding:8px 14px}.menu-btn{order:3}}
-@media (max-width:380px){.share-btn span{display:none}}
+@media (max-width:440px){.nav{gap:10px}.brand{font-size:1.15rem;gap:8px}.brand svg{width:28px;height:28px}.share-btn{padding:8px 12px;font-size:.85rem}.menu-btn{padding:6px 10px}}
+@media (max-width:360px){.share-btn span{display:none}}
 
 /* Sommeil et mental */
 #sommeil-mental{background:#eeebf7;--blob:#cfc6ef;--blob2:#ffffff;--violet:#2a2550;--violet-2:#3a3370;--lav:#b9b0e6}
