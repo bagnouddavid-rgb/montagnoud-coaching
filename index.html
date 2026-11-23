@@ -304,6 +304,131 @@ main>section:not(.hero)::before{content:"";position:absolute;inset:-20%;z-index:
 .fab-top{margin-top:8px;border-top:1px solid #3d6a4c;border-radius:0!important;padding-top:12px!important;color:var(--fluo)!important}
 @media (prefers-reduced-motion: reduce){.fab,.fab-panel{transition:none;animation:none}}
 
+/* Bouton Partager */
+.brand{flex:none}
+.brand svg{flex:none}
+.nav ul{order:2;margin-left:auto}
+.nav ul a,.nav .btn{white-space:nowrap}
+.share{position:relative;order:3;flex:none}
+.nav>.btn{order:4;flex:none}
+.share-btn{display:inline-flex;align-items:center;gap:7px;background:var(--fluo);color:var(--forest);border:0;border-radius:999px;padding:9px 16px;font:700 .9rem var(--body);cursor:pointer}
+.share-btn:hover{background:#d2f01f}
+.share-menu{position:absolute;right:0;top:calc(100% + 10px);width:250px;background:#fff;color:var(--ink);border-radius:16px;padding:10px;box-shadow:0 18px 40px #13261a55;z-index:30;animation:pop .2s cubic-bezier(.2,.8,.2,1);transform-origin:top right}
+.share-title{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:6px 8px 8px}
+.share-menu button{display:flex;align-items:center;gap:12px;width:100%;background:none;border:0;border-radius:10px;padding:9px 8px;font:600 .95rem var(--body);color:var(--ink);cursor:pointer;text-align:left}
+.share-menu button:hover,.share-menu button:focus-visible{background:var(--rock)}
+.share-menu .ico{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;flex:none;background:#f1f3ef;overflow:hidden;font-weight:800;color:#fff}
+.share-menu .ico img{width:20px;height:20px;display:block}
+.ico-link{color:var(--forest)!important}
+.toast{position:fixed;left:50%;top:84px;transform:translate(-50%,-20px);background:var(--forest);color:#fff;font-weight:700;padding:12px 20px;border-radius:999px;box-shadow:0 12px 30px #13261a66;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:60;display:flex;align-items:center;gap:8px;white-space:nowrap}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast::before{content:"✓";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--fluo);color:var(--forest);font-size:.8rem}
+@media (max-width:1240px){.share-btn span{display:none}.share-btn{padding:10px 11px}}
+@media (max-width:1120px){.nav ul{gap:14px}.nav ul a{font-size:.86rem}}
+@media (max-width:900px){.share-btn span{display:inline}.share-btn{padding:8px 14px}.share{margin-left:auto;order:2}.menu-btn{order:3}}
+@media (max-width:380px){.share-btn span{display:none}}
+
+/* Sommeil et mental */
+#sommeil-mental{background:#eeebf7;--blob:#cfc6ef;--blob2:#ffffff;--violet:#2a2550;--violet-2:#3a3370;--lav:#b9b0e6}
+.sm[data-mode="long"] .only-ultra,.sm[data-mode="ultra"] .only-long{display:none!important}
+.sm-switch{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#fff;border:1px solid #d9d3ef;border-radius:18px;padding:6px;max-width:620px;margin-bottom:32px}
+.sm-switch button{border:0;background:transparent;border-radius:13px;padding:12px 14px;text-align:left;cursor:pointer;font-family:var(--body);color:var(--ink);display:flex;flex-direction:column;gap:2px;transition:background .25s,color .25s}
+.sm-switch b{font-size:1.05rem}
+.sm-switch span{font-size:.82rem;color:var(--muted)}
+.sm-switch button[aria-selected="true"]{background:var(--violet);color:#fff}
+.sm-switch button[aria-selected="true"] span{color:var(--lav)}
+.sm-night{position:relative;overflow:hidden;background:var(--violet);color:#ecebf8;border-radius:24px;padding:34px 30px 26px;
+  background-image:radial-gradient(1.5px 1.5px at 12% 18%,#fff9 50%,transparent 51%),radial-gradient(1px 1px at 28% 72%,#fff8 50%,transparent 51%),radial-gradient(1.5px 1.5px at 46% 12%,#fffa 50%,transparent 51%),radial-gradient(1px 1px at 63% 40%,#fff7 50%,transparent 51%),radial-gradient(2px 2px at 81% 22%,#fffb 50%,transparent 51%),radial-gradient(1px 1px at 90% 66%,#fff8 50%,transparent 51%),radial-gradient(1px 1px at 8% 88%,#fff6 50%,transparent 51%),radial-gradient(1.5px 1.5px at 55% 90%,#fff7 50%,transparent 51%),linear-gradient(160deg,#2f2a5c,#211d43)}
+.sm-night-head{display:flex;gap:18px;align-items:center;margin-bottom:26px}
+.moon{width:58px;height:58px;flex:none;filter:drop-shadow(0 0 14px #f3efc866)}
+.sm-night h3{color:#fff;font-size:1.9rem}
+.sm-night-head p{color:var(--lav)}
+.sm-time{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;position:relative}
+.sm-time::before{content:"";position:absolute;left:8px;right:8px;top:9px;height:2px;background:linear-gradient(90deg,var(--lav),var(--fluo))}
+.sm-time li{position:relative;padding-top:30px;display:flex;flex-direction:column;gap:6px}
+.sm-time li::before{content:"";position:absolute;top:2px;left:0;width:16px;height:16px;border-radius:50%;background:var(--violet);border:3px solid var(--fluo)}
+.sm-time .when{font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--fluo)}
+.sm-time b{color:#fff;font-size:1.05rem}
+.sm-time p{color:#cfcbef;font-size:.93rem}
+@media (max-width:860px){.sm-time{grid-template-columns:1fr;gap:18px;padding-left:28px}.sm-time::before{left:7px;right:auto;top:6px;bottom:6px;width:2px;height:auto;background:linear-gradient(180deg,var(--lav),var(--fluo))}.sm-time li{padding-top:0}.sm-time li::before{left:-28px;top:2px}}
+.sm-clock{margin-top:34px;border-top:1px solid #ffffff22;padding-top:26px}
+.sm-clock h4{margin:0 0 30px;font-size:1.1rem;color:#fff}
+.clock-bar{position:relative;height:18px;border-radius:999px;background:linear-gradient(90deg,#ff9a5c 0%,#6d5fbf 18%,#1a1638 40%,#100d26 55%,#1a1638 68%,#6d8fd9 80%,#ffd98a 100%)}
+.clock-bar .zone{position:absolute;top:-6px;bottom:-6px;border-radius:10px;background:repeating-linear-gradient(135deg,#ff6b5a66 0 6px,#ff6b5a33 6px 12px);border:2px solid #ff8a7a}
+.clock-bar .mark{position:absolute;top:-28px;transform:translateX(-50%);font-size:.75rem;font-weight:700;white-space:nowrap;color:var(--fluo)}
+.clock-bar .mark::after{content:"";position:absolute;left:50%;top:18px;width:2px;height:12px;background:var(--fluo)}
+.clock-bar .mark.nap{top:auto;bottom:-30px;color:#fff}
+.clock-bar .mark.nap::after{top:-12px;background:#fff}
+.clock-hours{display:flex;justify-content:space-between;margin-top:36px;font-size:.78rem;color:var(--lav);font-variant-numeric:tabular-nums}
+.clock-legend{margin-top:14px;color:#cfcbef;font-size:.94rem}
+.clock-legend i{display:inline-block;width:12px;height:12px;border-radius:3px;border:2px solid #ff8a7a;background:#ff6b5a55;margin-right:8px;vertical-align:-1px}
+.clock-legend b{color:#fff}
+.sm-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:22px}
+.sm-cards article{background:#ffffff10;border:1px solid #ffffff1f;border-radius:14px;padding:16px}
+.sm-cards b{color:#fff;display:block;margin-bottom:6px}
+.sm-cards p{color:#cfcbef;font-size:.92rem}
+.sm-cards .alert{border-color:#ff8a7a;background:#ff6b5a1c}
+.sm-after{margin-top:24px;color:#cfcbef;font-size:.95rem}
+.sm-after b{color:var(--fluo)}
+.sm-mind{margin-top:60px}
+.sm-sub{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.sm-sub h3{font-size:1.9rem}
+.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.tool{background:#fff;border:1px solid #ddd7f0;border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:6px;transition:transform .2s,box-shadow .2s}
+.tool:hover{transform:translateY(-3px);box-shadow:0 12px 26px #2a255018}
+.tool .n{font-family:var(--display);font-size:1.7rem;color:var(--violet-2);line-height:1}
+.tool b{font-size:1.05rem}
+.tool p{color:var(--muted);font-size:.94rem}
+.slump{display:grid;grid-template-columns:1fr 1.3fr;gap:16px;margin-top:22px}
+@media (max-width:760px){.slump{grid-template-columns:1fr}}
+.slump-rule{background:var(--fluo);color:var(--forest);border-radius:18px;padding:24px;display:flex;flex-direction:column;gap:8px}
+.slump-rule span{font-size:.75rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.slump-rule strong{font-family:var(--display);font-weight:400;font-size:1.7rem;line-height:1.1}
+.slump-list{background:#fff;border:1px solid #ddd7f0;border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.slump-list p{color:var(--muted);font-size:.95rem}
+.slump-list b{color:var(--ink)}
+.sm-table{margin-top:22px}
+.sm-table th{background:var(--violet)}
+.sm-table td:first-child{color:var(--violet-2)}
+/* checklist */
+.ck{margin-top:60px;display:grid;grid-template-columns:300px 1fr;gap:0;background:#fff;border-radius:26px;overflow:hidden;box-shadow:0 24px 60px #2a255026;border:1px solid #ddd7f0}
+@media (max-width:860px){.ck{grid-template-columns:1fr}}
+.ck-side{background:var(--violet);color:#fff;padding:30px 26px;display:flex;flex-direction:column;gap:14px;align-items:flex-start;background-image:linear-gradient(170deg,#3a3370,#211d43)}
+.ck-side .eyebrow{color:var(--fluo);margin:0}
+.ck-side h3{color:#fff;font-size:1.6rem}
+.ring{position:relative;width:170px;height:170px;align-self:center;margin:8px 0}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:#ffffff1f;stroke-width:11}
+.ring-fg{fill:none;stroke:var(--fluo);stroke-width:11;stroke-linecap:round;stroke-dasharray:314.16;stroke-dashoffset:314.16;transition:stroke-dashoffset .6s cubic-bezier(.2,.8,.2,1)}
+.ck.done .ring-fg{filter:drop-shadow(0 0 8px #e2ff3baa)}
+.ring-txt{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.ring-txt b{font-family:var(--display);font-weight:400;font-size:2.6rem;line-height:1;font-variant-numeric:tabular-nums}
+.ring-txt span{font-size:.85rem;color:var(--lav);font-variant-numeric:tabular-nums}
+.ck-msg{font-weight:700;color:#fff;align-self:stretch;text-align:center;min-height:1.6em}
+.ck-actions{display:flex;flex-direction:column;gap:8px;align-self:stretch}
+.ck-actions .btn{justify-content:center}
+.ck-reset{background:transparent;border:1px solid #ffffff40;color:#fff;border-radius:999px;padding:10px;font:600 .9rem var(--body);cursor:pointer}
+.ck-reset:hover{background:#ffffff14}
+.ck-note{font-size:.8rem;color:var(--lav)}
+.ck-list{padding:26px 28px;display:flex;flex-direction:column;gap:22px}
+.ck-group h4{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--violet-2)}
+.ck-group h4 .gc{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--muted);letter-spacing:0}
+.ck-group h4 .bar{flex:0 0 70px;height:6px;border-radius:9px;background:#ece9f7;overflow:hidden}
+.ck-group h4 .bar i{display:block;height:100%;background:var(--violet-2);transition:width .4s}
+.ck-item{display:flex;gap:12px;align-items:flex-start;padding:10px 12px;border-radius:12px;cursor:pointer;transition:background .2s}
+.ck-item:hover{background:#f5f3fb}
+.ck-item input{position:absolute;opacity:0;width:1px;height:1px}
+.ck-box{flex:none;width:24px;height:24px;border-radius:8px;border:2px solid #c9c2e6;display:grid;place-items:center;transition:background .2s,border-color .2s,transform .2s;margin-top:1px}
+.ck-box svg{width:14px;height:14px;stroke:var(--forest);stroke-width:3.2;fill:none;stroke-dasharray:20;stroke-dashoffset:20;transition:stroke-dashoffset .25s .05s}
+.ck-item input:checked+.ck-box{background:var(--fluo);border-color:var(--fluo);transform:scale(1.08)}
+.ck-item input:checked+.ck-box svg{stroke-dashoffset:0}
+.ck-item input:focus-visible+.ck-box{outline:3px solid var(--violet-2);outline-offset:2px}
+.ck-t{display:flex;flex-direction:column;gap:2px}
+.ck-t b{font-weight:600;transition:color .2s}
+.ck-t small{color:var(--muted);font-size:.85rem}
+.ck-item input:checked~.ck-t b{color:var(--muted);text-decoration:line-through;text-decoration-color:#b9b0e6}
+.tag-u{font-size:.68rem;font-weight:700;background:var(--violet);color:var(--fluo);padding:1px 7px;border-radius:999px;margin-left:6px;vertical-align:1px;text-decoration:none;display:inline-block}
+
 /* Glossary */
 .gloss-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
 .gloss-tools input{flex:1 1 260px;padding:13px 16px;border-radius:999px;border:1px solid var(--line);font:500 1rem var(--body);background:#fff}
@@ -340,6 +465,20 @@ footer a{color:#dfe7dc}
       <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#2b5239"/><path d="M6 29 L16 14 L21 21 L25 16 L34 29 Z" fill="#e2ff3b"/><path d="M16 14 L19 18.5 L16.5 18 L14 19.5 Z" fill="#fff"/></svg>
       Montagnoud
     </a>
+    <div class="share" id="share">
+      <button class="share-btn" id="shareBtn" aria-expanded="false" aria-controls="shareMenu">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="18" cy="5" r="2.6" fill="currentColor"/><circle cx="6" cy="12" r="2.6" fill="currentColor"/><circle cx="18" cy="19" r="2.6" fill="currentColor"/><path d="M8.3 10.8l7.4-4.3M8.3 13.2l7.4 4.3" stroke="currentColor" stroke-width="2"/></svg>
+        <span>Partager</span>
+      </button>
+      <div class="share-menu" id="shareMenu" hidden>
+        <p class="share-title">Copier le lien du site</p>
+        <button data-src="partage" data-msg="Lien copié !"><span class="ico ico-link"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></span>Copier le lien</button>
+        <button data-src="partage-strava" data-msg="Lien pour Strava copié !" data-domain="strava.com" data-letter="S" data-color="#fc4c02"><span class="ico"></span>Pour Strava</button>
+        <button data-src="partage-facebook" data-msg="Lien pour Facebook copié !" data-domain="facebook.com" data-letter="f" data-color="#1877f2"><span class="ico"></span>Pour Facebook</button>
+        <button data-src="partage-insta" data-msg="Lien pour Instagram copié !" data-domain="instagram.com" data-letter="I" data-color="#d62976"><span class="ico"></span>Pour Instagram</button>
+        <button data-src="partage-whatsapp" data-msg="Lien pour WhatsApp copié !" data-domain="whatsapp.com" data-letter="W" data-color="#25d366"><span class="ico"></span>Pour WhatsApp</button>
+      </div>
+    </div>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
     <ul id="menu">
       <li><a href="#methode">La méthode</a></li>
@@ -695,6 +834,116 @@ footer a{color:#dfe7dc}
   </div>
 </section>
 
+<section id="sommeil-mental" class="sm" data-mode="long">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Sommeil et mental</p>
+      <h2>Bien dormir avant, tenir dans la tête pendant</h2>
+      <p class="lead">Sur un trail long ou un ultra, les jambes ne font pas tout. Le sommeil des jours d'avant et la façon de gérer les moments durs comptent autant que l'entraînement.</p>
+    </div>
+
+    <div class="sm-switch" role="tablist" aria-label="Type de course">
+      <button role="tab" id="sm-t-long" aria-selected="true" data-mode="long"><b>Trail long</b><span>jusqu'à environ 80 km, une journée</span></button>
+      <button role="tab" id="sm-t-ultra" aria-selected="false" data-mode="ultra"><b>Ultra-trail</b><span>plus de 80 km, une nuit ou plus</span></button>
+    </div>
+
+    <!-- SOMMEIL -->
+    <div class="sm-night">
+      <div class="sm-night-head">
+        <svg class="moon" viewBox="0 0 64 64" aria-hidden="true"><defs><mask id="mn"><rect width="64" height="64" fill="#fff"/><circle cx="42" cy="24" r="22" fill="#000"/></mask></defs><circle cx="32" cy="32" r="24" fill="#f3efc8" mask="url(#mn)"/></svg>
+        <div>
+          <h3>Le sommeil</h3>
+          <p>La nuit la plus importante n'est pas la veille : ce sont celles de la semaine d'avant.</p>
+        </div>
+      </div>
+
+      <ol class="sm-time">
+        <li><span class="when">J-7 à J-2</span><b>Faire des réserves</b><p>Couche-toi 30 à 60 minutes plus tôt. Ces nuits « en plus » sont celles qui comptent le jour de la course.</p></li>
+        <li><span class="when">Toute la semaine</span><b>Des horaires réguliers</b><p>Même heure de coucher et de lever. Pas de caféine après 14 h, pas d'alcool, peu d'écrans le soir.</p></li>
+        <li><span class="when">La veille</span><b>Une nuit courte, ce n'est pas grave</b><p>Stress, réveil très tôt : mal dormir la veille est normal et ne gâche pas ta course si les nuits d'avant étaient bonnes. Sac prêt, esprit tranquille.</p></li>
+        <li class="only-ultra"><span class="when">Jour du départ</span><b>La sieste d'avant-départ</b><p>Pour un départ en soirée ou de nuit, allonge-toi l'après-midi, même sans dormir : 60 à 90 minutes au calme.</p></li>
+        <li class="only-long"><span class="when">Matin du départ</span><b>Un réveil sans stress</b><p>Prévois large : petit-déjeuner testé 3 h avant, trajet repéré, deux réveils. Le corps se réveille vraiment au bout de 30 minutes d'effort.</p></li>
+      </ol>
+
+      <div class="only-ultra sm-clock">
+        <h4>Pendant la course : la nuit, heure par heure</h4>
+        <div class="clock-bar" aria-hidden="true">
+          <span class="zone" style="left:44.4%;width:16.7%"></span>
+          <span class="mark caf" style="left:47%">Caféine</span>
+          <span class="mark nap" style="left:56%">Micro-sieste si besoin</span>
+        </div>
+        <div class="clock-hours" aria-hidden="true"><span>18 h</span><span>21 h</span><span>0 h</span><span>3 h</span><span>6 h</span><span>9 h</span><span>12 h</span></div>
+        <p class="clock-legend"><i></i><b>Entre 2 h et 5 h du matin</b> : le creux de la nuit. L'envie de dormir est la plus forte, l'attention baisse et les chutes sont plus fréquentes, surtout en descente.</p>
+        <div class="sm-cards">
+          <article><b>La micro-sieste</b><p>10 à 20 minutes, assis ou allongé en base de vie, réveil réglé. Quand tu commences à zigzaguer, dormir un peu fait souvent gagner du temps.</p></article>
+          <article><b>La caféine au bon moment</b><p>Garde-la pour le creux de la nuit plutôt que d'en prendre dès le départ : elle sera bien plus efficace. À tester à l'entraînement.</p></article>
+          <article class="alert"><b>Les signes qui imposent l'arrêt</b><p>Hallucinations, endormissement en marchant, pensées confuses : arrête-toi, couvre-toi, dors 15 minutes ou préviens un bénévole.</p></article>
+          <article><b>S'entraîner de nuit</b><p>Quelques sorties de nuit avant la course : frontale, fatigue, manger dans le froid. Rien ne doit être nouveau le jour J.</p></article>
+        </div>
+      </div>
+      <p class="sm-after"><b>Après la course :</b> le sommeil fait partie de la récupération. <span class="only-long">Couche-toi tôt les deux ou trois soirs suivants.</span><span class="only-ultra">Prévois plusieurs jours calmes : la fatigue d'un ultra se rattrape sur une à deux semaines.</span></p>
+    </div>
+
+    <!-- MENTAL -->
+    <div class="sm-mind">
+      <div class="sm-sub"><h3>Le mental</h3><p class="lead">La tête se prépare comme les jambes : avant la course, avec des outils simples.</p></div>
+      <div class="tools">
+        <article class="tool"><span class="n">01</span><b>Découper la course</b><p>Ne pense pas « <span class="only-long">60 km</span><span class="only-ultra">120 km</span> », pense « jusqu'au prochain ravito ». Chaque morceau terminé est une victoire.</p></article>
+        <article class="tool"><span class="n">02</span><b>Visualiser</b><p>Repère le profil, les montées clés, l'arrivée. Imagine aussi les moments durs et ce que tu feras à ce moment-là.</p></article>
+        <article class="tool"><span class="n">03</span><b>Objectifs A, B, C</b><p>A si tout va bien, B si c'est dur, C : finir. Tu n'es jamais en échec, tu changes juste de plan.</p></article>
+        <article class="tool"><span class="n">04</span><b>Tes phrases-clés</b><p>Une ou deux phrases courtes à te répéter : « Un pas après l'autre », « Je suis prêt pour ça ».</p></article>
+        <article class="tool"><span class="n">05</span><b>Ton « pourquoi »</b><p>Écris pourquoi tu es là. Dans un moment dur, c'est cette raison qui te fait repartir.</p></article>
+        <article class="tool only-ultra"><span class="n">06</span><b>Les heures seul</b><p>Sur un ultra, tu passes des heures sans personne. Prévois de quoi occuper la tête : paysage, respiration, musique si le règlement l'autorise.</p></article>
+      </div>
+
+      <div class="slump">
+        <div class="slump-rule"><span>La règle d'or</span><strong>Coup de mou ? Mange et bois d'abord.</strong><p>Un moral qui s'effondre, c'est très souvent un manque d'énergie. Attends 15 minutes après avoir mangé avant de prendre une décision.</p></div>
+        <div class="slump-list">
+          <p><b>Les coups de mou arrivent toujours, et ils passent.</b> <span class="only-ultra">Sur un ultra, on en traverse souvent plusieurs.</span></p>
+          <p><b>Reste dans le présent</b> : le prochain pas, le prochain virage, pas tout ce qui reste.</p>
+          <p><b>Ralentis sans t'arrêter</b> : marcher vite pendant 10 minutes suffit souvent à repartir.</p>
+          <p><b>Fixe tes critères d'abandon avant la course</b> : blessure, froid, confusion, barrière horaire. Le reste, c'est un passage à vide qui va passer.</p>
+        </div>
+      </div>
+
+      <div class="table-scroll sm-table">
+        <table>
+          <thead><tr><th></th><th>Trail long</th><th>Ultra-trail</th></tr></thead>
+          <tbody>
+            <tr><td>Durée</td><td>Quelques heures, de jour</td><td>Une nuit ou plus</td></tr>
+            <tr><td>Principal défi mental</td><td>Patience : ne pas partir trop vite</td><td>Durer : gérer les crises et la fatigue</td></tr>
+            <tr><td>Coups de mou</td><td>Un ou deux, assez courts</td><td>Plusieurs, parfois longs</td></tr>
+            <tr><td>Sommeil pendant la course</td><td>Pas de souci</td><td>Creux de la nuit, micro-siestes possibles</td></tr>
+            <tr><td>Solitude</td><td>Souvent entouré</td><td>Des heures seul, surtout de nuit</td></tr>
+            <tr><td>Après la course</td><td>Quelques jours de fatigue</td><td>Fatigue longue, parfois un petit « blues »</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- CHECKLIST -->
+    <div class="ck" id="checklist">
+      <div class="ck-side">
+        <p class="eyebrow">Ta checklist</p>
+        <h3>Ma préparation sommeil et mental</h3>
+        <div class="ring">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" class="ring-bg"/><circle cx="60" cy="60" r="50" class="ring-fg" id="ckRing"/></svg>
+          <div class="ring-txt"><b id="ckPct">0 %</b><span id="ckCount">0 / 0</span></div>
+        </div>
+        <p class="ck-msg" id="ckMsg">Coche ce qui est prêt.</p>
+        <div class="ck-actions">
+          <button class="btn btn-fluo" id="ckCopy" type="button">Copier ma checklist</button>
+          <button class="ck-reset" id="ckReset" type="button">Tout décocher</button>
+        </div>
+        <p class="ck-note">Tes coches restent enregistrées sur ton téléphone ou ton ordinateur.</p>
+      </div>
+      <div class="ck-list" id="ckList"></div>
+    </div>
+
+    <p class="note-box" style="margin-top:28px">Ces conseils sont généraux. En cas de troubles du sommeil, d'anxiété importante ou de malaise pendant l'effort, demande l'avis d'un médecin.</p>
+  </div>
+</section>
+
 <section class="utmb" id="utmb">
   <div class="wrap">
     <div class="head">
@@ -802,7 +1051,7 @@ footer a{color:#dfe7dc}
 <div class="fab-wrap" id="fabWrap">
   <nav class="fab-panel" id="fabPanel" aria-label="Aller à une section" hidden>
     <p class="fab-title">Aller directement à…</p>
-    <ul><li><a href="#pour-qui" data-sec="pour-qui"><i style="background:#f4efe4"></i>Pour qui</a></li><li><a href="#methode" data-sec="methode"><i style="background:#183224"></i>La méthode</a></li><li><a href="#app" data-sec="app"><i style="background:#e8f2ea"></i>L'app</a></li><li><a href="#tarifs" data-sec="tarifs"><i style="background:#f3f8d6"></i>Tarifs</a></li><li><a href="#alimentation" data-sec="alimentation"><i style="background:#fbefe2"></i>Alimentation</a></li><li><a href="#calculateur" data-sec="calculateur"><i style="background:#fbefe2"></i>Calculateur de ravitaillement</a></li><li><a href="#zones" data-sec="zones"><i style="background:#e6eef6"></i>Intensités et RPE</a></li><li><a href="#blessures" data-sec="blessures"><i style="background:#f9ece8"></i>Blessures</a></li><li><a href="#utmb" data-sec="utmb"><i style="background:#0d1a2b"></i>Le monde UTMB</a></li><li><a href="#lexique" data-sec="lexique"><i style="background:#eceae3"></i>Lexique</a></li><li><a href="#faq" data-sec="faq"><i style="background:#e3e7df"></i>Questions fréquentes</a></li></ul>
+    <ul><li><a href="#pour-qui" data-sec="pour-qui"><i style="background:#f4efe4"></i>Pour qui</a></li><li><a href="#methode" data-sec="methode"><i style="background:#183224"></i>La méthode</a></li><li><a href="#app" data-sec="app"><i style="background:#e8f2ea"></i>L'app</a></li><li><a href="#tarifs" data-sec="tarifs"><i style="background:#f3f8d6"></i>Tarifs</a></li><li><a href="#alimentation" data-sec="alimentation"><i style="background:#fbefe2"></i>Alimentation</a></li><li><a href="#calculateur" data-sec="calculateur"><i style="background:#fbefe2"></i>Calculateur de ravitaillement</a></li><li><a href="#zones" data-sec="zones"><i style="background:#e6eef6"></i>Intensités et RPE</a></li><li><a href="#blessures" data-sec="blessures"><i style="background:#f9ece8"></i>Blessures</a></li><li><a href="#sommeil-mental" data-sec="sommeil-mental"><i style="background:#2a2550"></i>Sommeil et mental</a></li><li><a href="#utmb" data-sec="utmb"><i style="background:#0d1a2b"></i>Le monde UTMB</a></li><li><a href="#lexique" data-sec="lexique"><i style="background:#eceae3"></i>Lexique</a></li><li><a href="#faq" data-sec="faq"><i style="background:#e3e7df"></i>Questions fréquentes</a></li></ul>
     <a class="fab-top" href="#accueil">↑ Revenir en haut</a>
   </nav>
   <button class="fab" id="fab" aria-expanded="false" aria-controls="fabPanel" aria-label="Ouvrir le menu des sections">
@@ -817,6 +1066,7 @@ footer a{color:#dfe7dc}
     <span><a href="https://www.instagram.com/montagnoud_trail_coaching/" target="_blank" rel="noopener">Instagram @montagnoud_trail_coaching</a> · <a href="https://montagnoud-coaching.netlify.app/?src=site" target="_blank" rel="noopener">Accès à l'app</a></span>
   </div>
 </footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script>
 // Provenance du visiteur (?src=…) : lettres avec accents, chiffres, - et _ acceptés
@@ -847,6 +1097,102 @@ const SITE_SRC=(function(){try{
   fetch('https://euwlhzgixgutzusicbuc.supabase.co/rest/v1/visits',{method:'POST',keepalive:true,
     headers:{'apikey':K,'Content-Type':'application/json','Prefer':'return=minimal'},
     body:JSON.stringify({src:'Site · '+src,device,page:'site'})}).catch(()=>{});
+})();
+
+// Sommeil et mental : onglets + checklist
+(function(){
+  const sec=document.getElementById('sommeil-mental');if(!sec)return;
+  const tabs=[...sec.querySelectorAll('.sm-switch button')];
+  const ITEMS=[
+    ['Sommeil · J-7 à J-2',[
+      ['s1','Me coucher 30 à 60 min plus tôt','Pendant au moins 5 soirs'],
+      ['s2','Garder les mêmes horaires','Coucher et lever à la même heure'],
+      ['s3','Pas de caféine après 14 h, pas d\'alcool',''],
+      ['s4','Moins d\'écrans le soir','Lumière douce la dernière heure'],
+    ]],
+    ['La veille',[
+      ['v1','Sac, dossard et matériel obligatoire prêts','Tout posé au même endroit'],
+      ['v2','Repas du soir déjà testé','Rien de nouveau'],
+      ['v3','Deux réveils réglés',''],
+      ['v4','J\'accepte une nuit courte','Ce n\'est pas grave si la semaine était bonne'],
+      ['v5','Sieste l\'après-midi avant un départ le soir','',1],
+    ]],
+    ['Pendant la course',[
+      ['p1','Ma stratégie de micro-siestes est définie','Où, combien de temps, avec un réveil',1],
+      ['p2','Caféine gardée pour le creux de la nuit','Testée à l\'entraînement',1],
+      ['p3','Frontale et batterie de rechange testées','',1],
+      ['p4','Au moins 2 sorties de nuit à l\'entraînement','',1],
+      ['p5','Mon allure de départ est fixée','Pour ne pas partir trop vite',0,1],
+    ]],
+    ['Le mental',[
+      ['m1','Course découpée en morceaux','De ravito à ravito'],
+      ['m2','Objectifs A, B et C écrits','C = finir'],
+      ['m3','Une ou deux phrases-clés choisies',''],
+      ['m4','Mon « pourquoi » est écrit',''],
+      ['m5','Profil et passages difficiles repérés',''],
+      ['m6','Mes critères d\'abandon sont fixés','Blessure, froid, confusion, barrière horaire'],
+      ['m7','Un plan pour les heures seul','Paysage, respiration, musique si autorisée',1],
+    ]],
+  ];
+  const list=document.getElementById('ckList'),ring=document.getElementById('ckRing'),pct=document.getElementById('ckPct'),cnt=document.getElementById('ckCount'),msg=document.getElementById('ckMsg'),box=document.getElementById('checklist');
+  const C=314.16;let mode='long',state={};
+  const KEY=()=>'mg-checklist-'+mode;
+  const load=()=>{try{state=JSON.parse(localStorage.getItem(KEY())||'{}')}catch(e){state={}}};
+  const save=()=>{try{localStorage.setItem(KEY(),JSON.stringify(state))}catch(e){}};
+  const tick='<svg viewBox="0 0 16 16"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
+  const visible=it=>!(it[3]&&mode==='long')&&!(it[4]&&mode==='ultra');
+  function render(){
+    list.innerHTML=ITEMS.map(([g,its])=>{const v=its.filter(visible);if(!v.length)return '';
+      return `<div class="ck-group"><h4>${g}<span class="bar"><i></i></span><span class="gc"></span></h4>`+v.map(([id,t,d,u])=>`<label class="ck-item"><input type="checkbox" data-id="${id}"${state[id]?' checked':''}><span class="ck-box">${tick}</span><span class="ck-t"><b>${t}${u?'<span class="tag-u">ultra</span>':''}</b>${d?`<small>${d}</small>`:''}</span></label>`).join('')+'</div>'}).join('');
+    update();
+  }
+  function update(){
+    const all=[...list.querySelectorAll('input')],done=all.filter(i=>i.checked).length,n=all.length,r=n?done/n:0;
+    ring.style.strokeDashoffset=C*(1-r);pct.textContent=Math.round(r*100)+' %';cnt.textContent=done+' / '+n;
+    msg.textContent=r===0?'Coche ce qui est prêt.':r<.4?'Bon début, continue !':r<.8?'Tu es bien avancé.':r<1?'Presque prêt !':'Prêt pour le départ !';
+    box.classList.toggle('done',r===1);
+    list.querySelectorAll('.ck-group').forEach(g=>{const i=[...g.querySelectorAll('input')],d=i.filter(x=>x.checked).length;g.querySelector('.gc').textContent=d+'/'+i.length;g.querySelector('.bar i').style.width=(d/i.length*100)+'%'});
+  }
+  list.addEventListener('change',e=>{const i=e.target;if(!i.dataset.id)return;if(i.checked)state[i.dataset.id]=1;else delete state[i.dataset.id];save();update()});
+  document.getElementById('ckReset').addEventListener('click',()=>{state={};save();render()});
+  document.getElementById('ckCopy').addEventListener('click',async()=>{
+    const lines=['Ma préparation sommeil et mental · '+(mode==='ultra'?'Ultra-trail':'Trail long'),''];
+    ITEMS.forEach(([g,its])=>{const v=its.filter(visible);if(!v.length)return;lines.push(g.toUpperCase());v.forEach(([id,t])=>lines.push((state[id]?'[x] ':'[ ] ')+t));lines.push('')});
+    lines.push('Montagnoud Coaching · https://bagnouddavid-rgb.github.io/montagnoud-coaching/');
+    const txt=lines.join('\n');let ok=false;
+    try{await navigator.clipboard.writeText(txt);ok=true}catch(e){try{const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();ok=document.execCommand('copy');ta.remove()}catch(e){}}
+    const t=document.getElementById('toast');if(t){t.textContent=ok?'Checklist copiée !':'Copie impossible';t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2200)}
+  });
+  function setMode(m){mode=m;sec.dataset.mode=m;tabs.forEach(b=>b.setAttribute('aria-selected',b.dataset.mode===m));load();render()}
+  tabs.forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+  setMode('long');
+})();
+
+// Bouton Partager : copie le lien du site avec la provenance
+(function(){
+  const wrap=document.getElementById('share'),btn=document.getElementById('shareBtn'),menu=document.getElementById('shareMenu'),toast=document.getElementById('toast');if(!wrap)return;
+  const BASE='https://bagnouddavid-rgb.github.io/montagnoud-coaching/';
+  menu.querySelectorAll('button[data-domain]').forEach(b=>{
+    const ico=b.querySelector('.ico'),fallback=()=>{ico.textContent=b.dataset.letter;ico.style.background=b.dataset.color};
+    const img=new Image();img.alt='';img.width=20;img.height=20;
+    img.onload=()=>{if(img.naturalWidth>1){ico.appendChild(img)}else fallback()};img.onerror=fallback;
+    img.src='https://www.google.com/s2/favicons?sz=64&domain='+b.dataset.domain;
+  });
+  const open=o=>{menu.hidden=!o;btn.setAttribute('aria-expanded',o)};
+  btn.addEventListener('click',e=>{e.stopPropagation();open(menu.hidden)});
+  document.addEventListener('click',e=>{if(!menu.hidden&&!wrap.contains(e.target))open(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden){open(false);btn.focus()}});
+  let t;function show(msg){toast.textContent=msg;toast.classList.add('on');clearTimeout(t);t=setTimeout(()=>toast.classList.remove('on'),2200)}
+  async function copy(txt){
+    try{await navigator.clipboard.writeText(txt);return true}catch(e){}
+    try{const ta=document.createElement('textarea');ta.value=txt;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();const ok=document.execCommand('copy');ta.remove();return ok}catch(e){return false}
+  }
+  menu.addEventListener('click',async e=>{
+    const b=e.target.closest('button[data-src]');if(!b)return;
+    const url=BASE+'?src='+b.dataset.src;
+    const ok=await copy(url);open(false);
+    show(ok?b.dataset.msg:'Copie impossible : '+url);
+  });
 })();
 
 // Bouton flottant : accès direct aux sections
@@ -1076,6 +1422,10 @@ const T=[
 ["Cadence","Entraînement","Nombre de pas par minute. Une cadence un peu plus élevée réduit souvent les chocs."],
 ["Bloc","Entraînement","Période de quelques semaines avec un même objectif : développement, spécifique, affûtage."],
 ["RPE","Entraînement","Effort perçu noté de 1 à 10 après la séance. 3 – 4 = facile, tu parles en phrases ; 7 – 8 = dur, quelques mots ; 10 = effort maximal."],
+["Micro-sieste","Trail","Sieste de 10 à 20 minutes pendant un ultra, en base de vie, pour repousser l'envie de dormir sans perdre trop de temps."],
+["Creux circadien","Trail","Moment de la nuit, entre 2 h et 5 h environ, où l'envie de dormir est la plus forte et l'attention la plus basse."],
+["Plan A/B/C","Entraînement","Trois objectifs fixés avant une course : A si tout va bien, B si c'est difficile, C = finir."],
+["Passage à vide","Trail","Coup de mou physique et moral pendant une course. Il passe souvent après avoir mangé, bu et ralenti un moment."],
 ["Zone 2","Entraînement","Intensité d'endurance facile, conversation possible. La majorité de ton volume se fait ici."],
 ["Négatif split","Entraînement","Courir la deuxième moitié plus vite que la première. Signe d'une course bien gérée."],
 ["D+","Trail","Dénivelé positif : total des mètres montés sur un parcours. 1000 m D+ = monter l'équivalent de 1000 m."],
